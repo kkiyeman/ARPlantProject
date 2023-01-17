@@ -6,6 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class PlantManager : MonoBehaviour
 {
+    #region SingletoneMake
+    public static PlantManager instance = null;
+    public static PlantManager GetInstance()
+    {
+        if (instance == null)
+        {
+            GameObject go = new GameObject("@PlantManager");
+            instance = go.AddComponent<PlantManager>();
+
+            DontDestroyOnLoad(go);
+        }
+        return instance;
+    }
+    #endregion
+
+    
     [SerializeField]
     ARRaycastManager m_RaycastManager;
     List<ARRaycastHit> m_Hits = new List<ARRaycastHit>();

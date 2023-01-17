@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PlantScene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
-    }
+        PlantManager plantmanager = PlantManager.GetInstance();
+        UIManager uimanager = UIManager.GetInstance();
+        uimanager.OpenUI("UIPlant");
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        UIPlant uiplant = uimanager.GetUI("UIplant").GetComponent<UIPlant>();
+
     }
 }
