@@ -31,7 +31,14 @@ public class PlantManager : MonoBehaviour
 
     public PlantBase[] plantDates = new PlantBase[]
     {
-        
+        new Plant1("Plant1", "Ornamental", 0, 100, 100, false, false),
+        new Plant2("Plant2", "Ornamental", 0, 100, 100, false, false),
+        new Plant3("Plant3", "Ornamental", 0, 100, 100, false, false),
+        new Plant4("Plant4", "Ornamental", 0, 100, 100, false, false),
+        new Plant5("Plant5", "Crops", 0, 100, 100, false, false),
+        new Plant6("Plant6", "Crops", 0, 100, 100, false, false),
+        new Plant7("Plant7", "Crops", 0, 100, 100, false, false),
+        new Plant8("Plant8", "Crops", 0, 100, 100, false, false)
     };
 
     void Start()
