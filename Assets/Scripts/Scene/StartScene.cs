@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class StartScene : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     void Start()
     {
-        
+        UIManager uimanager = UIManager.GetInstance();
+        uimanager.OpenUI("UIStart");
+
+        UIStart uistart = uimanager.GetUI("UIStart").GetComponent<UIStart>();
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
