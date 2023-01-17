@@ -20,8 +20,7 @@ public class PlantManager : MonoBehaviour
         return instance;
     }
     #endregion
-
-    
+ 
     [SerializeField]
     ARRaycastManager m_RaycastManager;
     List<ARRaycastHit> m_Hits = new List<ARRaycastHit>();
@@ -29,6 +28,12 @@ public class PlantManager : MonoBehaviour
     [SerializeField]
     GameObject spawnablePrefab;
     GameObject spawnedObject;
+
+    public PlantBase[] plantDates = new PlantBase[]
+    {
+        
+    };
+
     void Start()
     {
         spawnedObject = null;
