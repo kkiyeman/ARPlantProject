@@ -10,7 +10,7 @@ public class PlantScene : MonoBehaviour
         UIManager uimanager = UIManager.GetInstance();
         uimanager.OpenUI("UIPlant");
 
-        UIPlant uiplant = uimanager.GetUI("UIplant").GetComponent<UIPlant>();
+        UIPlant uiplant = uimanager.GetUI("UIPlant").GetComponent<UIPlant>();
 
     }
 }
