@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantBase : MonoBehaviour
+public class PlantBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string plantName { get; set; }
+    public string plantType{ get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float hydration;         //수분도
+    public float nutrition;         //영양도
+    public int growthRate;          //성장도
 }
