@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Plant1 : PlantBase
 {
-    public Plant1(string plantName, string plantType, int growthRate, float hydration, float nutrition, bool isSick, bool isThirsty)
+    public Plant1(string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty)
     {
         this.plantName = plantName;
         this.plantType = plantType;

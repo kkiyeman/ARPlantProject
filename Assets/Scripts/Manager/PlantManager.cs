@@ -29,6 +29,10 @@ public class PlantManager : MonoBehaviour
     GameObject spawnablePrefab;
     GameObject spawnedObject;
 
+    public bool isWaterThePlantOnClick;    //물주기 버튼 클릭 여부
+    
+    [HideInInspector]public float curTime;                  //진행 시간 변수
+
     public PlantBase[] plantDates = new PlantBase[]
     {
         new Plant1("Plant1", "Ornamental", 0, 100, 100, false, false),
@@ -49,6 +53,50 @@ public class PlantManager : MonoBehaviour
 
     void Update()
     {
+        PlantSpawn();
+    }
+
+    public void WaterThePlant(int curhydration)             //물주기 함수 (1회 물주기 시 수분량 20 상승)
+    {
+        if (isWaterThePlantOnClick)
+        {
+            curhydration += 20;
+        }
+        else
+            return;
+    }
+
+    public void DryThePlant(int curhydration)                //시간마다 수분량 없어지는 함수(시간당 10 감소)
+    {
+        curTime += Time.deltaTime;
+
+        if(curTime > 10)          //수분량 마르는 시간(일단은 10초로) 개발 완료후 3600초로 변경
+        {
+            curhydration -= 10;
+            curTime = 0;
+        }
+    }
+
+    public void DieThePlant(int curhydration, int nutrition)
+    {
+
+    }
+
+    public void SpawnPrefab(Vector3 spawnPosition)
+    {
+        int ran = Random.Range(1, 6);
+        Object ob = Resources.Load($"plant{ran}");
+        spawnedObject = (GameObject)Instantiate(ob, spawnPosition, Quaternion.identity);
+        spawnedObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+    }
+
+    public void EraseSpawn()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void PlantSpawn()
+    {
         if (Input.touchCount == 0)
             return;
         if (m_RaycastManager.Raycast(Input.GetTouch(0).position, m_Hits))
@@ -66,19 +114,5 @@ public class PlantManager : MonoBehaviour
                 spawnedObject = null;
             }
         }
-
-    }
-
-    public void SpawnPrefab(Vector3 spawnPosition)
-    {
-        int ran = Random.Range(1, 6);
-        Object ob = Resources.Load($"plant{ran}");
-        spawnedObject = (GameObject)Instantiate(ob, spawnPosition, Quaternion.identity);
-        spawnedObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-    }
-
-    public void EraseSpawn()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
