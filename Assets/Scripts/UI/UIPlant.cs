@@ -24,7 +24,7 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Text txtEnergy;
     [SerializeField] Text txtGold;
     [HideInInspector] public int totalEnergy = 100;
-    [HideInInspector] public int curEnergy=50;
+    [HideInInspector] public int curEnergy = 50;
     [HideInInspector] public int Gold = 1000;
     [SerializeField] Slider sldEnergy;
 
