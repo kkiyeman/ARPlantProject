@@ -89,7 +89,21 @@ public class PlantManager : MonoBehaviour
         }
     }
 
+    public void DieThePlant(int curhydration, int nutrition, GameObject plantName) //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)
+    {
+        if (curhydration >= 150 || curhydration < 30 || nutrition <= 0)
+        {
+            Destroy(plantName.gameObject);
+        }
+    }
 
+    public void PlantDisease(int curhydration, int nutrition, GameObject plantName)
+    {
+        if(120 < curhydration && curhydration < 150)
+        {
+            //식물 상태 이상
+        }
+    }
 
     public void SpawnPrefab(Vector3 spawnPosition)
     {
