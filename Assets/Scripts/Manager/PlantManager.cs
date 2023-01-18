@@ -30,7 +30,8 @@ public class PlantManager : MonoBehaviour
     GameObject spawnedObject;
 
     public bool isWaterThePlantOnClick;    //물주기 버튼 클릭 여부
-    
+    public bool isEnergySupplyPlantOnClick;    //영양제 버튼 클릭 여부
+
     [HideInInspector]public float curTime;                  //진행 시간 변수
 
     public PlantBase[] plantDates = new PlantBase[]
@@ -56,7 +57,7 @@ public class PlantManager : MonoBehaviour
         PlantSpawn();
     }
 
-    public void WaterThePlant(int curhydration)             //물주기 함수 (1회 물주기 시 수분량 20 상승)
+    public void WaterThePlant(int curhydration)             //물주기 함수 (물주기 버튼 클릭 시 수분량 20 상승)
     {
         if (isWaterThePlantOnClick)
         {
@@ -66,21 +67,29 @@ public class PlantManager : MonoBehaviour
             return;
     }
 
-    public void DryThePlant(int curhydration)                //시간마다 수분량 없어지는 함수(시간당 10 감소)
+    public void NutritionSupplyPlant(int nutrition)             //영양분 공급 함수(영양제 버튼 클릭 시 영양도 증가)
     {
-        curTime += Time.deltaTime;
+        if (isEnergySupplyPlantOnClick)
+        {
+            nutrition += 30;
+        }
+        else
+            return;
+    }
 
-        if(curTime > 10)          //수분량 마르는 시간(일단은 10초로) 개발 완료후 3600초로 변경
+    public void MinusPlantStatus(int curhydration, int nutrition)  //매 시간 수분량, 영양도 감소 함수(시간당 10 감소)
+    {
+        curTime += Time.realtimeSinceStartup;
+
+        if (curTime > 10)          //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
         {
             curhydration -= 10;
+            nutrition -= 10;
             curTime = 0;
         }
     }
 
-    public void DieThePlant(int curhydration, int nutrition)
-    {
 
-    }
 
     public void SpawnPrefab(Vector3 spawnPosition)
     {
