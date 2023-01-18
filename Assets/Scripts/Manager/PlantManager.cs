@@ -151,6 +151,7 @@ public class PlantManager : MonoBehaviour
         if (curTime >= 86400)
         {
             btnPraiseClickAble = false;
+            curTime = 0;
         }
     }
 
