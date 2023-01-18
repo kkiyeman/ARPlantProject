@@ -52,9 +52,9 @@ public class PlantManager : MonoBehaviour
         new Plant7("Plant7", "Crops", 0, 100, 100, false, false),
         new Plant8("Plant8", "Crops", 0, 100, 100, false, false)
     };
-
+    
     public List<PlantBase> MyPlants = new List<PlantBase>();
-
+    
     void Start()
     {
         spawnedObject = null;
@@ -93,6 +93,7 @@ public class PlantManager : MonoBehaviour
     {
         if (curTime > 10)          //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
         {
+            
             curhydration -= 10;
             nutrition -= 10;
             curTime = 0;
