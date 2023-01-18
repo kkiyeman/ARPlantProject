@@ -11,7 +11,7 @@ public class PlantScene : MonoBehaviour
         uimanager.OpenUI("UIPlant");
 
         UIPlant uiplant = uimanager.GetUI("UIPlant").GetComponent<UIPlant>();
-        uiplant.gameObject.SetActive(false);
+        
 
     }
 }
