@@ -8,15 +8,14 @@ public class UIStart : MonoBehaviour
 {
     public Button SkipBtn;
     ScenesManager sM;
-    // Start is called before the first frame update
+   
     void Start()
     {
-      sM = GetComponent<ScenesManager>();
-      SkipBtn = GetComponent<Button>();
+      sM = ScenesManager.GetInstance();
       SkipBtn.onClick.AddListener(OnClickStart);
     }
     void OnClickStart()
-    {      
-        sM.ChangeScene(Scene.Plant);
+    {
+        SceneManager.LoadScene("Plant");
     }
 }
