@@ -20,7 +20,7 @@ public class PlantManager : MonoBehaviour
         return instance;
     }
     #endregion
- 
+
     [SerializeField]
     ARRaycastManager m_RaycastManager;
     List<ARRaycastHit> m_Hits = new List<ARRaycastHit>();
@@ -35,7 +35,7 @@ public class PlantManager : MonoBehaviour
 
     public bool btnPraiseClickAble = true;    //칭찬 버튼 클릭 가능여부 (하루에 한 번만)
 
-    [HideInInspector]public float curTime;                  //진행 시간 변수
+    [HideInInspector] public float curTime;                  //진행 시간 변수
 
     public PlantBase[] plantDates = new PlantBase[]
     {
@@ -109,7 +109,7 @@ public class PlantManager : MonoBehaviour
 
     public void PlantDisease(int curhydration, int nutrition) //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100이상, 20미만)       Update
     {
-        if(120 < curhydration && curhydration < 150 || nutrition >= 100 || nutrition < 20)
+        if (120 < curhydration && curhydration < 150 || nutrition >= 100 || nutrition < 20)
         {
             //식물 상태 이상
         }
@@ -119,7 +119,7 @@ public class PlantManager : MonoBehaviour
 
     public void GrowthRatePlant(int growthRate)    //식물 성장 함수       Update
     {
-        if(curTime > 30)                 //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
+        if (curTime > 30)                 //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
         {
             growthRate += 1;
         }
