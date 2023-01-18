@@ -4071,6 +4071,7 @@ GameObject:
   - component: {fileID: 1616614141009354764}
   - component: {fileID: 1616614141009354765}
   - component: {fileID: 1616614141009354766}
+  - component: {fileID: 6190462355007873047}
   m_Layer: 5
   m_Name: UIPlant
   m_TagString: Untagged
@@ -4166,6 +4167,49 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6190462355007873047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616614141009354767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f32c43ed70bbb4c468a5c074297b726b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btnTemp: {fileID: 0}
+  btnStore: {fileID: 0}
+  bottomButtons: {fileID: 0}
+  btnWater: {fileID: 0}
+  btnPill: {fileID: 0}
+  btnComment: {fileID: 0}
+  btnSeed: {fileID: 0}
+  weather: {fileID: 0}
+  txtCurtime: {fileID: 0}
+  txtEnergy: {fileID: 0}
+  txtGold: {fileID: 0}
+  energy: 0
+  Gold: 0
+  sldEnergy: {fileID: 0}
+  imgStatus: {fileID: 0}
+  btnCloseStatus: {fileID: 0}
+  btnPlantName: {fileID: 0}
+  txtPlantName: {fileID: 0}
+  inputPlantName: {fileID: 0}
+  btnClosePlantInputfield: {fileID: 0}
+  imgsWhatPlant: {fileID: 0}
+  btnMemo: {fileID: 0}
+  imgMemo: {fileID: 0}
+  txtMemo: {fileID: 0}
+  btnCloseMemo: {fileID: 0}
+  inputMemo: {fileID: 0}
+  sldGrowth: {fileID: 0}
+  sldNutrition: {fileID: 0}
+  sldHumidity: {fileID: 0}
+  imgSick: {fileID: 0}
+  imgThirsty: {fileID: 0}
 --- !u!1 &1616614141029636839
 GameObject:
   m_ObjectHideFlags: 0
