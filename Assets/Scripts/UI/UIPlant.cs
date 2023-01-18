@@ -23,8 +23,8 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Text txtCurtime;
     [SerializeField] Text txtEnergy;
     [SerializeField] Text txtGold;
-    [HideInInspector] public int totalEnergy = 100;
-    [HideInInspector] public int curEnergy = 50;
+    [HideInInspector] public float totalEnergy = 100;
+    [HideInInspector] public float curEnergy = 50;
     [HideInInspector] public int Gold = 1000;
     [SerializeField] Slider sldEnergy;
 
@@ -42,6 +42,8 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Text txtMemo;
     [SerializeField] Button btnCloseMemo;
     [SerializeField] InputField inputMemo;
+    [SerializeField] Button btnOnInputfield;
+    [SerializeField] Button btnCompleteMemoInput;
     [SerializeField] Slider sldGrowth;
     [SerializeField] Slider sldNutrition;
     [SerializeField] Slider sldHumidity;
@@ -60,14 +62,30 @@ public class UIPlant : MonoBehaviour
     void Update()
     {
         TextSetting();
+        SliderSetting();
     }
 
     private void TextSetting()
     {
-        txtPlantName.text = plantName;
         txtCurtime.text = DateTime.Now.ToString();
+        curEnergy = 50;
+        totalEnergy = 100;
+        Gold = 1000;
         txtEnergy.text = $"{curEnergy}/{totalEnergy}";
         txtGold.text = $"{Gold}";
+    }
+
+    private void SliderSetting()
+    {
+        sldEnergy.maxValue = totalEnergy;
+        sldEnergy.value = curEnergy;
+        sldGrowth.maxValue = 100;
+        sldGrowth.value = 50;
+        sldNutrition.maxValue = 100;
+        sldNutrition.value = 55;
+        sldHumidity.maxValue = 100;
+        sldHumidity.value = 45;
+
     }
     private void ButtonSetting()
     {
@@ -77,6 +95,8 @@ public class UIPlant : MonoBehaviour
         btnCloseMemo.onClick.AddListener(OnClickMemoOff);
         btnPlantName.onClick.AddListener(OnClickInputPlantNameOn);
         btnClosePlantInputfield.onClick.AddListener(OnClickInputPlantNameOff);
+        btnCompleteMemoInput.onClick.AddListener(OnClickMemoChange);
+        btnOnInputfield.onClick.AddListener(OnClickInputMemoOn);
     }
 
     private void OnClickStatusOn()
@@ -105,8 +125,19 @@ public class UIPlant : MonoBehaviour
     }
 
     private void OnClickInputPlantNameOff()
-    {
+    { 
+        txtPlantName.text = inputPlantName.textComponent.text;
         inputPlantName.gameObject.SetActive(false);
     }
 
+    private void OnClickMemoChange()
+    {
+        txtMemo.text = inputMemo.textComponent.text;
+        inputMemo.gameObject.SetActive(false);
+    }
+
+    private void OnClickInputMemoOn()
+    {
+        inputMemo.gameObject.SetActive(true);
+    }
 }
