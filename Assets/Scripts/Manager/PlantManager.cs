@@ -33,8 +33,11 @@ public class PlantManager : MonoBehaviour
     public bool isWaterThePlantOnClick;       //물주기 버튼 클릭 여부
     public bool isEnergySupplyPlantOnClick;   //영양제 버튼 클릭 여부
     public bool isPraisePlantOnClick;         //칭찬 버튼 클릭 여부
+    public bool isHarvestPlantOnClick;        //수확하기 버튼 클릭 여부
 
     public bool btnPraiseClickAble = true;    //칭찬 버튼 클릭 가능여부 (하루에 한 번만)
+
+    public int GrowPlantReward;               //식물 수확시 얻는 보상
 
     [HideInInspector] public float curTime;                  //진행 시간 변수
 
@@ -118,23 +121,23 @@ public class PlantManager : MonoBehaviour
             return;
     }
 
-    public void GrowthRatePlant(int growthRate)    //식물 성장 함수       Update
+    public void GrowthRatePlant(int curGrowthRate)    //식물 성장 함수       Update
     {
         if (curTime > 30)                 //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
         {
-            growthRate += 1;
+            curGrowthRate += 1;
         }
         else
             return;
     }
 
-    public void PraisePlant(int growthRate, int curEnergy)   //식물 칭찬하기 함수 , 에너지 20소모     하루에 한 번만 가능
+    public void PraisePlant(int curGrowthRate, int curEnergy)   //식물 칭찬하기 함수 , 에너지 20소모     하루에 한 번만 가능
     {
         if (isPraisePlantOnClick)
         {
             if (btnPraiseClickAble)
             {
-                growthRate += 2;
+                curGrowthRate += 2;
                 curEnergy -= 20;
                 btnPraiseClickAble = false;
             }
@@ -149,6 +152,23 @@ public class PlantManager : MonoBehaviour
             btnPraiseClickAble = true;
             curTime = 0;
         }
+    }
+
+    public void HarvestPlant(int curEnergy, int curGrowthRate, int TotalGrowthRate, int Reward)      //식물 수확시 얻는 재화 및 소비 에너지(끝까지 수확 못할 시 일부분만 보상)
+    {
+        if (isHarvestPlantOnClick)
+        {
+            curEnergy -= 5;
+            if (curGrowthRate != TotalGrowthRate)
+            {
+                curEnergy -= 15;
+                GrowPlantReward = Reward * (curGrowthRate / TotalGrowthRate);
+            }
+            else
+                GrowPlantReward = Reward;
+        }
+        else
+            return;
     }
 
     public void SpawnPrefab(Vector3 spawnPosition)
@@ -166,26 +186,31 @@ public class PlantManager : MonoBehaviour
 
     public void PlantSpawn()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+
+        if (Input.touchCount == 0)
+             return;
+        else
         {
-            if (Input.touchCount == 0)
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
                 return;
-            if (m_RaycastManager.Raycast(Input.GetTouch(0).position, m_Hits))
+            else
             {
-                if (Input.GetTouch(0).phase == TouchPhase.Began)
+                if (m_RaycastManager.Raycast(Input.GetTouch(0).position, m_Hits))
                 {
-                    SpawnPrefab(m_Hits[0].pose.position);
-                }
-                else if (Input.GetTouch(0).phase == TouchPhase.Moved && spawnedObject != null)
-                {
-                    spawnedObject.transform.position = m_Hits[0].pose.position;
-                }
-                if (Input.GetTouch(0).phase == TouchPhase.Ended)
-                {
-                    spawnedObject = null;
+                    if (Input.GetTouch(0).phase == TouchPhase.Began)
+                    {
+                        SpawnPrefab(m_Hits[0].pose.position);
+                    }
+                    else if (Input.GetTouch(0).phase == TouchPhase.Moved && spawnedObject != null)
+                    {
+                        spawnedObject.transform.position = m_Hits[0].pose.position;
+                    }
+                    if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                    {
+                        spawnedObject = null;
+                    }
                 }
             }
-        }
-        
+        } 
     }
 }
