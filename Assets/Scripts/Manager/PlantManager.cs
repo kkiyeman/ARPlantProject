@@ -33,7 +33,7 @@ public class PlantManager : MonoBehaviour
     public bool isEnergySupplyPlantOnClick;   //영양제 버튼 클릭 여부
     public bool isPraisePlantOnClick;         //칭찬 버튼 클릭 여부
 
-    public bool btnPraiseClickAble;           //칭찬 버튼 클릭 가능여부 (하루에 한 번만)
+    public bool btnPraiseClickAble = true;    //칭찬 버튼 클릭 가능여부 (하루에 한 번만)
 
     [HideInInspector]public float curTime;                  //진행 시간 변수
 
@@ -59,6 +59,7 @@ public class PlantManager : MonoBehaviour
 
     void Update()
     {
+        curTime += Time.realtimeSinceStartup;
         PlantSpawn();
     }
 
@@ -84,10 +85,8 @@ public class PlantManager : MonoBehaviour
             return;
     }
 
-    public void MinusPlantStatus(int curhydration, int nutrition)  //매 시간 수분량, 영양도 감소 함수(시간당 10 감소)
+    public void MinusPlantStatus(int curhydration, int nutrition)  //매 시간 수분량, 영양도 감소 함수(시간당 10 감소)       Update
     {
-        curTime += Time.realtimeSinceStartup;
-
         if (curTime > 10)          //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
         {
             curhydration -= 10;
@@ -98,7 +97,7 @@ public class PlantManager : MonoBehaviour
             return;
     }
 
-    public void DieThePlant(int curhydration, int nutrition, Object plantName) //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)
+    public void DieThePlant(int curhydration, int nutrition, Object plantName) //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)       Update
     {
         if (curhydration >= 150 || curhydration < 30 || nutrition <= 0)
         {
@@ -108,7 +107,7 @@ public class PlantManager : MonoBehaviour
             return;
     }
 
-    public void PlantDisease(int curhydration, int nutrition) //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100이상, 20미만)
+    public void PlantDisease(int curhydration, int nutrition) //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100이상, 20미만)       Update
     {
         if(120 < curhydration && curhydration < 150 || nutrition >= 100 || nutrition < 20)
         {
@@ -118,10 +117,8 @@ public class PlantManager : MonoBehaviour
             return;
     }
 
-    public void GrowthRatePlant(int growthRate)    //식물 성장 함수
+    public void GrowthRatePlant(int growthRate)    //식물 성장 함수       Update
     {
-        curTime += Time.realtimeSinceStartup;
-
         if(curTime > 30)                 //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
         {
             growthRate += 1;
@@ -132,15 +129,13 @@ public class PlantManager : MonoBehaviour
 
     public void PraisePlant(int growthRate, int curEnergy)   //식물 칭찬하기 함수 , 에너지 20소모     하루에 한 번만 가능
     {
-        curTime += Time.realtimeSinceStartup;
-
         if (isPraisePlantOnClick)
         {
-            if (!btnPraiseClickAble)
+            if (btnPraiseClickAble)
             {
                 growthRate += 2;
                 curEnergy -= 20;
-                btnPraiseClickAble = true;
+                btnPraiseClickAble = false;
             }
             else
                 Debug.Log("하루 한 번만 가능");
@@ -150,7 +145,7 @@ public class PlantManager : MonoBehaviour
 
         if (curTime >= 86400)
         {
-            btnPraiseClickAble = false;
+            btnPraiseClickAble = true;
             curTime = 0;
         }
     }
