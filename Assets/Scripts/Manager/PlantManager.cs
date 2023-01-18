@@ -29,9 +29,11 @@ public class PlantManager : MonoBehaviour
     GameObject spawnablePrefab;
     GameObject spawnedObject;
 
-    public bool isWaterThePlantOnClick;    //물주기 버튼 클릭 여부
-    public bool isEnergySupplyPlantOnClick;    //영양제 버튼 클릭 여부
-    public bool isPraisePlantOnClick;    //영양제 버튼 클릭 여부
+    public bool isWaterThePlantOnClick;       //물주기 버튼 클릭 여부
+    public bool isEnergySupplyPlantOnClick;   //영양제 버튼 클릭 여부
+    public bool isPraisePlantOnClick;         //칭찬 버튼 클릭 여부
+
+    public bool btnPraiseClickAble;           //칭찬 버튼 클릭 가능여부 (하루에 한 번만)
 
     [HideInInspector]public float curTime;                  //진행 시간 변수
 
@@ -120,7 +122,7 @@ public class PlantManager : MonoBehaviour
     {
         curTime += Time.realtimeSinceStartup;
 
-        if(curTime > 30)                 //식물 성장 시간(일단은 30초로) 개발 완료후 648,000초로 변경
+        if(curTime > 30)                 //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
         {
             growthRate += 1;
         }
@@ -128,18 +130,29 @@ public class PlantManager : MonoBehaviour
             return;
     }
 
-    public void PraisePlant(int growthRate, int curEnergy)   //식물 칭찬하기 함수 , 에너지 20소모
+    public void PraisePlant(int growthRate, int curEnergy)   //식물 칭찬하기 함수 , 에너지 20소모     하루에 한 번만 가능
     {
+        curTime += Time.realtimeSinceStartup;
+
         if (isPraisePlantOnClick)
         {
-            growthRate += 2;
-            curEnergy -= 20;
+            if (!btnPraiseClickAble)
+            {
+                growthRate += 2;
+                curEnergy -= 20;
+                btnPraiseClickAble = true;
+            }
+            else
+                Debug.Log("하루 한 번만 가능");
         }
         else
             return;
+
+        if (curTime >= 86400)
+        {
+            btnPraiseClickAble = false;
+        }
     }
-
-
 
     public void SpawnPrefab(Vector3 spawnPosition)
     {
