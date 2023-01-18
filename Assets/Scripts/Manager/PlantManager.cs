@@ -85,7 +85,7 @@ public class PlantManager : MonoBehaviour
     public void SpawnPrefab(Vector3 spawnPosition)
     {
         int ran = Random.Range(1, 6);
-        Object ob = Resources.Load($"plant{ran}");
+        Object ob = Resources.Load($"Plant/FishBone");
         spawnedObject = (GameObject)Instantiate(ob, spawnPosition, Quaternion.identity);
         spawnedObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
     }
