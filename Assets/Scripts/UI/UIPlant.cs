@@ -45,8 +45,11 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Button btnOnInputfield;
     [SerializeField] Button btnCompleteMemoInput;
     [SerializeField] Slider sldGrowth;
+    [SerializeField] Text txtGrowth;
     [SerializeField] Slider sldNutrition;
+    [SerializeField] Text txtNutrition;
     [SerializeField] Slider sldHumidity;
+    [SerializeField] Text txtHumidity;
     [SerializeField] Image imgSick;
     [SerializeField] Image imgThirsty;
 
@@ -54,8 +57,13 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Button btnSamplePlant;
 
 
+    PlantManager plantmanager;
+    UIManager uimanager;
+
     void Start()
     {
+        plantmanager = PlantManager.GetInstance();
+        uimanager = UIManager.GetInstance();
         ButtonSetting();
     }
 
@@ -73,6 +81,9 @@ public class UIPlant : MonoBehaviour
         Gold = 1000;
         txtEnergy.text = $"{curEnergy}/{totalEnergy}";
         txtGold.text = $"{Gold}";
+        txtGrowth.text = "50/100";
+        txtNutrition.text = "55/100";
+        txtHumidity.text = "45/100";
     }
 
     private void SliderSetting()
@@ -97,6 +108,7 @@ public class UIPlant : MonoBehaviour
         btnClosePlantInputfield.onClick.AddListener(OnClickInputPlantNameOff);
         btnCompleteMemoInput.onClick.AddListener(OnClickMemoChange);
         btnOnInputfield.onClick.AddListener(OnClickInputMemoOn);
+        btnStore.onClick.AddListener(OnClickUIStoreOn);
     }
 
     private void OnClickStatusOn()
@@ -139,5 +151,11 @@ public class UIPlant : MonoBehaviour
     private void OnClickInputMemoOn()
     {
         inputMemo.gameObject.SetActive(true);
+    }
+
+    private void OnClickUIStoreOn()
+    {
+        var uistore = uimanager.GetUI("StoreUI");
+        uistore.gameObject.SetActive(true);
     }
 }
