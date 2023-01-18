@@ -31,6 +31,7 @@ public class PlantManager : MonoBehaviour
 
     public bool isWaterThePlantOnClick;    //물주기 버튼 클릭 여부
     public bool isEnergySupplyPlantOnClick;    //영양제 버튼 클릭 여부
+    public bool isPraisePlantOnClick;    //영양제 버튼 클릭 여부
 
     [HideInInspector]public float curTime;                  //진행 시간 변수
 
@@ -46,6 +47,8 @@ public class PlantManager : MonoBehaviour
         new Plant8("Plant8", "Crops", 0, 100, 100, false, false)
     };
 
+    public List<PlantBase> MyPlants = new List<PlantBase>();
+
     void Start()
     {
         spawnedObject = null;
@@ -57,21 +60,23 @@ public class PlantManager : MonoBehaviour
         PlantSpawn();
     }
 
-    public void WaterThePlant(int curhydration)             //물주기 함수 (물주기 버튼 클릭 시 수분량 20 상승)
+    public void WaterThePlant(int curhydration, int curEnergy)             //물주기 함수 (물주기 버튼 클릭 시 수분량 20 상승) , 에너지 5소모
     {
         if (isWaterThePlantOnClick)
         {
             curhydration += 20;
+            curEnergy -= 5;
         }
         else
             return;
     }
 
-    public void NutritionSupplyPlant(int nutrition)             //영양분 공급 함수(영양제 버튼 클릭 시 영양도 증가)
+    public void NutritionSupplyPlant(int nutrition, int curEnergy)             //영양분 공급 함수(영양제 버튼 클릭 시 영양도 증가) , 에너지 10소모
     {
         if (isEnergySupplyPlantOnClick)
         {
             nutrition += 30;
+            curEnergy -= 10;
         }
         else
             return;
@@ -87,23 +92,54 @@ public class PlantManager : MonoBehaviour
             nutrition -= 10;
             curTime = 0;
         }
+        else
+            return;
     }
 
-    public void DieThePlant(int curhydration, int nutrition, GameObject plantName) //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)
+    public void DieThePlant(int curhydration, int nutrition, Object plantName) //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)
     {
         if (curhydration >= 150 || curhydration < 30 || nutrition <= 0)
         {
-            Destroy(plantName.gameObject);
+            Destroy(plantName);
         }
+        else
+            return;
     }
 
-    public void PlantDisease(int curhydration, int nutrition, GameObject plantName)
+    public void PlantDisease(int curhydration, int nutrition) //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100이상, 20미만)
     {
-        if(120 < curhydration && curhydration < 150)
+        if(120 < curhydration && curhydration < 150 || nutrition >= 100 || nutrition < 20)
         {
             //식물 상태 이상
         }
+        else
+            return;
     }
+
+    public void GrowthRatePlant(int growthRate)    //식물 성장 함수
+    {
+        curTime += Time.realtimeSinceStartup;
+
+        if(curTime > 30)                 //식물 성장 시간(일단은 30초로) 개발 완료후 648,000초로 변경
+        {
+            growthRate += 1;
+        }
+        else
+            return;
+    }
+
+    public void PraisePlant(int growthRate, int curEnergy)   //식물 칭찬하기 함수 , 에너지 20소모
+    {
+        if (isPraisePlantOnClick)
+        {
+            growthRate += 2;
+            curEnergy -= 20;
+        }
+        else
+            return;
+    }
+
+
 
     public void SpawnPrefab(Vector3 spawnPosition)
     {
