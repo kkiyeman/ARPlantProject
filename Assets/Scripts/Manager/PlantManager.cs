@@ -87,7 +87,7 @@ public class PlantManager : MonoBehaviour
         int ran = Random.Range(1, 6);
         Object ob = Resources.Load($"Plant/FishBone");
         spawnedObject = (GameObject)Instantiate(ob, spawnPosition, Quaternion.identity);
-        spawnedObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        spawnedObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
     }
 
     public void EraseSpawn()
