@@ -56,12 +56,13 @@ public class UIPlant : MonoBehaviour
     [Header("Test")]
     [SerializeField] Button btnSamplePlant;
 
-
+    GameManager gamemanager;
     PlantManager plantmanager;
     UIManager uimanager;
 
     void Start()
     {
+        gamemanager = GameManager.GetInstance();
         plantmanager = PlantManager.GetInstance();
         uimanager = UIManager.GetInstance();
         ButtonSetting();
