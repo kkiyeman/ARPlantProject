@@ -75,7 +75,8 @@ public class UIPlant : MonoBehaviour
 
     private void TextSetting()
     {
-        txtCurtime.text = DateTime.Now.ToString();
+        
+        txtCurtime.text = DateTime.Now.ToString("M"+"월 "+"dd"+"일" + "\n" + "HH" + "시 " + "mm" + "분");
         curEnergy = 50;
         totalEnergy = 100;
         Gold = 1000;
