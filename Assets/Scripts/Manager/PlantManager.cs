@@ -37,6 +37,8 @@ public class PlantManager : MonoBehaviour
 
     public bool btnPraiseClickAble = true;    //칭찬 버튼 클릭 가능여부 (하루에 한 번만)
 
+    public bool allBtnUnclickAble;       //물주기, 영양제, 수확, 칭찬 버튼 클릭 가능 여부(에너지 0일 시 클릭 불가)
+
     public int GrowPlantReward;               //식물 수확시 얻는 보상
 
     [HideInInspector] public float curTime;   //진행 시간 변수
@@ -58,6 +60,7 @@ public class PlantManager : MonoBehaviour
     void Start()
     {
         spawnedObject = null;
+        allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
     }
 
 
@@ -69,10 +72,15 @@ public class PlantManager : MonoBehaviour
 
     public void WaterThePlant(int curhydration, int curEnergy)             //물주기 함수 (물주기 버튼 클릭 시 수분량 20 상승) , 에너지 5소모
     {
-        if (isWaterThePlantOnClick)
+        if (!allBtnUnclickAble)
         {
-            curhydration += 20;
-            curEnergy -= 5;
+            if (isWaterThePlantOnClick)
+            {
+                curhydration += 20;
+                curEnergy -= 5;
+            }
+            else
+                return;
         }
         else
             return;
@@ -80,10 +88,15 @@ public class PlantManager : MonoBehaviour
 
     public void NutritionSupplyPlant(int nutrition, int curEnergy)             //영양분 공급 함수(영양제 버튼 클릭 시 영양도 증가) , 에너지 10소모
     {
-        if (isEnergySupplyPlantOnClick)
+        if (!allBtnUnclickAble)
         {
-            nutrition += 30;
-            curEnergy -= 10;
+            if (isEnergySupplyPlantOnClick)
+            {
+                nutrition += 30;
+                curEnergy -= 10;
+            }
+            else
+                return;
         }
         else
             return;
@@ -135,16 +148,21 @@ public class PlantManager : MonoBehaviour
 
     public void PraisePlant(int curGrowthRate, int curEnergy)   //식물 칭찬하기 함수 , 에너지 20소모     하루에 한 번만 가능
     {
-        if (isPraisePlantOnClick)
+        if (!allBtnUnclickAble)
         {
-            if (btnPraiseClickAble)
+            if (isPraisePlantOnClick)
             {
-                curGrowthRate += 2;
-                curEnergy -= 20;
-                btnPraiseClickAble = false;
+                if (btnPraiseClickAble)
+                {
+                    curGrowthRate += 2;
+                    curEnergy -= 20;
+                    btnPraiseClickAble = false;
+                }
+                else
+                    Debug.Log("하루 한 번만 가능");
             }
             else
-                Debug.Log("하루 한 번만 가능");
+                return;
         }
         else
             return;
@@ -158,16 +176,21 @@ public class PlantManager : MonoBehaviour
 
     public void HarvestPlant(int curEnergy, int curGrowthRate, int TotalGrowthRate, int Reward)      //식물 수확시 얻는 재화 및 소비 에너지(끝까지 수확 못할 시 일부분만 보상)
     {
-        if (isHarvestPlantOnClick)
+        if (!allBtnUnclickAble)
         {
-            curEnergy -= 5;
-            if (curGrowthRate != TotalGrowthRate)
+            if (isHarvestPlantOnClick)
             {
-                curEnergy -= 15;
-                GrowPlantReward = Reward * (curGrowthRate / TotalGrowthRate);
+                curEnergy -= 5;
+                if (curGrowthRate != TotalGrowthRate)
+                {
+                    curEnergy -= 15;
+                    GrowPlantReward = Reward * (curGrowthRate / TotalGrowthRate);
+                }
+                else
+                    GrowPlantReward = Reward;
             }
             else
-                GrowPlantReward = Reward;
+                return;
         }
         else
             return;

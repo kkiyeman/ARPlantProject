@@ -24,10 +24,16 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public float runningTime;         //어플 진행 시간
 
+    public int point = 0;                               //게임 내 포인트
+    public int gameMoney = 0;                           //게임 머니
+
+    public bool isEnegyZero;                            //에너지 제로 판별 여부
+
     private void Update()
     {
         runningTime += Time.realtimeSinceStartup;
         PlusCurEnergy();
+        CurEnergyZero();
     }
 
     public void PlusCurEnergy()                    //5분마다 에너지 채워지는 함수(5분마다 1씩)
@@ -36,6 +42,16 @@ public class GameManager : MonoBehaviour
         {
             curEnergy += 1;
             runningTime = 0;
+        }
+        else
+            return;
+    }
+
+    public void CurEnergyZero()              //에너지 제로시 물주기, 영양제, 수확, 칭찬하기 불가
+    {
+        if (curEnergy <= 0)
+        {
+            isEnegyZero = true;
         }
         else
             return;
