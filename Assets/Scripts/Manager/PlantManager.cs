@@ -39,7 +39,7 @@ public class PlantManager : MonoBehaviour
 
     public int GrowPlantReward;               //식물 수확시 얻는 보상
 
-    [HideInInspector] public float curTime;                  //진행 시간 변수
+    [HideInInspector] public float curTime;   //진행 시간 변수
 
     public PlantBase[] plantDates = new PlantBase[]
     {
@@ -91,7 +91,7 @@ public class PlantManager : MonoBehaviour
 
     public void MinusPlantStatus(int curhydration, int nutrition)  //매 시간 수분량, 영양도 감소 함수(시간당 10 감소)       Update
     {
-        if (curTime > 10)          //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
+        if (curTime % 10 == 0)          //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
         {
             
             curhydration -= 10;
@@ -124,9 +124,10 @@ public class PlantManager : MonoBehaviour
 
     public void GrowthRatePlant(int curGrowthRate)    //식물 성장 함수       Update
     {
-        if (curTime > 30)                 //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
+        if (curTime % 30 == 0)                 //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
         {
             curGrowthRate += 1;
+            curTime = 0;
         }
         else
             return;
