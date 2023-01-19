@@ -211,6 +211,7 @@ public class PlantManager : MonoBehaviour
                         spawnedObject = null;
                     }
                 }
+                ARRenderManager.GetInstance().PlaneOff();
             }
         } 
     }

@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 179006909}
   - component: {fileID: 179006908}
   - component: {fileID: 179006907}
+  - component: {fileID: 179006910}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -211,6 +212,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PointCloudPrefab: {fileID: 2115948671}
+--- !u!114 &179006910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179006904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c209ca726c3b2ac419789193168fdbd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ARSO: {fileID: 0}
+  ARPM: {fileID: 0}
+  ARRM: {fileID: 0}
 --- !u!1 &468990252
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +554,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f1a110d32af21aa4d872c707dfcc6043, type: 2}
+  - {fileID: 2100000, guid: b60396394e071f94bad1e62d3e640438, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -654,6 +670,11 @@ MonoBehaviour:
   m_RaycastManager: {fileID: 179006907}
   spawnablePrefab: {fileID: 0}
   isWaterThePlantOnClick: 0
+  isEnergySupplyPlantOnClick: 0
+  isPraisePlantOnClick: 0
+  isHarvestPlantOnClick: 0
+  btnPraiseClickAble: 1
+  GrowPlantReward: 0
   curTime: 0
 --- !u!4 &1689366843
 Transform:
