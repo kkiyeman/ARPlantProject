@@ -26,12 +26,13 @@ public class ARRenderManager : MonoBehaviour
     public ARSessionOrigin ARSO;
     public ARPlaneManager ARPM;
     public ARRaycastManager ARRM;
-
+    public ARPointCloudManager ARPCM;
     void Start()
     {
         ARSO = FindObjectOfType<ARSessionOrigin>();
         ARPM = ARSO.GetComponent<ARPlaneManager>();
         ARRM = ARSO.GetComponent<ARRaycastManager>();
+        ARPCM = ARSO.GetComponent<ARPointCloudManager>();
     }
 
     // Update is called once per frame
@@ -44,5 +45,15 @@ public class ARRenderManager : MonoBehaviour
     {
         ARRM.enabled = false;
         ARPM.enabled = false;
+        ARPCM.enabled = false;
+        foreach (var plane in ARPM.trackables)
+        {
+            plane.gameObject.SetActive(false);
+        }
+
+        foreach (var poincloud in ARPCM.trackables)
+        {
+            poincloud.gameObject.SetActive(false);
+        }
     }
 }
