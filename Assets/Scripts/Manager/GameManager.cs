@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public float runningTime;         //어플 진행 시간
 
-    public int point = 0;                               //게임 내 포인트
-    public int gameMoney = 0;                           //게임 머니
+    public int curPoint = 0;                               //게임 내 포인트
+    public int curGameMoney = 0;                           //게임 머니
 
     public bool isEnegyZero;                            //에너지 제로 판별 여부
 
@@ -40,8 +40,16 @@ public class GameManager : MonoBehaviour
     {
         if (runningTime > 20)                 //에너지 채워지는 시간(일단은 20초로) 개발 완료후 300초로 변경
         {
-            curEnergy += 1;
-            runningTime = 0;
+            if (curEnergy > totalEnergy)
+            {
+                curEnergy = totalEnergy;
+                runningTime = 0;
+            }
+            else
+            {
+                curEnergy += 1;
+                runningTime = 0;
+            }
         }
         else
             return;
@@ -51,9 +59,32 @@ public class GameManager : MonoBehaviour
     {
         if (curEnergy <= 0)
         {
+            curEnergy = 0;
             isEnegyZero = true;
         }
         else
             return;
+    }
+
+    public bool SpendGameMoney(int priceGM)   //현재 소지금과 가격을 비교해서 구매 가능 여부 판단 함수
+    {
+        if(curGameMoney >= priceGM)
+        {
+            curGameMoney -= priceGM;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool SpendPoint(int price_Point)   //현재 소지 포인트와 가격을 비교해서 구매 가능 여부 판단 함수
+    {
+        if (curPoint >= price_Point)
+        {
+            curPoint -= price_Point;
+            return true;
+        }
+
+        return false;
     }
 }

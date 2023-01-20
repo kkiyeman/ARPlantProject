@@ -60,7 +60,6 @@ public class PlantManager : MonoBehaviour
     void Start()
     {
         spawnedObject = null;
-        allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
     }
 
 
@@ -72,12 +71,18 @@ public class PlantManager : MonoBehaviour
 
     public void WaterThePlant(int curhydration, int curEnergy)             //물주기 함수 (물주기 버튼 클릭 시 수분량 20 상승) , 에너지 5소모
     {
+        allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         if (!allBtnUnclickAble)
         {
             if (isWaterThePlantOnClick)
             {
-                curhydration += 20;
-                curEnergy -= 5;
+                if (curEnergy >= 5)
+                {
+                    curhydration += 20;
+                    curEnergy -= 5;
+                }
+                else
+                    return;
             }
             else
                 return;
@@ -88,12 +93,18 @@ public class PlantManager : MonoBehaviour
 
     public void NutritionSupplyPlant(int nutrition, int curEnergy)             //영양분 공급 함수(영양제 버튼 클릭 시 영양도 증가) , 에너지 10소모
     {
+        allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         if (!allBtnUnclickAble)
         {
             if (isEnergySupplyPlantOnClick)
             {
-                nutrition += 30;
-                curEnergy -= 10;
+                if (curEnergy >= 10)
+                {
+                    nutrition += 30;
+                    curEnergy -= 10;
+                }
+                else
+                    return;
             }
             else
                 return;
@@ -109,7 +120,6 @@ public class PlantManager : MonoBehaviour
             
             curhydration -= 10;
             nutrition -= 10;
-            curTime = 0;
         }
         else
             return;
@@ -140,7 +150,6 @@ public class PlantManager : MonoBehaviour
         if (curTime % 30 == 0)                 //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
         {
             curGrowthRate += 1;
-            curTime = 0;
         }
         else
             return;
@@ -148,15 +157,20 @@ public class PlantManager : MonoBehaviour
 
     public void PraisePlant(int curGrowthRate, int curEnergy)   //식물 칭찬하기 함수 , 에너지 20소모     하루에 한 번만 가능
     {
+        allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         if (!allBtnUnclickAble)
         {
             if (isPraisePlantOnClick)
             {
                 if (btnPraiseClickAble)
                 {
-                    curGrowthRate += 2;
-                    curEnergy -= 20;
-                    btnPraiseClickAble = false;
+                    if (curEnergy >= 20)
+                    {
+                        curGrowthRate += 2;
+                        curEnergy -= 20;
+                    }
+                    else
+                        return;
                 }
                 else
                     Debug.Log("하루 한 번만 가능");
@@ -174,20 +188,36 @@ public class PlantManager : MonoBehaviour
         }
     }
 
-    public void HarvestPlant(int curEnergy, int curGrowthRate, int TotalGrowthRate, int Reward)      //식물 수확시 얻는 재화 및 소비 에너지(끝까지 수확 못할 시 일부분만 보상)
+    public void HarvestPlant(int curEnergy, int curGrowthRate, int TotalGrowthRate, int Reward, Object plantName)      //식물 수확시 얻는 재화 및 소비 에너지(끝까지 수확 못할 시 일부분만 보상)
     {
+        allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         if (!allBtnUnclickAble)
         {
             if (isHarvestPlantOnClick)
             {
-                curEnergy -= 5;
-                if (curGrowthRate != TotalGrowthRate)
+                if (curEnergy >= 5)
                 {
-                    curEnergy -= 15;
-                    GrowPlantReward = Reward * (curGrowthRate / TotalGrowthRate);
+
+                    if (curGrowthRate != TotalGrowthRate)
+                    {
+                        if (curEnergy >= 15)
+                        {
+                            curEnergy -= 15;
+                            GrowPlantReward = Reward * (curGrowthRate / TotalGrowthRate);
+                            Destroy(plantName);
+                        }
+                        else
+                            return;
+                    }
+                    else if (curGrowthRate == TotalGrowthRate)
+                    {
+                        GrowPlantReward = Reward;
+                        curEnergy -= 5;
+                        Destroy(plantName);
+                    }
                 }
                 else
-                    GrowPlantReward = Reward;
+                    return;
             }
             else
                 return;
