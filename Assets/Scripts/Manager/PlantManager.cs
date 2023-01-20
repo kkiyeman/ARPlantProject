@@ -65,13 +65,13 @@ public class PlantManager : MonoBehaviour
 
     void Update()
     {
-        curTime += Time.realtimeSinceStartup;
+        curTime = GameManager.GetInstance().runningTime;
+        allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         PlantSpawn();
     }
 
     public void WaterThePlant(int curhydration, int curEnergy)             //물주기 함수 (물주기 버튼 클릭 시 수분량 20 상승) , 에너지 5소모
     {
-        allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         if (!allBtnUnclickAble)
         {
             if (isWaterThePlantOnClick)
@@ -93,7 +93,6 @@ public class PlantManager : MonoBehaviour
 
     public void NutritionSupplyPlant(int nutrition, int curEnergy)             //영양분 공급 함수(영양제 버튼 클릭 시 영양도 증가) , 에너지 10소모
     {
-        allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         if (!allBtnUnclickAble)
         {
             if (isEnergySupplyPlantOnClick)
@@ -117,7 +116,6 @@ public class PlantManager : MonoBehaviour
     {
         if (curTime % 10 == 0)          //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
         {
-            
             curhydration -= 10;
             nutrition -= 10;
         }
@@ -157,7 +155,6 @@ public class PlantManager : MonoBehaviour
 
     public void PraisePlant(int curGrowthRate, int curEnergy)   //식물 칭찬하기 함수 , 에너지 20소모     하루에 한 번만 가능
     {
-        allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         if (!allBtnUnclickAble)
         {
             if (isPraisePlantOnClick)
@@ -168,6 +165,7 @@ public class PlantManager : MonoBehaviour
                     {
                         curGrowthRate += 2;
                         curEnergy -= 20;
+                        btnPraiseClickAble = false;
                     }
                     else
                         return;
@@ -190,7 +188,6 @@ public class PlantManager : MonoBehaviour
 
     public void HarvestPlant(int curEnergy, int curGrowthRate, int TotalGrowthRate, int Reward, Object plantName)      //식물 수확시 얻는 재화 및 소비 에너지(끝까지 수확 못할 시 일부분만 보상)
     {
-        allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         if (!allBtnUnclickAble)
         {
             if (isHarvestPlantOnClick)
