@@ -6,55 +6,33 @@ using System;
 
 public class UIStore : MonoBehaviour
 {
-    [Header("Right Side")]
-    [SerializeField] Button btnTemp;
-    [SerializeField] Button btnStore;
 
-    [Header("Bottom Side")]
-    [SerializeField] GameObject bottomButtons;
-    [SerializeField] Button btnWater;
-    [SerializeField] Button btnPill;
-    [SerializeField] Button btnComment;
-    [SerializeField] Button btnSeed;
 
     [Header("Upper Side")]
     [SerializeField] Button btnCloseStore;
-    [SerializeField] Text txtCurtime;
     [SerializeField] Text txtEnergy;
     [SerializeField] Text txtGold;
-    [HideInInspector] public float totalEnergy = 100;
-    [HideInInspector] public float curEnergy = 50;
-    [HideInInspector] public int Gold = 1000;
-    [SerializeField] Slider sldEnergy;
 
-    [Header("Status")]
-    [SerializeField] Image imgStatus;
-    [SerializeField] Button btnCloseStatus;
-    [SerializeField] Button btnPlantName;
-    [SerializeField] Text txtPlantName;
-    string plantName = "FishBone";
-    [SerializeField] InputField inputPlantName;
-    [SerializeField] Button btnClosePlantInputfield;
-    [SerializeField] Image imgsWhatPlant;
-    [SerializeField] Button btnMemo;
-    [SerializeField] Image imgMemo;
-    [SerializeField] Text txtMemo;
-    [SerializeField] Button btnCloseMemo;
-    [SerializeField] InputField inputMemo;
-    [SerializeField] Button btnOnInputfield;
-    [SerializeField] Button btnCompleteMemoInput;
-    [SerializeField] Slider sldGrowth;
-    [SerializeField] Text txtGrowth;
-    [SerializeField] Slider sldNutrition;
-    [SerializeField] Text txtNutrition;
-    [SerializeField] Slider sldHumidity;
-    [SerializeField] Text txtHumidity;
-    [SerializeField] Image imgSick;
-    [SerializeField] Image imgThirsty;
+    [Header("Left Side")]
+    [SerializeField] Button[] btnItemKinds;
+    [SerializeField] Text[] txtItemKinds;
 
-    [Header("Test")]
-    [SerializeField] Button btnSamplePlant;
+    [Header("Item List")]
+    [SerializeField] Button[] btnItems;
+    [SerializeField] Text[] txtItems;
 
+    [Header("Item Buy PopUp")]
+    [SerializeField] Button btnCloseBuy;
+    [SerializeField] Image imgItemBuy;
+    [SerializeField] Text txtItemBuy;
+    [SerializeField] Text txtItemPrice;
+    [SerializeField] Text txtItemCount;
+    private int curCount = 1;
+    [SerializeField] Text txtTotalPrice;
+    [SerializeField] InputField inputItemCount;
+    [SerializeField] Button btnItemCountMinus;
+    [SerializeField] Button btnItemCountPlus;
+    [SerializeField] Button btnItemBuy;
     GameManager gamemanager;
     PlantManager plantmanager;
     UIManager uimanager;

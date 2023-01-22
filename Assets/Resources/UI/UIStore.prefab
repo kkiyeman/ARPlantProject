@@ -6967,44 +6967,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe668a588dc8c69449e96598f0e7e47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnTemp: {fileID: 0}
-  btnStore: {fileID: 0}
-  bottomButtons: {fileID: 0}
-  btnWater: {fileID: 0}
-  btnPill: {fileID: 0}
-  btnComment: {fileID: 0}
-  btnSeed: {fileID: 0}
-  btnCloseStore: {fileID: 0}
-  txtCurtime: {fileID: 0}
-  txtEnergy: {fileID: 0}
-  txtGold: {fileID: 0}
-  totalEnergy: 100
-  curEnergy: 50
-  Gold: 1000
-  sldEnergy: {fileID: 0}
-  imgStatus: {fileID: 0}
-  btnCloseStatus: {fileID: 0}
-  btnPlantName: {fileID: 0}
-  txtPlantName: {fileID: 0}
-  inputPlantName: {fileID: 0}
-  btnClosePlantInputfield: {fileID: 0}
-  imgsWhatPlant: {fileID: 0}
-  btnMemo: {fileID: 0}
-  imgMemo: {fileID: 0}
-  txtMemo: {fileID: 0}
-  btnCloseMemo: {fileID: 0}
-  inputMemo: {fileID: 0}
-  btnOnInputfield: {fileID: 0}
-  btnCompleteMemoInput: {fileID: 0}
-  sldGrowth: {fileID: 0}
-  txtGrowth: {fileID: 0}
-  sldNutrition: {fileID: 0}
-  txtNutrition: {fileID: 0}
-  sldHumidity: {fileID: 0}
-  txtHumidity: {fileID: 0}
-  imgSick: {fileID: 0}
-  imgThirsty: {fileID: 0}
-  btnSamplePlant: {fileID: 0}
+  btnCloseStore: {fileID: 1155749544369843988}
+  txtEnergy: {fileID: 1101822332120469464}
+  txtGold: {fileID: 1155749544000870232}
+  btnItemKinds: []
+  txtItemKinds: []
+  btnItems: []
+  txtItems: []
+  btnCloseBuy: {fileID: 1101822332394031162}
+  imgItemBuy: {fileID: 1101822332312453761}
+  txtItemBuy: {fileID: 1101822332554183446}
+  txtItemPrice: {fileID: 1101822332527110942}
+  txtItemCount: {fileID: 1101822332193905138}
+  txtTotalPrice: {fileID: 1101822331131236953}
+  inputItemCount: {fileID: 1101822331764065729}
+  btnItemCountMinus: {fileID: 1101822332158726978}
+  btnItemCountPlus: {fileID: 1101822332623288630}
+  btnItemBuy: {fileID: 1101822331881417078}
 --- !u!1 &4826295305346788518
 GameObject:
   m_ObjectHideFlags: 0
