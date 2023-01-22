@@ -157,7 +157,7 @@ public class UIPlant : MonoBehaviour
 
     private void OnClickUIStoreOn()
     {
-        var uistore = uimanager.GetUI("StoreUI");
+        var uistore = uimanager.GetUI("UIStore");
         uistore.gameObject.SetActive(true);
     }
 }

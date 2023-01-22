@@ -9,9 +9,9 @@ public class PlantScene : MonoBehaviour
         PlantManager plantmanager = PlantManager.GetInstance();
         UIManager uimanager = UIManager.GetInstance();
         uimanager.OpenUI("UIPlant");
-        uimanager.OpenUI("StoreUI");
+        uimanager.OpenUI("UIStore");
 
-        var uistore = uimanager.GetUI("StoreUI");
+        UIStore uistore = uimanager.GetUI("UIStore").GetComponent<UIStore>();
         uistore.gameObject.SetActive(false);
 
 
