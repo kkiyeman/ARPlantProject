@@ -8,7 +8,7 @@ public class PlantScene : MonoBehaviour
     {
         PlantManager plantmanager = PlantManager.GetInstance();
         UIManager uimanager = UIManager.GetInstance();
-        SoundManager soundmanager = SoundManager.GetInstance();
+        
         uimanager.OpenUI("UIPlant");
         uimanager.OpenUI("UIStore");
         
