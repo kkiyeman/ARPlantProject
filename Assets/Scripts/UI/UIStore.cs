@@ -15,6 +15,7 @@ public class UIStore : MonoBehaviour
 
     [Header("Left Side")]
     [SerializeField] Button[] btnItemKinds;
+    private int curItemKind = 0;
     [SerializeField] Text[] txtItemKinds;
 
     [Header("Item List")]
@@ -59,6 +60,7 @@ public class UIStore : MonoBehaviour
         btnCloseStore.onClick.AddListener(OnClickCloseStore);
         btnCloseBuy.onClick.AddListener(OnClickCloseBuy);
         BtnItemsSetting();
+        BtnItemKindSet();
     }
 
 
@@ -87,7 +89,7 @@ public class UIStore : MonoBehaviour
         for(int i = 0; i<btnItemKinds.Length; i++)
         {
             int idx = i;
-            btnItemKinds[idx].onClick.AddListener(ShowItemList);
+            btnItemKinds[idx].onClick.AddListener(() => { ShowItemList(idx); });
         }
     }
 
@@ -98,9 +100,12 @@ public class UIStore : MonoBehaviour
         txtItemPrice.text = txtItemPrices[index].text;
     }
 
-    private void ShowItemList()
+    private void ShowItemList(int i)
     {
-
+        int idx = i;
+        btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("Defalut UIBackground3");
+        curItemKind = idx;
+        btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("Defalut UIBackground2");
     }
 
     public void SpriteChange()
@@ -111,6 +116,6 @@ public class UIStore : MonoBehaviour
             btnItemKinds[idx].image.sprite = Resources.Load<Sprite>("Defalut UIBackground3");
         }
         
-        GetComponent<Button>().image.sprite = Resources.Load<Sprite>("Defalut UIBackground2");
+        btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("Defalut UIBackground2");
     }
 }
