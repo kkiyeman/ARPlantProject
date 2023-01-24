@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System.IO;
 
 public class PlantManager : MonoBehaviour
 {
@@ -43,8 +44,11 @@ public class PlantManager : MonoBehaviour
 
     [HideInInspector] public float curTime;   //진행 시간 변수
 
+    string path;
+    string filename = "save";
+
     public PlantBase[] plantDates = new PlantBase[]
-    {
+{
         new Plant1("Plant1", "Ornamental", 0, 100, 100, false, false),
         new Plant2("Plant2", "Ornamental", 0, 100, 100, false, false),
         new Plant3("Plant3", "Ornamental", 0, 100, 100, false, false),
@@ -53,10 +57,15 @@ public class PlantManager : MonoBehaviour
         new Plant6("Plant6", "Crops", 0, 100, 100, false, false),
         new Plant7("Plant7", "Crops", 0, 100, 100, false, false),
         new Plant8("Plant8", "Crops", 0, 100, 100, false, false)
-    };
-    
+};
+
     public List<PlantBase> MyPlants = new List<PlantBase>();
-    
+
+    private void Awake()
+    {
+        path = Application.persistentDataPath + "/";
+    }
+
     void Start()
     {
         spawnedObject = null;
@@ -265,5 +274,17 @@ public class PlantManager : MonoBehaviour
                 ARRenderManager.GetInstance().PlaneOff();
             }
         } 
+    }
+
+    public void SaveData()
+    {
+        string jsonPlantData = JsonUtility.ToJson(plantDates);            //Json으로 변환
+        File.WriteAllText(path + filename, jsonPlantData);
+    }
+
+    public void LoadData()
+    {
+        string jsonPlantData = File.ReadAllText(path + filename);
+        plantDates = JsonUtility.FromJson<PlantBase[]>(jsonPlantData);                   //Json을 코드로 변환
     }
 }
