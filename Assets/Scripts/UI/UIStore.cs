@@ -103,9 +103,9 @@ public class UIStore : MonoBehaviour
     private void ShowItemList(int i)
     {
         int idx = i;
-        btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("Defalut UIBackground3");
+        btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground Grey1");
         curItemKind = idx;
-        btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("Defalut UIBackground2");
+        btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground LightGrey1");
     }
 
     public void SpriteChange()
@@ -113,9 +113,9 @@ public class UIStore : MonoBehaviour
         for(int i = 0; i<btnItemKinds.Length; i++)
         {
             int idx = i;
-            btnItemKinds[idx].image.sprite = Resources.Load<Sprite>("Defalut UIBackground3");
+            btnItemKinds[idx].image.sprite = Resources.Load<Sprite>("UIBackground Grey1");
         }
         
-        btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("Defalut UIBackground2");
+        btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground LightGrey1");
     }
 }
