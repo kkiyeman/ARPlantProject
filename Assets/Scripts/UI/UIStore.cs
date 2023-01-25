@@ -19,9 +19,10 @@ public class UIStore : MonoBehaviour
     [SerializeField] Text[] txtItemKinds;
 
     [Header("Item List")]
-    [SerializeField] Button[] btnItems;
+    [SerializeField] List<BtnItem> btnItems = new List<BtnItem>();
     [SerializeField] Text[] txtItems;
     [SerializeField] Text[] txtItemPrices;
+    [SerializeField] GameObject content;
 
     [Header("Item Buy PopUp")]
     [SerializeField] Image imgItemBuy;
@@ -39,13 +40,15 @@ public class UIStore : MonoBehaviour
     GameManager gamemanager;
     PlantManager plantmanager;
     UIManager uimanager;
+    ItemManager itemmanager;
 
     void Start()
     {
         gamemanager = GameManager.GetInstance();
         plantmanager = PlantManager.GetInstance();
         uimanager = UIManager.GetInstance();
-
+        itemmanager = ItemManager.GetInstance();
+        GetItemList(0);
         ButtonSetting();
     }
 
@@ -59,7 +62,6 @@ public class UIStore : MonoBehaviour
     {
         btnCloseStore.onClick.AddListener(OnClickCloseStore);
         btnCloseBuy.onClick.AddListener(OnClickCloseBuy);
-        BtnItemsSetting();
         BtnItemKindSet();
     }
 
@@ -77,10 +79,11 @@ public class UIStore : MonoBehaviour
 
     private void BtnItemsSetting()
     {
-        for (int i = 0; i < btnItems.Length; i++)
+        for (int i = 0; i < btnItems.Count; i++)
         {
             int idx = i;
-            btnItems[idx].onClick.AddListener(() => { OnClickOpenBuy(idx); });
+            Button btn = btnItems[idx].GetComponent<Button>();
+            btn.onClick.AddListener(() => { OnClickOpenBuy(idx); });
         }
     }
 
@@ -108,6 +111,15 @@ public class UIStore : MonoBehaviour
         curItemKind = idx;
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground/UIBackground LightGrey3");
         btnItemKinds[curItemKind].image.color = Color.white;
+        if (btnItems.Count > 0)
+        {
+            for (int d = 0; d < btnItems.Count; d++)
+            {
+                Destroy(btnItems[d].gameObject);
+            }
+            btnItems.Clear();
+        }
+        GetItemList(curItemKind);
 
     }
 
@@ -121,4 +133,39 @@ public class UIStore : MonoBehaviour
         
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground LightGrey1");
     }
+
+    private void GetItemList(int index)
+    {
+
+        switch(index)
+        {
+            case 0:
+                var seeds = itemmanager.seedItemData;
+                for(int i = 0; i< seeds.Length; i++)
+                {
+                    var ob = Resources.Load<BtnItem>("UI/btnItem");
+                    var itemData = Instantiate(ob);
+                    itemData.itemName.text = seeds[i].Itemname;
+                    itemData.itemPrice.text = seeds[i].ItemPrice.ToString();
+                    itemData.transform.SetParent(content.transform);
+                    btnItems.Add(itemData);
+                }
+                break;
+            case 1:
+                var tools = itemmanager.toolItemData;
+                for (int i = 0; i < tools.Length; i++)
+                {
+                    var ob = Resources.Load<BtnItem>("UI/btnItem");
+                    var itemData = Instantiate(ob);
+                    itemData.itemName.text = tools[i].Itemname;
+                    itemData.itemPrice.text = tools[i].ItemPrice.ToString();
+                    itemData.transform.SetParent(content.transform);
+                    btnItems.Add(itemData);
+                }
+                break;
+        }
+
+        BtnItemsSetting();
+    }
+
 }

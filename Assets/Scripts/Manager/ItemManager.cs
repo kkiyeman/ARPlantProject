@@ -29,7 +29,7 @@ public class ItemManager : MonoBehaviour
         new SeedItem("Á¦ÀÌµå½ºÅ¸ ¾¾¾Ñ", "¾¾¾Ñ" , 300)
     };
 
-    public ItemBase[] ToolItemData = new ItemBase[]
+    public ItemBase[] toolItemData = new ItemBase[]
     {
         new ToolItem("ÃÊ±Þ ¹°»Ñ¸®°³", "µµ±¸", 300),
         new ToolItem("Áß±Þ ¹°»Ñ¸®°³", "µµ±¸", 400),
