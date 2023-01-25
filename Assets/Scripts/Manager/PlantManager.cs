@@ -278,7 +278,11 @@ public class PlantManager : MonoBehaviour
 
     public void SaveData()
     {
-        string jsonPlantData = JsonUtility.ToJson(plantDates);            //Json으로 변환
+        PlantList plantList = new PlantList();
+        plantList.plants = plantDates;
+
+        string jsonPlantData = JsonUtility.ToJson(plantList);            //Json으로 변환
+        Debug.Log(jsonPlantData);
         File.WriteAllText(path + filename, jsonPlantData);
     }
 

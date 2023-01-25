@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public abstract class PlantBase
 {
     public string plantName { get; set; }    //식물 이름
@@ -14,4 +16,10 @@ public abstract class PlantBase
     public bool isThirsty;                   //수분부족여부
 
     public abstract void Reward();
+}
+
+[Serializable]
+public class PlantList
+{
+    public PlantBase[] plants;
 }
