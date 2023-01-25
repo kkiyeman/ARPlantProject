@@ -69,6 +69,7 @@ public class PlantManager : MonoBehaviour
     void Start()
     {
         spawnedObject = null;
+        LoadData();
     }
 
 
@@ -273,7 +274,9 @@ public class PlantManager : MonoBehaviour
                 }
                 ARRenderManager.GetInstance().PlaneOff();
             }
-        } 
+        }
+
+        SaveData();
     }
 
     public void SaveData()
