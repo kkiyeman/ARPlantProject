@@ -44,8 +44,8 @@ public class PlantManager : MonoBehaviour
 
     [HideInInspector] public float curTime;   //진행 시간 변수
 
-    string path;
-    string filename = "save";
+    //string path;
+    //string filename = "save";
 
     public PlantBase[] plantDates = new PlantBase[]
 {
@@ -63,13 +63,13 @@ public class PlantManager : MonoBehaviour
 
     private void Awake()
     {
-        path = Application.persistentDataPath + "/";
+        //path = Application.persistentDataPath + "/";
     }
 
     void Start()
     {
         spawnedObject = null;
-        LoadData();
+        DataManager.GetInstance().LoadData();
     }
 
 
@@ -78,6 +78,7 @@ public class PlantManager : MonoBehaviour
         curTime = GameManager.GetInstance().runningTime;
         allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         PlantSpawn();
+        Save();
     }
 
     public void WaterThePlant(int curhydration, int curEnergy)             //물주기 함수 (물주기 버튼 클릭 시 수분량 20 상승) , 에너지 5소모
@@ -276,22 +277,29 @@ public class PlantManager : MonoBehaviour
             }
         }
 
-        SaveData();
     }
 
-    public void SaveData()
+    public void Save()
     {
-        PlantList plantList = new PlantList();
-        plantList.plants = plantDates;
-
-        string jsonPlantData = JsonUtility.ToJson(plantList);            //Json으로 변환
-        Debug.Log(jsonPlantData);
-        File.WriteAllText(path + filename, jsonPlantData);
+        if (curTime % 5 == 0)
+            DataManager.GetInstance().SaveData();
+        else
+            return;
     }
 
-    public void LoadData()
-    {
-        string jsonPlantData = File.ReadAllText(path + filename);
-        plantDates = JsonUtility.FromJson<PlantBase[]>(jsonPlantData);                   //Json을 코드로 변환
-    }
+    /*    public void SaveData()
+        {
+            PlantList plantList = new PlantList();
+            plantList.plants = plantDates;
+
+            string jsonPlantData = JsonUtility.ToJson(plantList);            //Json으로 변환
+            Debug.Log(jsonPlantData);
+            File.WriteAllText(path + filename, jsonPlantData);
+        }
+
+        public void LoadData()
+        {
+            string jsonPlantData = File.ReadAllText(path + filename);
+            plantDates = JsonUtility.FromJson<PlantBase[]>(jsonPlantData);                   //Json을 코드로 변환
+        }*/
 }

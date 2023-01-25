@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -21,21 +21,7 @@ public class DataManager : MonoBehaviour
     #endregion
 
     string path;
-    string filename = "save";
-
-    public PlantBase[] plantDates = new PlantBase[]
-{
-        new Plant1("Plant1", "Ornamental", 0, 100, 100, false, false),
-        new Plant2("Plant2", "Ornamental", 0, 100, 100, false, false),
-        new Plant3("Plant3", "Ornamental", 0, 100, 100, false, false),
-        new Plant4("Plant4", "Ornamental", 0, 100, 100, false, false),
-        new Plant5("Plant5", "Crops", 0, 100, 100, false, false),
-        new Plant6("Plant6", "Crops", 0, 100, 100, false, false),
-        new Plant7("Plant7", "Crops", 0, 100, 100, false, false),
-        new Plant8("Plant8", "Crops", 0, 100, 100, false, false)
-};
-
-    public List<PlantBase> MyPlants = new List<PlantBase>();
+    string filename = "save.text";
 
     private void Awake()
     {
@@ -54,6 +40,7 @@ public class DataManager : MonoBehaviour
 
     public void SaveData()
     {
+        var plantDates = PlantManager.GetInstance().plantDates;
         PlantList plantList = new PlantList();
         plantList.plants = plantDates;
 
@@ -64,7 +51,8 @@ public class DataManager : MonoBehaviour
 
     public void LoadData()
     {
+        var plantDates = PlantManager.GetInstance().plantDates;
         string jsonPlantData = File.ReadAllText(path + filename);
         plantDates = JsonUtility.FromJson<PlantBase[]>(jsonPlantData);                   //Json을 코드로 변환
     }
-}*/
+}

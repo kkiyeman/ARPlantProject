@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class Plant1 : PlantBase
 {
     public Plant1(string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty)
