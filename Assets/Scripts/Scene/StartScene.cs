@@ -14,7 +14,7 @@ public class StartScene : MonoBehaviour
 
         AudioManager audiomanager = AudioManager.GetInstance();
         audiomanager.InitBgmSfx();
-        audiomanager.SetSound();
+        //audiomanager.SetSound();
     }
 
 
