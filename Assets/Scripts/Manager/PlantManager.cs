@@ -282,9 +282,7 @@ public class PlantManager : MonoBehaviour
     public void Save()
     {
         if (curTime % 5 == 0)
-            DataManager.GetInstance().SaveData();
-        else
-            return;
+            DataManager.GetInstance().SaveData();        
     }
 
     /*    public void SaveData()

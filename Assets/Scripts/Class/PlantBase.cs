@@ -15,11 +15,14 @@ public abstract class PlantBase
     public bool isSick;                      //질병여부
     public bool isThirsty;                   //수분부족여부
 
+    public PlantBase(string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty)
+    { }
+
     public abstract void Reward();
 }
 
 [Serializable]
 public class PlantList
 {
-    public PlantBase[] plants;
+    public List<PlantBase> plants;
 }
