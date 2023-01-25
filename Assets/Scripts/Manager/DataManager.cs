@@ -41,11 +41,8 @@ public class DataManager : MonoBehaviour
     public void SaveData()
     {
         var plantDates = PlantManager.GetInstance().plantDates;
-        PlantList plantList = new PlantList();
-        plantList.plants = new List<PlantBase>();
-        for (int i = 0; i < plantDates.Length; i++)
-            plantList.plants.Add(plantDates[i]);
-
+        PlantList plantList = new PlantList(plantDates);
+        
         var test = JsonUtility.ToJson(plantDates[0]);            //Json으로 변환
 
         string jsonPlantData = JsonUtility.ToJson(plantList);            //Json으로 변환

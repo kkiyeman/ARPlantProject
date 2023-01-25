@@ -7,7 +7,7 @@ using System;
 
 public class Plant7 : PlantBase
 {
-    public Plant7(string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty) : base(plantName, plantType, growthRate, hydration, nutrition, isSick, isThirsty)
+    public Plant7(string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty)
     {
         this.plantName = plantName;
         this.plantType = plantType;
