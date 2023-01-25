@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemBase : MonoBehaviour
+public abstract class ItemBase 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string Itemname { get; set; }
+    public string ItemType { get; set; }
+    public int ItemPrice { get; set; }
 
-    // Update is called once per frame
-    void Update()
+
+
+    public abstract void UseItem();
+
+    public ItemData Clone()
     {
-        
+        var itemdata = new ItemData();
+        itemdata.itemName = Itemname;
+        itemdata.itemType = ItemType;
+        itemdata.itemPrice = ItemPrice;
+
+        return itemdata;
     }
 }

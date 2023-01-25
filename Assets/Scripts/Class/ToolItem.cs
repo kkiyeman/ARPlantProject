@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeedItem : ItemBase
+public class ToolItem : ItemBase
 {
-
-    public SeedItem(string itemName, string itemType, int itemPrice)
+    public ToolItem(string itemName, string itemType, int itemPrice)
     {
         this.Itemname = itemName;
         this.ItemType = itemType;
@@ -14,6 +13,6 @@ public class SeedItem : ItemBase
 
     public override void UseItem()
     {
-        
+
     }
 }
