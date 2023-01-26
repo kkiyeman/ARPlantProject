@@ -172,11 +172,13 @@ public class UIPlant : MonoBehaviour
     public void OnClickBtnCrops()
     {
         plantmanager.onClickCroBtn = true;
+        bg.gameObject.SetActive(false);
     }
 
     public void OnClickBtnOrn()
     {
         plantmanager.onClickOrnBtn = true;
+        bg.gameObject.SetActive(false);
     }
 
     public void OnClickBtnClose()

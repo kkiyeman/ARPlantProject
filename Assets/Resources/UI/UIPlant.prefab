@@ -805,7 +805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2484122156579921574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4720,7 +4720,7 @@ MonoBehaviour:
   imgSick: {fileID: 8910517756812124177}
   imgThirsty: {fileID: 1105498668270731040}
   btnSamplePlant: {fileID: 8868324340008259704}
-  bg: {fileID: 0}
+  bg: {fileID: 1315557944483070905}
 --- !u!1 &1616614141029636839
 GameObject:
   m_ObjectHideFlags: 0
