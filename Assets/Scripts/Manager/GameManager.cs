@@ -29,11 +29,11 @@ public class GameManager : MonoBehaviour
 
     public bool isEnegyZero;                            //에너지 제로 판별 여부
 
-    public WaitForSecondsRealtime waitFor20Seconds = new WaitForSecondsRealtime(20f);
+    public WaitForSecondsRealtime waitFor20Seconds = new WaitForSecondsRealtime(20.0f);
 
     private void Start()
     {
-        StartCoroutine("PlusEnergy");
+        StartCoroutine("PlusCurEnergy");
     }
 
     private void Update()

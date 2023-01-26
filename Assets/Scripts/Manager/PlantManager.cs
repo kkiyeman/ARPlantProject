@@ -48,6 +48,12 @@ public class PlantManager : MonoBehaviour
     public WaitForSecondsRealtime waitFor10Seconds = new WaitForSecondsRealtime(10);
     public WaitForSecondsRealtime waitForHalfSeconds = new WaitForSecondsRealtime(0.5f);
 
+    public bool onClickOrnBtn;                //관상식물 심기 버튼 클릭
+    public bool onClickCroBtn;                //농작물 심기 버튼 클릭
+    public bool onClickPlantBtn;              //심기 버튼 클릭
+
+    public string[] arrPlants;
+
     //string path;
     //string filename = "save";
 
@@ -81,7 +87,7 @@ public class PlantManager : MonoBehaviour
     {
         curTime = GameManager.GetInstance().runningTime;
         allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
-        PlantSpawn();
+        //PlantSpawn();
         Save();
     }
 
@@ -284,12 +290,38 @@ public class PlantManager : MonoBehaviour
             return;
     }
 
-    public void SpawnPrefab(Vector3 spawnPosition)
+/*    public void SpawnPrefab(Vector3 spawnPosition)
     {
+        
         int ran = Random.Range(1, 3);
         var ob = Resources.Load<GameObject>($"plant/Pileapepe{ran}");
         var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
         Plantdata.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+    }*/
+
+    public void SpawnPrefab(Vector3 spawnPosition)
+    {
+        int ranCrops = Random.Range(1, 2);
+        string plantsName;
+        if (onClickPlantBtn)
+        {
+            if (onClickCroBtn)
+            {
+                plantsName = arrPlants[ranCrops];
+                onClickCroBtn = false;
+            }
+            else if (onClickOrnBtn)
+            {
+                plantsName = "Shelf/Shelf_1";
+                onClickOrnBtn = false;
+            }
+
+            int ran = Random.Range(1, 3);
+            var ob = Resources.Load<GameObject>($"plantsName{ran}");
+            var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
+            Plantdata.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            onClickPlantBtn = false;
+        }
     }
 
     public void EraseSpawn()

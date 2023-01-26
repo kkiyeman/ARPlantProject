@@ -56,6 +56,8 @@ public class UIPlant : MonoBehaviour
     [Header("Test")]
     [SerializeField] Button btnSamplePlant;
 
+    [SerializeField] GameObject bg;
+
     GameManager gamemanager;
     PlantManager plantmanager;
     UIManager uimanager;
@@ -159,5 +161,29 @@ public class UIPlant : MonoBehaviour
     {
         var uistore = uimanager.GetUI("UIStore");
         uistore.gameObject.SetActive(true);
+    }
+
+    public void OnClickBtnSpawnPlant()
+    {
+        plantmanager.onClickPlantBtn = true;
+        bg.gameObject.SetActive(true);
+    }
+
+    public void OnClickBtnCrops()
+    {
+        plantmanager.onClickCroBtn = true;
+    }
+
+    public void OnClickBtnOrn()
+    {
+        plantmanager.onClickOrnBtn = true;
+    }
+
+    public void OnClickBtnClose()
+    {
+        plantmanager.onClickPlantBtn = false;
+        plantmanager.onClickCroBtn = false;
+        plantmanager.onClickOrnBtn = false;
+        bg.gameObject.SetActive(false);
     }
 }

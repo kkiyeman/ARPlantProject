@@ -678,6 +678,11 @@ MonoBehaviour:
   allBtnUnclickAble: 0
   GrowPlantReward: 0
   curTime: 0
+  onClickOrnBtn: 0
+  onClickCroBtn: 0
+  arrPlants:
+  - plant/carrot
+  - cherrytomato_RE
 --- !u!4 &1689366843
 Transform:
   m_ObjectHideFlags: 0
