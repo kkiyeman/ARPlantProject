@@ -23,11 +23,6 @@ public class Sound
 
 }
 
-public enum SoundGenre
-{
-    Bgm,
-    Sfx
-}
 public class AudioManager : MonoBehaviour
 {
 
@@ -48,7 +43,8 @@ public class AudioManager : MonoBehaviour
 
     AudioSource soundPlayer;
 
-    public Dictionary<SoundGenre, Sound> sounds = new Dictionary<SoundGenre, Sound>();
+    public Dictionary<string, Sound> bgms = new Dictionary<string, Sound>();
+    public Dictionary<string, Sound> sfxs = new Dictionary<string, Sound>();
 
 
 
@@ -68,10 +64,34 @@ public class AudioManager : MonoBehaviour
         
         for(int i = 0; i<bgm.Length; i++)
         {
-            sounds.Add(SoundGenre.Bgm, new Sound(bgm[i].name, bgm[i], false));
+            bgms.Add(bgm[i].name , new Sound(bgm[i].name, bgm[i], false));
+        }
+
+        for(int j = 0; j<sfx.Length; j++)
+        {
+            sfxs.Add(sfx[j].name , new Sound(sfx[j].name, sfx[j], false));
         }
         
 
+    }
+
+    public void PlayBgm(string name)
+    {
+        var bgm = bgms[name];
+        bgm.loop = true;
+        soundPlayer.clip = bgm.clip;
+        soundPlayer.volume = bgm.volume;
+        soundPlayer.loop = bgm.loop;
+        soundPlayer.Play();
+    }
+    
+    public void PlaySfx(string name)
+    {
+        var sfx = sfxs[name];
+        soundPlayer.clip = sfx.clip;
+        soundPlayer.volume = sfx.volume;
+        soundPlayer.loop = sfx.loop;
+        soundPlayer.Play();
     }
 
 

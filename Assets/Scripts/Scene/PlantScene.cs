@@ -21,6 +21,7 @@ public class PlantScene : MonoBehaviour
         UIPlant uiplant = uimanager.GetUI("UIPlant").GetComponent<UIPlant>();
 
         AudioManager audiomanager = AudioManager.GetInstance();
+        audiomanager.PlayBgm("PlantBgm");
 
     }
 }
