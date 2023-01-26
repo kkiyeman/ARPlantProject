@@ -13,11 +13,12 @@ public class Sound
     public bool loop = true;
 
 
-    public Sound(string _name, AudioClip _clip, AudioSource _source, float _volume, bool _loop)
+    public Sound(string _name, AudioClip _clip, bool _loop)
     {
         name = _name;
         clip = _clip;
-
+        volume = 0.3f;
+        loop = _loop;
     }
 
 }
@@ -44,8 +45,8 @@ public class AudioManager : MonoBehaviour
         return instance;
     }
     #endregion
-    
-    public 
+
+    public Dictionary<SoundGenre, Sound> sounds = new Dictionary<SoundGenre, Sound>();
 
 
 
@@ -89,7 +90,7 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void InitBgmSfx()
+    public void InitSounds()
     {
 
     }

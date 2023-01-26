@@ -266,8 +266,8 @@ public class PlantManager : MonoBehaviour
 
     public void SpawnPrefab(Vector3 spawnPosition)
     {
-        int ran = Random.Range(1, 6);
-        var ob = Resources.Load<GameObject>($"Plant/FishBone");
+        int ran = Random.Range(1, 3);
+        var ob = Resources.Load<GameObject>($"plant/Pileapepe{ran}");
         var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
         Plantdata.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
     }
