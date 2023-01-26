@@ -13,7 +13,7 @@ public class Sound
     public bool loop = true;
 
 
-    public Sound(string _name, AudioClip _clip, bool _loop)
+    public Sound(string _name,  AudioClip _clip , bool _loop)
     {
         name = _name;
         clip = _clip;
@@ -46,14 +46,31 @@ public class AudioManager : MonoBehaviour
     }
     #endregion
 
+    AudioSource soundPlayer;
+
     public Dictionary<SoundGenre, Sound> sounds = new Dictionary<SoundGenre, Sound>();
 
 
 
 
-    void Start()
+    void Awake()
     {
+        gameObject.AddComponent<AudioSource>();
+        soundPlayer = GetComponent<AudioSource>();
+        InitSounds();
 
+    }
+
+    public void InitSounds()
+    {
+        AudioClip[] bgm = Resources.LoadAll<AudioClip>($"Sound/Bgm");
+        AudioClip[] sfx = Resources.LoadAll<AudioClip>($"Sound/SFX");
+        
+        for(int i = 0; i<bgm.Length; i++)
+        {
+            sounds.Add(SoundGenre.Bgm, new Sound(bgm[i].name, bgm[i], false));
+        }
+        
 
     }
 
@@ -90,10 +107,7 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void InitSounds()
-    {
 
-    }
 
 
 }
