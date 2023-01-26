@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     public bool isEnegyZero;                            //에너지 제로 판별 여부
 
-    public WaitForSecondsRealtime waitFor20Seconds = new WaitForSecondsRealtime(20);
+    public WaitForSecondsRealtime waitFor20Seconds = new WaitForSecondsRealtime(20f);
 
     private void Start()
     {
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            yield return waitFor20Seconds;       //에너지 채워지는 시간(일단은 20초로) 개발 완료후 300초로 변경
+            yield return waitFor20Seconds;          //에너지 채워지는 시간(일단은 20초로) 개발 완료후 300초로 변경
 
             if (curEnergy > totalEnergy)
             {

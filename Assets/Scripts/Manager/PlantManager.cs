@@ -44,6 +44,7 @@ public class PlantManager : MonoBehaviour
 
     [HideInInspector] public float curTime;   //진행 시간 변수
 
+    public WaitForSecondsRealtime waitFor30Seconds = new WaitForSecondsRealtime(30);
     public WaitForSecondsRealtime waitFor10Seconds = new WaitForSecondsRealtime(10);
     public WaitForSecondsRealtime waitForHalfSeconds = new WaitForSecondsRealtime(0.5f);
 
@@ -143,20 +144,17 @@ public class PlantManager : MonoBehaviour
         {
             yield return waitFor10Seconds;       //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
 
-            if (curTime % 10 == 0)          //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
-            {
                 curhydration -= 10;
                 nutrition -= 10;
-            }
         }
     }
 
 
-    IEnumerator DieThePlant(int curhydration, int nutrition, Object plantName) //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)       Update
+    IEnumerator DieThePlant(int curhydration, int nutrition, Object plantName) //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)
     {
         while (true)
         {
-            yield return waitForHalfSeconds;      //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
+            yield return waitForHalfSeconds;      //수분량, 영양도 감소 시간
 
             if (curhydration >= 150 || curhydration < 30 || nutrition <= 0)
             {
@@ -174,7 +172,19 @@ public class PlantManager : MonoBehaviour
             return;
     }*/
 
-    public void PlantDisease(int curhydration, int nutrition) //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100이상, 20미만)       Update
+    IEnumerator PlantDisease(int curhydration, int nutrition) //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100이상, 20미만)
+    {
+        while (true)
+        {
+            yield return waitForHalfSeconds;
+
+            if (120 < curhydration && curhydration < 150 || nutrition >= 100 || nutrition < 20)
+            {
+                //식물 상태 이상
+            }
+        }
+    }
+    /*public void PlantDisease(int curhydration, int nutrition) //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100이상, 20미만)       Update
     {
         if (120 < curhydration && curhydration < 150 || nutrition >= 100 || nutrition < 20)
         {
@@ -182,9 +192,19 @@ public class PlantManager : MonoBehaviour
         }
         else
             return;
-    }
+    }*/
 
-    public void GrowthRatePlant(int curGrowthRate)    //식물 성장 함수       Update
+    IEnumerator GrowthRatePlant(int curGrowthRate) //식물 성장 함수
+    {
+        while (true)
+        {
+            yield return waitFor30Seconds;         //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
+
+                curGrowthRate += 1;
+
+        }
+    }
+/*    public void GrowthRatePlant(int curGrowthRate)    //식물 성장 함수       Update
     {
         if (curTime % 30 == 0)                 //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
         {
@@ -192,7 +212,7 @@ public class PlantManager : MonoBehaviour
         }
         else
             return;
-    }
+    }*/
 
     public void PraisePlant(int curGrowthRate, int curEnergy)   //식물 칭찬하기 함수 , 에너지 20소모     하루에 한 번만 가능
     {
