@@ -53,6 +53,7 @@ public class PlantManager : MonoBehaviour
     public bool onClickPlantBtn;              //심기 버튼 클릭
 
     public string[] arrPlants;
+    public string plantsName;
 
     //string path;
     //string filename = "save";
@@ -87,7 +88,7 @@ public class PlantManager : MonoBehaviour
     {
         curTime = GameManager.GetInstance().runningTime;
         allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
-        //PlantSpawn();
+        PlantSpawn();
         Save();
     }
 
@@ -302,7 +303,6 @@ public class PlantManager : MonoBehaviour
     public void SpawnPrefab(Vector3 spawnPosition)
     {
         int ranCrops = Random.Range(1, 2);
-        string plantsName;
         if (onClickPlantBtn)
         {
             if (onClickCroBtn)
@@ -317,7 +317,7 @@ public class PlantManager : MonoBehaviour
             }
 
             int ran = Random.Range(1, 3);
-            var ob = Resources.Load<GameObject>($"plantsName{ran}");
+            var ob = Resources.Load<GameObject>(plantsName);
             var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
             Plantdata.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
             onClickPlantBtn = false;
@@ -355,7 +355,7 @@ public class PlantManager : MonoBehaviour
                         spawnedObject = null;
                     }
                 }
-                ARRenderManager.GetInstance().PlaneOff();
+                //ARRenderManager.GetInstance().PlaneOff();
             }
         }
 
