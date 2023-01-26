@@ -12,9 +12,6 @@ public class StartScene : MonoBehaviour
 
         UIStart uistart = uimanager.GetUI("UIStart").GetComponent<UIStart>();
 
-        AudioManager audiomanager = AudioManager.GetInstance();
-        audiomanager.InitBgmSfx();
-        //audiomanager.SetSound();
     }
 
 
