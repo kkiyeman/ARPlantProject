@@ -44,6 +44,8 @@ public class PlantManager : MonoBehaviour
 
     [HideInInspector] public float curTime;   //진행 시간 변수
 
+    public WaitForSecondsRealtime waitFor10Seconds = new WaitForSecondsRealtime(10);
+
     //string path;
     //string filename = "save";
 
@@ -123,7 +125,7 @@ public class PlantManager : MonoBehaviour
             return;
     }
 
-    public void MinusPlantStatus(int curhydration, int nutrition)  //매 시간 수분량, 영양도 감소 함수(시간당 10 감소)       Update
+/*    public void MinusPlantStatus(int curhydration, int nutrition)  //매 시간 수분량, 영양도 감소 함수(시간당 10 감소)       Update
     {
         if (curTime % 10 == 0)          //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
         {
@@ -132,6 +134,20 @@ public class PlantManager : MonoBehaviour
         }
         else
             return;
+    }*/
+
+    IEnumerator MinusPlantStatus(int curhydration, int nutrition) //매 시간 수분량, 영양도 감소 함수(시간당 10 감소)
+    {
+        while (true)
+        {
+            yield return waitFor10Seconds;       //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
+
+            if (curTime % 10 == 0)          //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
+            {
+                curhydration -= 10;
+                nutrition -= 10;
+            }
+        }
     }
 
     public void DieThePlant(int curhydration, int nutrition, Object plantName) //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)       Update
