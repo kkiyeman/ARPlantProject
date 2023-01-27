@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,10 @@ public class UIOption : MonoBehaviour
     // 도움말화면
     public Button HelpBackBtn;
     public Button[] buttons;
-    public Image[] ExampleImg;
+    public Image ExampleImg;
+    public Text HelpTitle;
+    public Text HelpTxt;
+    public Text HelpCount;
     public string[,] HelpList;
 
 
@@ -59,7 +63,7 @@ public class UIOption : MonoBehaviour
                 int index = i;
                 buttons[index].gameObject.AddComponent<AudioSource>();
 
-                buttons[index].onClick.AddListener(() => this.ShowHelp(index));
+                buttons[index].onClick.AddListener(() => this.ShowHelp(index));             
 
             }
         }
@@ -116,16 +120,28 @@ public class UIOption : MonoBehaviour
 
     public void ShowHelp(int index)
     {
-        string[,] AnswertxtList = new string[,]{
-        { "식물 심기" , "식물은 화분에 씨앗을 심으면 자라납니다. 씨앗을 상점에서 구매해 화분에 심어" , ""}, /*1행*/
-        { "식물 기르기","-안전하게 다음 신호를 기다렸다, 꼭 도로의 좌우를 확인하고 손을 들고 횡단보도를 건너가야해요.",""}, /*2행*/
-        { "식물 수확하기","-모르는 사람이 주는 음식을 먹거나 모르는 사람의 차를 타면 안돼요.","-어른들은 어린이들에게 도와달라고 하지 않아요.누군가 도움을 청할땐 그 주변의 어른에게 도와달라고 전달하세요."}, /*3행*/
-        { "식물 제거하기","-공사장 위에서 물건이 떨어지거나 공사장 시설이 무너질 수도 있어요.","-공사장이 지름길이더라도 안전하게 다른 길로 돌아가요."}, /*4행*/
-        { "식물 배치하기","-잘 아는 어른이어도 혼자 따라가면 위험해요.","-혹시 가고 싶다면 부모님이나 보호자에게 어디 가는지 알린뒤 허락을 받고 가야해요."} /*5행*/
+        string[,] HelpList = new string[,]{
+        { "식물 심기" , "식물은 화분에 씨앗을 심으면 자라납니다. 씨앗을 상점에서 구매해 화분에 심고 이름을 지어보세요.","(1/5)"}, /*1행*/
+        { "식물 기르기","식물에게 물을 주고, 영양제를 주고 칭찬을 해줄 수 있습니다. 영양도가 0이하이거나, 수분도가 너무 많거나 적으면 식물이 죽어요.","(2/5)"}, /*2행*/
+        { "식물 상태이상","식물의 수분이 너무 많거나, 영양도가 너무 낮거나 높으면 식물의 상태이상이 생깁니다. 식물이 노랗게 변했다면 상태창을 확인해보세요!","(3/5)"}, /*3행*/
+        { "식물 칭찬하기","식물도 칭찬을 받으면 잘 자라난답니다. 하루에 1번 칭찬을 통해 수분도와 영양도를 획득하세요!","(4/5)"}, /*4행*/
+        { "식물 배치하기","나만의 식물을 원하는 위치로 옮겨보세요! 내 방이 나만의 정원으로 바뀌는 시간! 홈가드닝으로 함께 힐링해봐요~","(5/5)"} /*5행*/
     };
+        string v = HelpList[index, 0].ToString();
+        HelpTitle.text = v;
+        
+        //HelpTitle.gameObject.GetComponent<AudioSource>().Play();
+
+        string y = HelpList[index, 1].ToString();
+        HelpTxt.text = y;
+
+        string z = HelpList[index, 2].ToString();
+        HelpCount.text = z;
+        
+        ExampleImg.sprite = Resources.Load<Sprite>($"Image/Help/Help{index + 1}");
+        Debug.Log($"{index}번째 이미지를 불러옵니다.");
+        
 
     }
 
-
-    
 }
