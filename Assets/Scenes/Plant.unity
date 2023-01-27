@@ -682,8 +682,8 @@ MonoBehaviour:
   onClickCroBtn: 0
   onClickPlantBtn: 0
   arrPlants:
-  - plant/Carrot_M
-  - CherryTomato_M
+  - plant/carrot_ap
+  - plant/carrot_ap
   plantsName: 
 --- !u!4 &1689366843
 Transform:
