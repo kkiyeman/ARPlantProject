@@ -320,7 +320,7 @@ public class PlantManager : MonoBehaviour
 
             var ob = Resources.Load<GameObject>(plantsName);
             var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
-            Plantdata.transform.localScale = new Vector3(1, 1, 1);
+            Plantdata.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             onClickPlantBtn = false;
         }
     }
