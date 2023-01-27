@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 using System;
 
 
@@ -57,6 +58,7 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Button btnSamplePlant;
 
     [SerializeField] GameObject bg;
+    [SerializeField] string[] arrPlants;
 
     GameManager gamemanager;
     PlantManager plantmanager;

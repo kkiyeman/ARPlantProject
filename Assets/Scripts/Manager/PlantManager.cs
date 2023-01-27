@@ -75,6 +75,8 @@ public class PlantManager : MonoBehaviour
     private void Awake()
     {
         //path = Application.persistentDataPath + "/";
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -302,7 +304,7 @@ public class PlantManager : MonoBehaviour
 
     public void SpawnPrefab(Vector3 spawnPosition)
     {
-        int ranCrops = Random.Range(1, 2);
+        int ranCrops = Random.Range(0, 2);
         if (onClickPlantBtn)
         {
             if (onClickCroBtn)
@@ -316,7 +318,6 @@ public class PlantManager : MonoBehaviour
                 onClickOrnBtn = false;
             }
 
-            int ran = Random.Range(1, 3);
             var ob = Resources.Load<GameObject>(plantsName);
             var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
             Plantdata.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
