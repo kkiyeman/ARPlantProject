@@ -11,6 +11,8 @@ public class UIPlant : MonoBehaviour
     [Header("Right Side")]
     [SerializeField] Button btnTemp;
     [SerializeField] Button btnStore;
+    [SerializeField] Button btnDictionary; 
+    [SerializeField] Button btnInventory;
 
     [Header("Bottom Side")]
     [SerializeField] GameObject bottomButtons;
@@ -28,6 +30,7 @@ public class UIPlant : MonoBehaviour
     [HideInInspector] public float curEnergy = 50;
     [HideInInspector] public int Gold = 1000;
     [SerializeField] Slider sldEnergy;
+    [SerializeField] Button btnOption;
 
     [Header("Status")]
     [SerializeField] Image imgStatus;
@@ -115,6 +118,9 @@ public class UIPlant : MonoBehaviour
         btnCompleteMemoInput.onClick.AddListener(OnClickMemoChange);
         btnOnInputfield.onClick.AddListener(OnClickInputMemoOn);
         btnStore.onClick.AddListener(OnClickUIStoreOn);
+        btnDictionary.onClick.AddListener(OnClickUIDictionaryOn);
+        btnOption.onClick.AddListener(OnClickUIOptionOn);
+        btnInventory.onClick.AddListener(OnClickUIInventoryOn);
     }
 
     private void OnClickStatusOn()
@@ -163,6 +169,21 @@ public class UIPlant : MonoBehaviour
     {
         var uistore = uimanager.GetUI("UIStore");
         uistore.gameObject.SetActive(true);
+    }
+    private void OnClickUIDictionaryOn()
+    {
+        var UIDictionary = uimanager.GetUI("UIDictionary");
+        UIDictionary.gameObject.SetActive(true);
+    }
+    private void OnClickUIOptionOn()
+    {
+        var UIOption = uimanager.GetUI("UIOption");
+        UIOption.gameObject.SetActive(true);
+    }
+    private void OnClickUIInventoryOn()
+    {
+        var UIInventory = uimanager.GetUI("UIInventory");
+        UIInventory.gameObject.SetActive(true);
     }
 
     public void OnClickBtnSpawnPlant()

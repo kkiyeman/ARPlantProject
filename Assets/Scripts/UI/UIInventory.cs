@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIDictionary : MonoBehaviour
+public class UIInventory : MonoBehaviour
 {
     GameManager gamemanager;
     PlantManager plantmanager;

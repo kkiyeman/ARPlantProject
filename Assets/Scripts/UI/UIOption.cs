@@ -58,12 +58,12 @@ public class UIOption : MonoBehaviour
 
         if (buttons != null)
         {
-            for (int i = 0; 1 < buttons.Length; i++)
+            for (int i = 0; i < buttons.Length; i++)
             {
                 int index = i;
-                buttons[index].gameObject.AddComponent<AudioSource>();
+                /*buttons[index].gameObject.AddComponent<AudioSource>();*/
 
-                buttons[index].onClick.AddListener(() => this.ShowHelp(index));             
+                buttons[index].onClick.AddListener(() => this.ShowHelp(index));
 
             }
         }
