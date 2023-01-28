@@ -55,6 +55,9 @@ public class PlantManager : MonoBehaviour
     public string[] arrPlants;
     public string plantsName;
 
+    public int OrnCount = 0;
+    public int CroCount = 0;
+
     //string path;
     //string filename = "save";
 
@@ -308,16 +311,34 @@ public class PlantManager : MonoBehaviour
         if (onClickPlantBtn)
         {
             if (onClickCroBtn)
-            {
-                plantsName = arrPlants[ranCrops];
-                onClickCroBtn = false;
-            }
+
+                if (CroCount < 2)
+                {
+                    plantsName = arrPlants[ranCrops];
+                    onClickCroBtn = false;
+
+                    CroCount++;
+                }
+                else
+                {
+                    Debug.Log("2개 이상 소환 불가");
+                    onClickCroBtn = false;
+                }
             else if (onClickOrnBtn)
             {
-                plantsName = "Shelf/Shelf_1";
-                onClickOrnBtn = false;
-            }
+                if (OrnCount < 2)
+                {
+                    plantsName = "Shelf/Shelf_On_Pot";
+                    onClickOrnBtn = false;
 
+                    OrnCount++;
+                }
+                else
+                {
+                    Debug.Log("2개 이상 소환 불가");
+                    onClickOrnBtn = false;
+                }
+            }
             var ob = Resources.Load<GameObject>(plantsName);
             var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
             Plantdata.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
