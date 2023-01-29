@@ -188,8 +188,16 @@ public class UIPlant : MonoBehaviour
 
     public void OnClickBtnSpawnPlant()
     {
-        plantmanager.onClickPlantBtn = true;
-        bg.gameObject.SetActive(true);
+
+        if(plantmanager.CroCount == 1 && plantmanager.OrnCount == 1)
+        {
+            Debug.Log("더 이상 소환 불가");
+        }
+        else
+        {
+            plantmanager.onClickPlantBtn = true;
+            bg.gameObject.SetActive(true);
+        }
     }
 
     public void OnClickBtnCrops()

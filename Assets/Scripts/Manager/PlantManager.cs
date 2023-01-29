@@ -314,7 +314,7 @@ public class PlantManager : MonoBehaviour
 
                 if (CroCount < 2)
                 {
-                    plantsName = arrPlants[ranCrops];
+                    plantsName = "plant/cropot";
                     onClickCroBtn = false;
 
                     CroCount++;
