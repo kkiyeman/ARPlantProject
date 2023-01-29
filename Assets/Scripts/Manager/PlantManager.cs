@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using System.IO;
@@ -26,6 +27,8 @@ public class PlantManager : MonoBehaviour
     [SerializeField]
     ARRaycastManager m_RaycastManager;
     List<ARRaycastHit> m_Hits = new List<ARRaycastHit>();
+
+    UIManager uimanager;
 
     [SerializeField]
     GameObject spawnablePrefab;
@@ -59,6 +62,9 @@ public class PlantManager : MonoBehaviour
 
     MyPlantManager myPlantManager = MyPlantManager.GetInstance();
 
+    [SerializeField] private Camera arCamera;
+    public bool objTouched;
+
     //string path;
     //string filename = "save";
 
@@ -81,6 +87,8 @@ public class PlantManager : MonoBehaviour
         //path = Application.persistentDataPath + "/";
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+        uimanager = UIManager.GetInstance();
     }
 
     void Start()
@@ -323,6 +331,7 @@ public class PlantManager : MonoBehaviour
         if (onClickPlantBtn)
         {
             if (onClickCroBtn)
+            {
 
                 if (CroCount < 2)
                 {
@@ -336,6 +345,7 @@ public class PlantManager : MonoBehaviour
                     Debug.Log("2개 이상 소환 불가");
                     onClickCroBtn = false;
                 }
+            }
             else if (onClickOrnBtn)
             {
                 if (OrnCount < 2)
@@ -392,7 +402,34 @@ public class PlantManager : MonoBehaviour
                 //ARRenderManager.GetInstance().PlaneOff();
             }
         }
+    }
 
+    public void SpawnSeed()
+    {
+        Touch touch = Input.GetTouch(0);
+
+        Ray ray;
+        RaycastHit hitobj;
+
+        ray = arCamera.ScreenPointToRay(touch.position);
+
+        if (Input.touchCount == 0)
+            return;
+
+        else
+        {
+            if(Physics.Raycast(ray,out hitobj))
+            {
+                if(hitobj.collider.name.Contains(tag = "Orn"))
+                {
+                    var SpawnOrn = uimanager.GetUI("UIOrnSpawn");
+                }
+                else if (hitobj.collider.name.Contains(tag = "Cro"))
+                {
+                    var SpawnCro = uimanager.GetUI("UICroSpawn");
+                }
+            }
+        }
     }
 
     public void Save()
