@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     public WaitForSecondsRealtime waitFor20Seconds = new WaitForSecondsRealtime(20.0f);
 
+    MyPlantManager myPlantManager = MyPlantManager.GetInstance();
+
     private void Start()
     {
         StartCoroutine("PlusCurEnergy");
@@ -39,6 +41,8 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         runningTime = (int)Time.realtimeSinceStartup;
+
+
         CurEnergyZero();
     }
 

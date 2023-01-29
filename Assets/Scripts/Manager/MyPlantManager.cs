@@ -23,4 +23,19 @@ public class MyPlantManager : MonoBehaviour
 
     public List<MyPlantList> myPlantList = new List<MyPlantList>();
 
+    private void Update()
+    {
+        if(myPlantList.Count > 0)
+        {
+            CheckMyPlantsIdx();
+        }
+    }
+
+    public void CheckMyPlantsIdx()
+    {
+        for(int i = 0; i < myPlantList.Count; i++)
+        {
+            i = myPlantIdx;
+        }
+    }
 }

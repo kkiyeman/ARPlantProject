@@ -57,6 +57,8 @@ public class PlantManager : MonoBehaviour
     public int OrnCount = 0;
     public int CroCount = 0;
 
+    MyPlantManager myPlantManager = MyPlantManager.GetInstance();
+
     //string path;
     //string filename = "save";
 
@@ -83,8 +85,14 @@ public class PlantManager : MonoBehaviour
 
     void Start()
     {
+        var myPlantList = myPlantManager.myPlantList;
         spawnedObject = null;
         DataManager.GetInstance().LoadData();
+
+        StartCoroutine(MinusPlantStatus(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
+        StartCoroutine(DieThePlant(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
+        StartCoroutine(PlantDisease(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
+        StartCoroutine(GrowthRatePlant(myPlantList[myPlantManager.myPlantIdx].growthRate));
     }
 
 
@@ -161,15 +169,18 @@ public class PlantManager : MonoBehaviour
     }
 
 
-    IEnumerator DieThePlant(int curhydration, int nutrition, Object plantName) //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)
+    IEnumerator DieThePlant(int curhydration, int nutrition) //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)
     {
+        var myPlantList = myPlantManager.myPlantList;
+        int idx = myPlantManager.myPlantIdx;
         while (true)
         {
             yield return waitForHalfSeconds;      //수분량, 영양도 감소 시간
 
             if (curhydration >= 150 || curhydration < 30 || nutrition <= 0)
             {
-                Destroy(plantName);
+                myPlantList.RemoveAt(idx);
+                Destroy(gameObject);
             }
         }
     }
@@ -185,13 +196,15 @@ public class PlantManager : MonoBehaviour
 
     IEnumerator PlantDisease(int curhydration, int nutrition) //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100이상, 20미만)
     {
+        var myPlantList = myPlantManager.myPlantList;
+        int idx = myPlantManager.myPlantIdx;
         while (true)
         {
             yield return waitForHalfSeconds;
 
             if (120 < curhydration && curhydration < 150 || nutrition >= 100 || nutrition < 20)
             {
-                //식물 상태 이상
+                myPlantList[idx].isSick = true;
             }
         }
     }
