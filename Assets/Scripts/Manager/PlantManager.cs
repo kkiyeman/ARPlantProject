@@ -52,7 +52,6 @@ public class PlantManager : MonoBehaviour
     public bool onClickCroBtn;                //농작물 심기 버튼 클릭
     public bool onClickPlantBtn;              //심기 버튼 클릭
 
-    public string[] arrPlants;
     public string plantsName;
 
     public int OrnCount = 0;
