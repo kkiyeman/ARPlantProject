@@ -16,6 +16,14 @@ public class PlantScene : MonoBehaviour
         uimanager.OpenUI("UIDictionary");
         uimanager.OpenUI("UIOption");
         uimanager.OpenUI("UIInventory");
+        uimanager.OpenUI("UIOrnSpawn");
+        uimanager.OpenUI("UICroSpawn");
+
+        var uiOS = uimanager.GetUI("UIOrnSpawn");
+        uiOS.gameObject.SetActive(false);
+
+        var uiCS = uimanager.GetUI("UICroSpawn");
+        uiCS.gameObject.SetActive(false);
 
         UIPlant uiplant = uimanager.GetUI("UIPlant").GetComponent<UIPlant>();
 
