@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIInventory : MonoBehaviour
 {
+
     GameManager gamemanager;
     PlantManager plantmanager;
     UIManager uimanager;
