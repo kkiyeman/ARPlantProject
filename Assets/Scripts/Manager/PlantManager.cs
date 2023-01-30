@@ -110,7 +110,7 @@ public class PlantManager : MonoBehaviour
         curTime = GameManager.GetInstance().runningTime;
         allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         PlantSpawn();
-        SpawnSeed();
+        //SpawnSeed();
        // Save();
     }
 
@@ -415,19 +415,19 @@ public class PlantManager : MonoBehaviour
 
         ray = arCamera.ScreenPointToRay(touch.position);
 
-        if (Input.touchCount == 0)
+        if (Input.touchCount == 1)
             return;
 
         else
         {
             if(Physics.Raycast(ray,out hitobj))
             {
-                if(hitobj.collider.name.Contains(tag = "Orn"))
+                if(hitobj.collider.tag == "Orn")
                 {
                     var SpawnOrn = uimanager.GetUI("UIOrnSpawn");
                     SpawnOrn.SetActive(true);
                 }
-                else if (hitobj.collider.name.Contains(tag = "Cro"))
+                else if (hitobj.collider.tag == "Cro")
                 {
                     var SpawnCro = uimanager.GetUI("UICroSpawn");
                     SpawnCro.SetActive(true);
