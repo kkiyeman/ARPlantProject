@@ -1271,10 +1271,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ornSpawn:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5103163967641834462}
+  - {fileID: 1270809346765915610}
+  - {fileID: 4128598395013990895}
+  - {fileID: 1121564132463768642}
 --- !u!1 &8892273231298637903
 GameObject:
   m_ObjectHideFlags: 0

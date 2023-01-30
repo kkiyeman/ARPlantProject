@@ -4,10 +4,9 @@ using UnityEngine;
 using System;
 
 [Serializable]
-
-public class Plant5 : PlantBase
+public class FishBone : PlantBase
 {
-    public Plant5(string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty)
+    public FishBone(string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty)
     {
         this.plantName = plantName;
         this.plantType = plantType;
@@ -20,6 +19,6 @@ public class Plant5 : PlantBase
 
     public override void Reward()
     {
-
+        
     }
 }

@@ -5,9 +5,9 @@ using System;
 
 [Serializable]
 
-public class Plant6 : PlantBase
+public class CherryTomato : PlantBase
 {
-    public Plant6(string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty)
+    public CherryTomato(string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty)
     {
         this.plantName = plantName;
         this.plantType = plantType;

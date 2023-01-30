@@ -70,14 +70,12 @@ public class PlantManager : MonoBehaviour
 
     public PlantBase[] plantDates = new PlantBase[]
 {
-        new Plant1("Plant1", "Ornamental", 0, 100, 100, false, false),
-        new Plant2("Plant2", "Ornamental", 0, 100, 100, false, false),
-        new Plant3("Plant3", "Ornamental", 0, 100, 100, false, false),
-        new Plant4("Plant4", "Ornamental", 0, 100, 100, false, false),
-        new Plant5("Plant5", "Crops", 0, 100, 100, false, false),
-        new Plant6("Plant6", "Crops", 0, 100, 100, false, false),
-        new Plant7("Plant7", "Crops", 0, 100, 100, false, false),
-        new Plant8("Plant8", "Crops", 0, 100, 100, false, false)
+        new FishBone("FishBone", "Ornamental", 0, 100, 100, false, false),
+        new Jade("Jade", "Ornamental", 0, 100, 100, false, false),
+        new Palm("Palm", "Ornamental", 0, 100, 100, false, false),
+        new Pileapepe("Pileapepe", "Ornamental", 0, 100, 100, false, false),
+        new Carrot("Carrot", "Crops", 0, 100, 100, false, false),
+        new CherryTomato("CherryTomato", "Crops", 0, 100, 100, false, false),
 };
 
     public List<PlantBase> MyPlants = new List<PlantBase>();
@@ -96,12 +94,12 @@ public class PlantManager : MonoBehaviour
         myPlantManager = MyPlantManager.GetInstance();
         var myPlantList = myPlantManager.myPlantList;
         spawnedObject = null;
-        DataManager.GetInstance().LoadData();
+        //DataManager.GetInstance().LoadData();
 
-        StartCoroutine(MinusPlantStatus(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
-        StartCoroutine(DieThePlant(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
-        StartCoroutine(PlantDisease(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
-        StartCoroutine(GrowthRatePlant(myPlantList[myPlantManager.myPlantIdx].growthRate));
+        //StartCoroutine(MinusPlantStatus(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
+        //StartCoroutine(DieThePlant(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
+        //StartCoroutine(PlantDisease(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
+        //StartCoroutine(GrowthRatePlant(myPlantList[myPlantManager.myPlantIdx].growthRate));
     }
 
 
@@ -110,7 +108,7 @@ public class PlantManager : MonoBehaviour
         curTime = GameManager.GetInstance().runningTime;
         allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         PlantSpawn();
-        //SpawnSeed();
+        SpawnSeed();
        // Save();
     }
 
@@ -408,7 +406,7 @@ public class PlantManager : MonoBehaviour
 
     public void SpawnSeed()
     {
-        Touch touch = Input.GetTouch(0);
+        Touch touch = Input.GetTouch(1);
 
         Ray ray;
         RaycastHit hitobj;

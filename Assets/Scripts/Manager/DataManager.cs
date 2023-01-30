@@ -25,7 +25,7 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
-        path = Application.persistentDataPath + "/";
+        //path = Application.persistentDataPath + "/";
     }
 
     void Start()
