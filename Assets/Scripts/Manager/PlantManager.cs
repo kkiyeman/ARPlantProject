@@ -425,10 +425,12 @@ public class PlantManager : MonoBehaviour
                 if(hitobj.collider.name.Contains(tag = "Orn"))
                 {
                     var SpawnOrn = uimanager.GetUI("UIOrnSpawn");
+                    SpawnOrn.SetActive(true);
                 }
                 else if (hitobj.collider.name.Contains(tag = "Cro"))
                 {
                     var SpawnCro = uimanager.GetUI("UICroSpawn");
+                    SpawnCro.SetActive(true);
                 }
             }
         }
