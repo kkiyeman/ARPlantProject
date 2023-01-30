@@ -110,6 +110,7 @@ public class PlantManager : MonoBehaviour
         curTime = GameManager.GetInstance().runningTime;
         allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         PlantSpawn();
+        SpawnSeed();
        // Save();
     }
 
@@ -364,7 +365,7 @@ public class PlantManager : MonoBehaviour
             }
             var ob = Resources.Load<GameObject>(plantsName);
             var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
-            Plantdata.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            Plantdata.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
             onClickPlantBtn = false;
         }
     }
