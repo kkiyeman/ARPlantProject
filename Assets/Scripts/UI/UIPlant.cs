@@ -61,6 +61,12 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Image imgSick;
     [SerializeField] Image imgThirsty;
 
+    [Header("ChooseSeed")]
+    [SerializeField] Image bgChooseSeed;
+    [SerializeField] Button btnCloseChooseSeed;
+    [SerializeField] Button btnOrnamentalSeed;
+    [SerializeField] Button btnCropSeed;
+
     [Header("Test")]
     [SerializeField] Button btnSamplePlant;
 
@@ -76,7 +82,7 @@ public class UIPlant : MonoBehaviour
         gamemanager = GameManager.GetInstance();
         plantmanager = PlantManager.GetInstance();
         uimanager = UIManager.GetInstance();
-        ButtonSetting();
+        SetButton();
     }
 
     void Update()
@@ -111,7 +117,7 @@ public class UIPlant : MonoBehaviour
         sldHumidity.value = 45;
 
     }
-    private void ButtonSetting()
+    private void SetButton()
     {
         btnSamplePlant.onClick.AddListener(OnClickStatusOn);
         btnCloseStatus.onClick.AddListener(OnClickStatusOff);
@@ -126,6 +132,10 @@ public class UIPlant : MonoBehaviour
         btnOption.onClick.AddListener(OnClickUIOptionOn);
         btnInventory.onClick.AddListener(OnClickUIInventoryOn);
         btnRightLayOutPop.onClick.AddListener(OnClickRightLayOutPop);
+        btnSeed.onClick.AddListener(OnClickOpenChooseSeed);
+        btnCloseChooseSeed.onClick.AddListener(OnClickCloseChooseSeed);
+        btnCropSeed.onClick.AddListener(OnClickCropSpawn);
+        btnOrnamentalSeed.onClick.AddListener(OnClickOrnSpawn);
     }
 
     private void OnClickStatusOn()
@@ -191,7 +201,7 @@ public class UIPlant : MonoBehaviour
         UIInventory.gameObject.SetActive(true);
     }
 
-    public void OnClickBtnSpawnPlant()
+    public void OnClickOpenChooseSeed()
     {
 
         if(plantmanager.CroCount == 1 && plantmanager.OrnCount == 1)
@@ -201,29 +211,34 @@ public class UIPlant : MonoBehaviour
         else
         {
             plantmanager.onClickPlantBtn = true;
-            bg.gameObject.SetActive(true);
+            bgChooseSeed.gameObject.SetActive(true);
         }
     }
 
-    public void OnClickBtnCrops()
+    public void OnClickCropSpawn()
     {
+        var uicrops = UIManager.GetInstance().GetUI("UICroSpawn");
         plantmanager.onClickCroBtn = true;
-        bg.gameObject.SetActive(false);
+        uicrops.gameObject.SetActive(true);
+        bgChooseSeed.gameObject.SetActive(false);
     }
 
-    public void OnClickBtnOrn()
+    public void OnClickOrnSpawn()
     {
+        var uiorn = UIManager.GetInstance().GetUI("UIOrnSpawn");
         plantmanager.onClickOrnBtn = true;
-        bg.gameObject.SetActive(false);
+        uiorn.gameObject.SetActive(true); ;
+        bgChooseSeed.gameObject.SetActive(false);
     }
 
-    public void OnClickBtnClose()
+    public void OnClickCloseChooseSeed()
     {
         plantmanager.onClickPlantBtn = false;
         plantmanager.onClickCroBtn = false;
         plantmanager.onClickOrnBtn = false;
-        bg.gameObject.SetActive(false);
+        bgChooseSeed.gameObject.SetActive(false);
     }
+
 
     private void OnClickRightLayOutPop()
     {
