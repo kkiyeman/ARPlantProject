@@ -236,10 +236,10 @@ public class UIPlant : MonoBehaviour
     private IEnumerator PopUp()
     {
         txtArrow.text = ">";
-        for (float i = 1220; i >= 1080; i = i -20f)
+        for (float i = 1220; i >= 1080; i = i -2f)
         {
             rightSideObjects.transform.position = new Vector3(i, rightSideObjects.transform.position.y, rightSideObjects.transform.position.z);
-              yield return Time.deltaTime * 0.05f;
+              yield return Time.deltaTime / 200f;
         }
         yield return new WaitForSeconds(0.01f);
         isPoped = true;
@@ -249,10 +249,10 @@ public class UIPlant : MonoBehaviour
     {
         txtArrow.text = "<";
         Vector3 vector = rightSideObjects.transform.position;
-        for (float j = 1080; j <= 1220; j = j + 20f)
+        for (float j = 1080; j <= 1220; j = j + 2f)
         {
             rightSideObjects.transform.position = new Vector3(j, vector.y, vector.z);
-             yield return Time.deltaTime * 0.05f;
+             yield return Time.deltaTime / 200f;
         }
         yield return new WaitForSeconds(0.01f);
         isPoped = false;

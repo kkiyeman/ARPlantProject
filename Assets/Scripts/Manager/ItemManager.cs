@@ -26,7 +26,7 @@ public class ItemManager : MonoBehaviour
         new SeedItem("ÇÊ¸®¾ÆÆäÆä ¾¾¾Ñ", "¾¾¾Ñ" , 220),
         new SeedItem("ÇÇ½¬º» ¾¾¾Ñ", "¾¾¾Ñ" , 200),
         new SeedItem("¾Ë·Î¿¡ ¾¾¾Ñ", "¾¾¾Ñ" , 250),
-        new SeedItem("Á¦ÀÌµå½ºÅ¸ ¾¾¾Ñ", "¾¾¾Ñ" , 300)
+        new SeedItem("¿©ÀÎÃÊ ¾¾¾Ñ", "¾¾¾Ñ" , 300)
     };
 
     public ItemBase[] toolItemData = new ItemBase[]
