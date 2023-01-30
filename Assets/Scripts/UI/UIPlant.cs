@@ -15,6 +15,7 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Button btnStore;
     [SerializeField] Button btnDictionary; 
     [SerializeField] Button btnInventory;
+    [SerializeField] Text txtArrow;
     public bool isPoped;
 
     [Header("Bottom Side")]
@@ -234,7 +235,7 @@ public class UIPlant : MonoBehaviour
 
     private IEnumerator PopUp()
     {
-
+        txtArrow.text = ">";
         for (float i = 1210; i >= 1080; i = i - 2f)
         {
               rightSideObjects.transform.position = new Vector3(i, rightSideObjects.transform.position.y, rightSideObjects.transform.position.z);
@@ -247,6 +248,7 @@ public class UIPlant : MonoBehaviour
 
     private IEnumerator PopDown()
     {
+        txtArrow.text = "<";
         Vector3 vector = rightSideObjects.transform.position;
         WaitForSeconds duration = new WaitForSeconds(0.002f);
         for (float j = 1080; j <= 1210; j = j + 2f)
