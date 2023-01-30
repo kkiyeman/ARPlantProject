@@ -60,7 +60,7 @@ public class PlantManager : MonoBehaviour
     public int OrnCount = 0;
     public int CroCount = 0;
 
-    MyPlantManager myPlantManager = MyPlantManager.GetInstance();
+    MyPlantManager myPlantManager;
 
     [SerializeField] private Camera arCamera;
     public bool objTouched;
@@ -93,6 +93,7 @@ public class PlantManager : MonoBehaviour
 
     void Start()
     {
+        myPlantManager = MyPlantManager.GetInstance();
         var myPlantList = myPlantManager.myPlantList;
         spawnedObject = null;
         DataManager.GetInstance().LoadData();
@@ -109,7 +110,7 @@ public class PlantManager : MonoBehaviour
         curTime = GameManager.GetInstance().runningTime;
         allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         PlantSpawn();
-        Save();
+       // Save();
     }
 
     public void WaterThePlant(int curhydration, int curEnergy)             //물주기 함수 (물주기 버튼 클릭 시 수분량 20 상승) , 에너지 5소모

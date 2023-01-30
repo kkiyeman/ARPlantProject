@@ -684,6 +684,8 @@ MonoBehaviour:
   plantsName: 
   OrnCount: 0
   CroCount: 0
+  arCamera: {fileID: 0}
+  objTouched: 0
 --- !u!4 &1689366843
 Transform:
   m_ObjectHideFlags: 0

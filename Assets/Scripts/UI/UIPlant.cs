@@ -9,10 +9,13 @@ using System;
 public class UIPlant : MonoBehaviour
 {
     [Header("Right Side")]
+    [SerializeField] GameObject rightSideObjects;
+    [SerializeField] Button btnRightLayOutPop;
     [SerializeField] Button btnTemp;
     [SerializeField] Button btnStore;
     [SerializeField] Button btnDictionary; 
     [SerializeField] Button btnInventory;
+    public bool isPoped;
 
     [Header("Bottom Side")]
     [SerializeField] GameObject bottomButtons;
@@ -121,6 +124,7 @@ public class UIPlant : MonoBehaviour
         btnDictionary.onClick.AddListener(OnClickUIDictionaryOn);
         btnOption.onClick.AddListener(OnClickUIOptionOn);
         btnInventory.onClick.AddListener(OnClickUIInventoryOn);
+        btnRightLayOutPop.onClick.AddListener(OnClickRightLayOutPop);
     }
 
     private void OnClickStatusOn()
@@ -218,5 +222,39 @@ public class UIPlant : MonoBehaviour
         plantmanager.onClickCroBtn = false;
         plantmanager.onClickOrnBtn = false;
         bg.gameObject.SetActive(false);
+    }
+
+    private void OnClickRightLayOutPop()
+    {
+        if (!isPoped)
+            StartCoroutine("PopUp");
+        else
+            StartCoroutine("PopDown");
+    }
+
+    private IEnumerator PopUp()
+    {
+
+        for (float i = 1210; i >= 1080; i = i - 2f)
+        {
+              rightSideObjects.transform.position = new Vector3(i, rightSideObjects.transform.position.y, rightSideObjects.transform.position.z);
+            Debug.Log(i);
+              yield return new WaitForSeconds(0.002f);
+        }
+        yield return new WaitForSeconds(0.01f);
+        isPoped = true;
+    }
+
+    private IEnumerator PopDown()
+    {
+        Vector3 vector = rightSideObjects.transform.position;
+        WaitForSeconds duration = new WaitForSeconds(0.002f);
+        for (float j = 1080; j <= 1210; j = j + 2f)
+        {
+            rightSideObjects.transform.position = new Vector3(j, vector.y, vector.z);
+             yield return duration;
+        }
+        yield return new WaitForSeconds(0.01f);
+        isPoped = false;
     }
 }

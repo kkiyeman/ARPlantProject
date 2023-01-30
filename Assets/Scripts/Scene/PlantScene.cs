@@ -8,6 +8,8 @@ public class PlantScene : MonoBehaviour
     {
         PlantManager plantmanager = PlantManager.GetInstance();
         UIManager uimanager = UIManager.GetInstance();
+
+        MyPlantManager myplantmanager = MyPlantManager.GetInstance();
         
         uimanager.OpenUI("UIPlant");
         uimanager.OpenUI("UIStore");
