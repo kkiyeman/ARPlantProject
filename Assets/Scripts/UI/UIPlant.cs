@@ -13,7 +13,7 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Button btnRightLayOutPop;
     [SerializeField] Button btnSeed;
     [SerializeField] Button btnStore;
-    [SerializeField] Button btnDictionary; 
+    [SerializeField] Button btnDictionary;
     [SerializeField] Button btnInventory;
     [SerializeField] Text txtArrow;
     public bool isPoped;
@@ -89,11 +89,32 @@ public class UIPlant : MonoBehaviour
 
     void Update()
     {
-        TextSetting();
-        SliderSetting();
+        SetPlayerData();
+        SetStatus();
     }
 
-    private void TextSetting()
+    private void SetStatus()
+    {
+        MyPlantList myplant = MyPlantManager.GetInstance().myPlantList[0];
+        string _plantuserName = myplant.plantUserName;
+        string _plantName = myplant.plantName;
+        int _plantgrowth = myplant.growthRate;
+        int _plantNut = myplant.nutrition;
+        int _plantwater = myplant.hydration;
+        sldGrowth.maxValue = 100;
+        sldNutrition.maxValue = 100;
+        sldHumidity.maxValue = 100;
+        sldGrowth.value = _plantgrowth;
+        sldNutrition.value = _plantNut;
+        sldHumidity.value = _plantwater;
+        txtGrowth.text = $"{_plantgrowth}/100";
+        txtNutrition.text = $"{_plantNut}/100";
+        txtHumidity.text = $"{_plantwater}/100";
+        txtPlantName.text = _plantuserName;
+
+    }
+
+    private void SetPlayerData()
     {
         
         txtCurtime.text = DateTime.Now.ToString("M"+"월 "+"dd"+"일" + "\n" + "HH" + "시 " + "mm" + "분");
@@ -102,23 +123,11 @@ public class UIPlant : MonoBehaviour
         Gold = 1000;
         txtEnergy.text = $"{curEnergy}/{totalEnergy}";
         txtGold.text = $"{Gold}";
-        txtGrowth.text = "50/100";
-        txtNutrition.text = "55/100";
-        txtHumidity.text = "45/100";
-    }
-
-    private void SliderSetting()
-    {
         sldEnergy.maxValue = totalEnergy;
         sldEnergy.value = curEnergy;
-        sldGrowth.maxValue = 100;
-        sldGrowth.value = 50;
-        sldNutrition.maxValue = 100;
-        sldNutrition.value = 55;
-        sldHumidity.maxValue = 100;
-        sldHumidity.value = 45;
 
     }
+
     private void SetButton()
     {
         btnSamplePlant.onClick.AddListener(OnClickBottomOn);
