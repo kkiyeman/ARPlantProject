@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 843224278228169080}
   m_Layer: 0
   m_Name: Pot
-  m_TagString: Untagged
+  m_TagString: Orn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2584822679962931081}
   m_Layer: 0
   m_Name: Pot4
-  m_TagString: Untagged
+  m_TagString: Orn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 2560488049714128510}
   m_Layer: 0
   m_Name: Pot1
-  m_TagString: Untagged
+  m_TagString: Orn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 5329631781165027881}
   m_Layer: 0
   m_Name: Pot3
-  m_TagString: Untagged
+  m_TagString: Orn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 5531080344452449073}
   m_Layer: 0
   m_Name: Pot
-  m_TagString: Untagged
+  m_TagString: Orn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 2752704588678763685}
   m_Layer: 0
   m_Name: Pot2
-  m_TagString: Untagged
+  m_TagString: Orn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 2452442474129421156}
   m_Layer: 0
   m_Name: Pot
-  m_TagString: Untagged
+  m_TagString: Orn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 2784038693594082603}
   m_Layer: 0
   m_Name: Pot
-  m_TagString: Untagged
+  m_TagString: Orn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

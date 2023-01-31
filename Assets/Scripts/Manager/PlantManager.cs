@@ -409,14 +409,14 @@ public class PlantManager : MonoBehaviour
 
     public void SpawnSeed()
     {
-        Touch touch = Input.GetTouch(1);
+        Touch touch = Input.GetTouch(0);
 
         Ray ray;
         RaycastHit hitobj;
 
         ray = arCamera.ScreenPointToRay(touch.position);
 
-        if (Input.touchCount == 1)
+        if (Input.touchCount == 0)
             return;
 
         else
