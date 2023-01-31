@@ -23,6 +23,7 @@ public class UIStore : MonoBehaviour
     [SerializeField] Text[] txtItems;
     [SerializeField] Text[] txtItemPrices;
     [SerializeField] GameObject content;
+    [SerializeField] Image imgItemReady;
 
     [Header("Item Buy PopUp")]
     [SerializeField] Image imgItemBuy;
@@ -136,33 +137,42 @@ public class UIStore : MonoBehaviour
 
     private void GetItemList(int index)
     {
-
-        switch(index)
+        if(index<=1)
         {
-            case 0:
-                var seeds = itemmanager.seedItemData;
-                for(int i = 0; i< seeds.Length; i++)
-                {
-                    var ob = Resources.Load<BtnItem>("UI/btnItem");
-                    var itemData = Instantiate(ob);
-                    itemData.itemName.text = seeds[i].Itemname;
-                    itemData.itemPrice.text = seeds[i].ItemPrice.ToString();
-                    itemData.transform.SetParent(content.transform);
-                    btnItems.Add(itemData);
-                }
-                break;
-            case 1:
-                var tools = itemmanager.toolItemData;
-                for (int i = 0; i < tools.Length; i++)
-                {
-                    var ob = Resources.Load<BtnItem>("UI/btnItem");
-                    var itemData = Instantiate(ob);
-                    itemData.itemName.text = tools[i].Itemname;
-                    itemData.itemPrice.text = tools[i].ItemPrice.ToString();
-                    itemData.transform.SetParent(content.transform);
-                    btnItems.Add(itemData);
-                }
-                break;
+            imgItemReady.gameObject.SetActive(false);
+            switch (index)
+            {
+                case 0:
+                    var seeds = itemmanager.seedItemData;
+                    for (int i = 0; i < seeds.Length; i++)
+                    {
+                        var ob = Resources.Load<BtnItem>("UI/btnItem");
+                        var itemData = Instantiate(ob);
+                        itemData.itemName.text = seeds[i].Itemname;
+                        itemData.itemPrice.text = seeds[i].ItemPrice.ToString();
+                        itemData.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{itemData.itemName.text}");
+                        itemData.transform.SetParent(content.transform);
+                        btnItems.Add(itemData);
+                    }
+                    break;
+                case 1:
+                    var tools = itemmanager.toolItemData;
+                    for (int i = 0; i < tools.Length; i++)
+                    {
+                        var ob = Resources.Load<BtnItem>("UI/btnItem");
+                        var itemData = Instantiate(ob);
+                        itemData.itemName.text = tools[i].Itemname;
+                        itemData.itemPrice.text = tools[i].ItemPrice.ToString();
+                        itemData.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{itemData.itemName.text}");
+                        itemData.transform.SetParent(content.transform);
+                        btnItems.Add(itemData);
+                    }
+                    break;
+            }
+        }
+        else
+        {
+            imgItemReady.gameObject.SetActive(true);
         }
 
         BtnItemsSetting();

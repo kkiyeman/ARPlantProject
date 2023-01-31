@@ -22,7 +22,7 @@ public class ItemManager : MonoBehaviour
     public ItemBase[] seedItemData = new ItemBase[]
     {
         new SeedItem("당근 씨앗", "씨앗", 100, "당근을 심을 수 있는 씨앗"),
-        new SeedItem("토마토 씨앗", "씨앗" , 150,"토마토를 심을 수 있는 씨앗"),
+        new SeedItem("방울토마토 씨앗", "씨앗" , 150,"방울토마토를 심을 수 있는 씨앗"),
         new SeedItem("필리아페페 씨앗", "씨앗" , 220,"필리아페페를 심을 수 있는 씨앗"),
         new SeedItem("피쉬본 씨앗", "씨앗" , 200,"피쉬본을 심을 수 있는 씨앗"),
         new SeedItem("알로에 씨앗", "씨앗" , 250,"알로에를 심을 수 있는 씨앗"),
