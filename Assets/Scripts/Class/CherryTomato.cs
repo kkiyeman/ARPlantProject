@@ -7,7 +7,7 @@ using System;
 
 public class CherryTomato : PlantBase
 {
-    public CherryTomato(string plantUserName, string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty)
+    public CherryTomato(string plantUserName, string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty, int reward)
     {
         this.plantUserName = plantUserName;
         this.plantName = plantName;
@@ -17,6 +17,7 @@ public class CherryTomato : PlantBase
         this.nutrition = nutrition;
         this.isSick = isSick;
         this.isThirsty = isThirsty;
+        this.reward = reward;
     }
 
     public override void Reward()

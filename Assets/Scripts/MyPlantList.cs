@@ -11,8 +11,9 @@ public class MyPlantList : MonoBehaviour
     public int hydration;                  //수분도
     public int nutrition;                  //영양도
     public bool isSick;                      //질병여부
+    public int reward;
 
-    public MyPlantList(string plantusername, string plantname, int growthrate, int hydrationrate, int nutritionrate, bool issick)
+    public MyPlantList(string plantusername, string plantname, int growthrate, int hydrationrate, int nutritionrate, bool issick, int reward)
     {
         plantUserName = plantusername;
         plantName = plantname;
@@ -20,6 +21,7 @@ public class MyPlantList : MonoBehaviour
         hydration = hydrationrate;
         nutrition = nutritionrate;
         isSick = issick;
+        this.reward = reward;
     }
 
 }

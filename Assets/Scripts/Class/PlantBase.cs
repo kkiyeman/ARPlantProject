@@ -14,6 +14,7 @@ public abstract class PlantBase
     public int nutrition;                  //영양도
     public bool isSick;                      //질병여부
     public bool isThirsty;                   //수분부족여부
+    public int reward;
 
     public abstract void Reward();
 
@@ -29,6 +30,7 @@ public abstract class PlantBase
         data.nutrition = nutrition;
         data.isSick = isSick;
         data.isThirsty = isThirsty;
+        data.reward = reward;
 
         return data;
     }

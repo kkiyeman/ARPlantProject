@@ -6,7 +6,7 @@ using System;
 [Serializable]
 public class FishBone : PlantBase
 {
-    public FishBone(string plantUserName, string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty)
+    public FishBone(string plantUserName, string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty, int reward)
     {
         this.plantUserName = plantUserName;
         this.plantName = plantName;
@@ -16,6 +16,7 @@ public class FishBone : PlantBase
         this.nutrition = nutrition;
         this.isSick = isSick;
         this.isThirsty = isThirsty;
+        this.reward = reward;
     }
 
     public override void Reward()
