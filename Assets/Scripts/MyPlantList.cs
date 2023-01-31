@@ -12,4 +12,14 @@ public class MyPlantList : MonoBehaviour
     public int nutrition;                  //영양도
     public bool isSick;                      //질병여부
 
+    public MyPlantList(string plantusername, string plantname, int growthrate, int hydrationrate, int nutritionrate, bool issick)
+    {
+        plantUserName = plantusername;
+        plantName = plantname;
+        growthRate = growthrate;
+        hydration = hydrationrate;
+        nutrition = nutritionrate;
+        isSick = issick;
+    }
+
 }

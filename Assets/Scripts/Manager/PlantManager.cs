@@ -511,15 +511,20 @@ public class PlantManager : MonoBehaviour
         //var seed = Resources.Load<GameObject>($"plant/Seed");
         var Plant = Instantiate(seed, potTrans);
 
-        MyPlantList myPlant = selectPot.GetComponent<MyPlantList>();
-
-        myPlant.plantUserName = setPlantUserName;
-        myPlant.plantName = MyPlants[clickIdx].plantName;
-        myPlant.growthRate = MyPlants[clickIdx].growthRate;
-        myPlant.hydration = MyPlants[clickIdx].hydration;
-        myPlant.nutrition = MyPlants[clickIdx].nutrition;
-        myPlant.isSick = MyPlants[clickIdx].isSick;
+        MyPlantList myPlant = new MyPlantList(
+            plantDates[clickIdx].plantUserName,
+            plantDates[clickIdx].plantName,
+            plantDates[clickIdx].growthRate,
+            plantDates[clickIdx].hydration,
+            plantDates[clickIdx].nutrition,
+            false
+            );
         myPlantManager.myPlantList.Add(myPlant);
+        Debug.Log(myPlantManager.myPlantList[0].plantUserName);
+        Debug.Log(myPlantManager.myPlantList[0].plantName);
+        Debug.Log($"{myPlantManager.myPlantList[0].growthRate}");
+        Debug.Log($"{myPlantManager.myPlantList[0].hydration}");
+        Debug.Log($"{myPlantManager.myPlantList[0].nutrition}");
     }
 
     public void SetPlantInfo(int idx)
