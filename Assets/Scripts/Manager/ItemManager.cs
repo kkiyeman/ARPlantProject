@@ -21,21 +21,21 @@ public class ItemManager : MonoBehaviour
 
     public ItemBase[] seedItemData = new ItemBase[]
     {
-        new SeedItem("당근 씨앗", "씨앗", 100),
-        new SeedItem("토마토 씨앗", "씨앗" , 150),
-        new SeedItem("필리아페페 씨앗", "씨앗" , 220),
-        new SeedItem("피쉬본 씨앗", "씨앗" , 200),
-        new SeedItem("알로에 씨앗", "씨앗" , 250),
-        new SeedItem("여인초 씨앗", "씨앗" , 300)
+        new SeedItem("당근 씨앗", "씨앗", 100, "당근을 심을 수 있는 씨앗"),
+        new SeedItem("토마토 씨앗", "씨앗" , 150,"토마토를 심을 수 있는 씨앗"),
+        new SeedItem("필리아페페 씨앗", "씨앗" , 220,"필리아페페를 심을 수 있는 씨앗"),
+        new SeedItem("피쉬본 씨앗", "씨앗" , 200,"피쉬본을 심을 수 있는 씨앗"),
+        new SeedItem("알로에 씨앗", "씨앗" , 250,"알로에를 심을 수 있는 씨앗"),
+        new SeedItem("여인초 씨앗", "씨앗" , 300,"여인초를 심을 수 있는 씨앗")
     };
 
     public ItemBase[] toolItemData = new ItemBase[]
     {
-        new ToolItem("초급 물뿌리개", "도구", 300),
-        new ToolItem("중급 물뿌리개", "도구", 400),
-        new ToolItem("고급 물뿌리개", "도구", 500),
-        new ToolItem("초급 화분", "도구", 300),
-        new ToolItem("중급 화분", "도구", 500),
-        new ToolItem("고급 화분", "도구", 1000)
+        new ToolItem("초급 물뿌리개", "도구", 300, "식물들에게 적당한 물을 줄 수 있는 도구"),
+        new ToolItem("중급 물뿌리개", "도구", 400, "식물들에게 좋은 물을 줄 수 있는 도구"),
+        new ToolItem("고급 물뿌리개", "도구", 500, "식물들에게 최고의 물을 줄 수 있는 도구."),
+        new ToolItem("초급 화분", "도구", 300, "식물을 심을 수 있는 보통 화분"),
+        new ToolItem("중급 화분", "도구", 500, "식물을 심을 수 있는 좋은 화분"),
+        new ToolItem("고급 화분", "도구", 1000, "식물을 심을 수 있는 최고의 화분 ")
     };
 }

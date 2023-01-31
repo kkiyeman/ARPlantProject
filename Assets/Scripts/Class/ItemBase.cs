@@ -8,6 +8,8 @@ public abstract class ItemBase
     public string ItemType { get; set; }
     public int ItemPrice { get; set; }
 
+    public string ItemInfo { get; set; }
+
 
 
     public abstract void UseItem();
@@ -18,6 +20,7 @@ public abstract class ItemBase
         itemdata.itemName = Itemname;
         itemdata.itemType = ItemType;
         itemdata.itemPrice = ItemPrice;
+        itemdata.itemInfo = ItemInfo;
 
         return itemdata;
     }

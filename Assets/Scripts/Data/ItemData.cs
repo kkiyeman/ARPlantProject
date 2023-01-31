@@ -7,4 +7,5 @@ public class ItemData
     public string itemName;
     public string itemType;
     public int itemPrice;
+    public string itemInfo;
 }
