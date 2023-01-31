@@ -686,6 +686,7 @@ MonoBehaviour:
   CroCount: 0
   arCamera: {fileID: 1069853386}
   objTouched: 0
+  clickidx: 0
 --- !u!4 &1689366843
 Transform:
   m_ObjectHideFlags: 0

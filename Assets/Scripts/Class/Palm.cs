@@ -7,8 +7,9 @@ using System;
 
 public class Palm : PlantBase
 {
-    public Palm(string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty)
+    public Palm(string plantUserName, string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty)
     {
+        this.plantUserName = plantUserName;
         this.plantName = plantName;
         this.plantType = plantType;
         this.growthRate = growthRate;

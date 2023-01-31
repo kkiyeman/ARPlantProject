@@ -5,6 +5,7 @@ using System.Collections.Generic;
 [Serializable]
 public class PlantData
 {
+    public string plantUserName;
     public string plantName;
     public string plantType;
 

@@ -12,9 +12,11 @@ public class UIInputPlantName : MonoBehaviour
     [SerializeField] Button btnApply;
 
     PlantManager plantmanager;
+    UIManager uimanager;
 
     void Start()
     {
+        uimanager = UIManager.GetInstance();
         plantmanager = PlantManager.GetInstance();
         SetButton();
     }
@@ -49,5 +51,11 @@ public class UIInputPlantName : MonoBehaviour
         inputPlantName.text = "";
         txtNewPlantName.text = "";
         gameObject.SetActive(false);
+
+        var SpawnOrn = uimanager.GetUI("UIOrnSpawn");
+        SpawnOrn.SetActive(false);
+
+        var SpawnCro = uimanager.GetUI("UICroSpawn");
+        SpawnCro.SetActive(false);
     }
 }

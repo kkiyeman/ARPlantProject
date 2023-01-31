@@ -115,8 +115,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnCloseUI: {fileID: 5061169685349129033}
   croSpawn:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2730524095150469559}
+  - {fileID: 6512065382473713997}
+  idx: 0
 --- !u!1 &1150522255197789364
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +239,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8241344487125625994}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8206322167629811226}
+        m_TargetAssemblyTypeName: UICroSpawn, Assembly-CSharp
+        m_MethodName: SelectCroSpawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1642458103203875763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,4 +1111,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 559970727806035642}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8206322167629811226}
+        m_TargetAssemblyTypeName: UICroSpawn, Assembly-CSharp
+        m_MethodName: SelectCroSpawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

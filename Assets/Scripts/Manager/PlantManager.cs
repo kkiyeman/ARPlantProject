@@ -65,17 +65,19 @@ public class PlantManager : MonoBehaviour
     [SerializeField] private Camera arCamera;
     public bool objTouched;
 
+    public int clickidx;
+
     //string path;
     //string filename = "save";
 
     public PlantBase[] plantDates = new PlantBase[]
 {
-        new FishBone("FishBone", "Ornamental", 0, 100, 100, false, false),
-        new Jade("Jade", "Ornamental", 0, 100, 100, false, false),
-        new Palm("Palm", "Ornamental", 0, 100, 100, false, false),
-        new Pileapepe("Pileapepe", "Ornamental", 0, 100, 100, false, false),
-        new Carrot("Carrot", "Crops", 0, 100, 100, false, false),
-        new CherryTomato("CherryTomato", "Crops", 0, 100, 100, false, false),
+        new FishBone("FishBone", "FishBone", "Ornamental", 0, 100, 100, false, false),
+        new Pileapepe("Pileapepe", "Pileapepe", "Ornamental", 0, 100, 100, false, false),
+        new Jade("Jade", "Jade", "Ornamental", 0, 100, 100, false, false),
+        new Palm("Palm", "Palm", "Ornamental", 0, 100, 100, false, false),
+        new Carrot("Carrot", "Carrot", "Crops", 0, 100, 100, false, false),
+        new CherryTomato("CherryTomato", "CherryTomato", "Crops", 0, 100, 100, false, false),
 };
 
     public List<PlantBase> MyPlants = new List<PlantBase>();
@@ -432,6 +434,11 @@ public class PlantManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SetIdx(int idx)
+    {
+        this.clickidx = idx;
     }
 
     public void Save()

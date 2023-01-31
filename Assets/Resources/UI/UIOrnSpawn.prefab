@@ -1497,10 +1497,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnCloseUI: {fileID: 3389787177598700214}
   ornSpawn:
-  - {fileID: 5103163967641834462}
-  - {fileID: 1270809346765915610}
-  - {fileID: 4128598395013990895}
-  - {fileID: 1121564132463768642}
+  - {fileID: 86485206597050921}
+  - {fileID: 4404184570569264705}
+  - {fileID: 5717460043587708173}
+  - {fileID: 635446469138835074}
+  idx: 0
 --- !u!1 &8618694098002086739
 GameObject:
   m_ObjectHideFlags: 0

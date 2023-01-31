@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class PlantBase
 {
+    public string plantUserName { get; set; }//유저가 정한 식물 이름
     public string plantName { get; set; }    //식물 이름
     public string plantType { get; set; }     //식물 타입(ex. 농작물, 관상식물)
 
@@ -20,6 +21,7 @@ public abstract class PlantBase
     public PlantData ToData()
     {
         var data = new PlantData();
+        data.plantUserName = plantUserName;
         data.plantName = plantName;
         data.plantType = plantType;
         data.growthRate = growthRate;
