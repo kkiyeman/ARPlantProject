@@ -317,7 +317,7 @@ PrefabInstance:
     - target: {fileID: 9138128253417536906, guid: e7e8b6d6bbb4b8b4d81a06546e147dc6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.68
+      value: 15.86
       objectReference: {fileID: 0}
     - target: {fileID: 9138128253417536906, guid: e7e8b6d6bbb4b8b4d81a06546e147dc6,
         type: 3}
@@ -759,6 +759,12 @@ MonoBehaviour:
   potIdx: 0
   potTrans: {fileID: 0}
   selectPot: {fileID: 0}
+  setPlantUserName: 
+  setPlantName: 
+  setGrowthRate: 0
+  setHydration: 0
+  setNutrition: 0
+  setIsSick: 0
 --- !u!4 &1689366843
 Transform:
   m_ObjectHideFlags: 0

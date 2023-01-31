@@ -116,7 +116,7 @@ public class PlantManager : MonoBehaviour
         //StartCoroutine(MinusPlantStatus(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
         //StartCoroutine(DieThePlant(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
         //StartCoroutine(PlantDisease(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
-        //StartCoroutine(GrowthRatePlant(myPlantList[myPlantManager.myPlantIdx].growthRate));
+        //StartCoroutine(GrowthRatePlant(myPlantManager.myPlantList[0].growthRate));
     }
 
 
@@ -243,25 +243,25 @@ public class PlantManager : MonoBehaviour
             return;
     }*/
 
-    IEnumerator GrowthRatePlant(int curGrowthRate) //식물 성장 함수
+    public IEnumerator GrowthRatePlant(int curGrowthRate) //식물 성장 함수
     {
         while (true)
         {
             yield return waitFor30Seconds;         //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
 
-                curGrowthRate += 1;
+            curGrowthRate += 1;
 
         }
     }
-/*    public void GrowthRatePlant(int curGrowthRate)    //식물 성장 함수       Update
-    {
-        if (curTime % 30 == 0)                 //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
+    /*    public void GrowthRatePlant(int curGrowthRate)    //식물 성장 함수       Update
         {
-            curGrowthRate += 1;
-        }
-        else
-            return;
-    }*/
+            if (curTime % 30 == 0)                 //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
+            {
+                curGrowthRate += 1;
+            }
+            else
+                return;
+        }*/
 
     public void PraisePlant(int curGrowthRate, int curEnergy)   //식물 칭찬하기 함수 , 에너지 20소모     하루에 한 번만 가능
     {

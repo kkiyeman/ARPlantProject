@@ -23,11 +23,18 @@ public class MyPlantManager : MonoBehaviour
 
     public List<MyPlantList> myPlantList = new List<MyPlantList>();
 
+    private void Start()
+    {
+
+    }
+
     private void Update()
     {
-        if(myPlantList.Count > 0)
+        StartCoroutine(PlantManager.GetInstance().GrowthRatePlant(myPlantList[0].growthRate));
+        if (myPlantList.Count > 0)
         {
             CheckMyPlantsIdx();
+            
         }
     }
 
@@ -38,4 +45,5 @@ public class MyPlantManager : MonoBehaviour
             i = myPlantIdx;
         }
     }
+
 }
