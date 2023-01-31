@@ -1044,7 +1044,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10000
+  m_Text: 50/100
 --- !u!1 &1101822332157611469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,7 +1589,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 83a2e75990be81f42a79ae4ac5783638, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ac5a7b882a0ee048a6c87f37e5814cb, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3396,7 +3396,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4968eaf6cd2708a4f9423b274723ea86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fedff03e6af5ee4c872217cd7162b2f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5013,13 +5013,13 @@ MonoBehaviour:
   m_Padding:
     m_Left: 40
     m_Right: 0
-    m_Top: 10
+    m_Top: 30
     m_Bottom: 10
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 350, y: 400}
-  m_Spacing: {x: 50, y: 40}
+  m_Spacing: {x: 35, y: 140}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &4079231992628648002
