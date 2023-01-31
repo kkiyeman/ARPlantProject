@@ -63,6 +63,8 @@ public class UIStore : MonoBehaviour
     {
         btnCloseStore.onClick.AddListener(OnClickCloseStore);
         btnCloseBuy.onClick.AddListener(OnClickCloseBuy);
+        btnItemCountPlus.onClick.AddListener(OnClickPlusItemCount);
+        btnItemCountMinus.onClick.AddListener(OnClickMinusItemCount);
         BtnItemKindSet();
     }
 
@@ -75,6 +77,8 @@ public class UIStore : MonoBehaviour
 
     private void OnClickCloseBuy()
     {
+        curCount = 1;
+        SetItemBuy();
         imgItemBuy.gameObject.SetActive(false);
     }
 
@@ -99,9 +103,40 @@ public class UIStore : MonoBehaviour
 
     private void OnClickOpenBuy(int index)
     {
+        int price = int.Parse(btnItems[index].itemPrice.text);
         imgItemBuy.gameObject.SetActive(true);
-        txtItemName.text = txtItems[index].text;
-        txtItemPrice.text = txtItemPrices[index].text;
+        txtItemName.text = btnItems[index].itemName.text;
+        txtItemPrice.text = btnItems[index].itemPrice.text;
+        txtItemCount.text = curCount.ToString();
+        int totalprice = curCount * price;
+        txtTotalPrice.text = totalprice.ToString();
+        imgItemName.sprite = btnItems[index].imgItem.sprite;
+    }
+
+    private void OnClickPlusItemCount()
+    {
+        if(curCount>0)
+        {
+            curCount++;
+            SetItemBuy();
+        }
+    }
+
+    private void OnClickMinusItemCount()
+    {
+        if (curCount > 1)
+        { 
+            curCount--;
+            SetItemBuy();
+        }
+    }
+
+    private void SetItemBuy()
+    {
+        int price = int.Parse(txtItemPrice.text);
+        txtItemCount.text = curCount.ToString();
+        int totalprice = curCount * price;
+        txtTotalPrice.text = totalprice.ToString();
     }
 
     private void ShowItemList(int i)
