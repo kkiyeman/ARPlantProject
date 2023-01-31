@@ -78,24 +78,27 @@ public class UIPlant : MonoBehaviour
     GameManager gamemanager;
     PlantManager plantmanager;
     UIManager uimanager;
+    MyPlantManager myplantmanager;
 
     void Start()
     {
         gamemanager = GameManager.GetInstance();
         plantmanager = PlantManager.GetInstance();
         uimanager = UIManager.GetInstance();
+        myplantmanager = MyPlantManager.GetInstance();
         SetButton();
     }
 
     void Update()
     {
         SetPlayerData();
-        SetStatus();
+        if(myplantmanager.myPlantList.Count>0)
+            SetStatus();
     }
 
     private void SetStatus()
     {
-        MyPlantList myplant = MyPlantManager.GetInstance().myPlantList[0];
+        MyPlantList myplant = myplantmanager.myPlantList[0];
         string _plantuserName = myplant.plantUserName;
         string _plantName = myplant.plantName;
         int _plantgrowth = myplant.growthRate;

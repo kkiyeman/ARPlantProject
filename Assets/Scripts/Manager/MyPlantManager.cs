@@ -25,14 +25,15 @@ public class MyPlantManager : MonoBehaviour
 
     private void Start()
     {
-
+        
     }
 
     private void Update()
     {
-        StartCoroutine(PlantManager.GetInstance().GrowthRatePlant(myPlantList[0].growthRate));
+
         if (myPlantList.Count > 0)
         {
+   
             CheckMyPlantsIdx();
             
         }
@@ -43,6 +44,15 @@ public class MyPlantManager : MonoBehaviour
         for(int i = 0; i < myPlantList.Count; i++)
         {
             i = myPlantIdx;
+        }
+    }
+
+    public IEnumerator GrowthRatePlant(int idx)
+    {
+        while(true)
+        {
+            yield return new WaitForSecondsRealtime(10);
+            myPlantList[idx].growthRate++;
         }
     }
 

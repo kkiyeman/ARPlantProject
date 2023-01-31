@@ -247,7 +247,7 @@ public class PlantManager : MonoBehaviour
     {
         while (true)
         {
-            yield return waitFor30Seconds;         //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
+            yield return waitFor10Seconds;         //식물 성장 시간(일단은 30초로) 개발 완료후 10,800초로 변경
 
             curGrowthRate += 1;
 
@@ -504,7 +504,6 @@ public class PlantManager : MonoBehaviour
 
     public void SpawnMyPlant(string plantName, Transform potTrans)
     {
-        MyPlantManager myPlantManager = MyPlantManager.GetInstance();
         potTrans = this.potTrans;
         plantName = plantDates[clickIdx].plantName;
         var seed = Resources.Load<GameObject>($"plant/{plantName}/Seed");
@@ -520,6 +519,8 @@ public class PlantManager : MonoBehaviour
             false
             );
         myPlantManager.myPlantList.Add(myPlant);
+
+        StartCoroutine(myPlantManager.GrowthRatePlant(0));
         Debug.Log(myPlantManager.myPlantList[0].plantUserName);
         Debug.Log(myPlantManager.myPlantList[0].plantName);
         Debug.Log($"{myPlantManager.myPlantList[0].growthRate}");
