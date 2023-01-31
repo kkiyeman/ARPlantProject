@@ -20,37 +20,37 @@ public class UITutorial : MonoBehaviour
     [Header("중앙")]
     [SerializeField] Button NextBtn;
     [SerializeField] Text Dirtxt;
-    [SerializeField] Text Skiptxt;
+    [SerializeField] Text NextBtntxt;
+    [SerializeField] Image Character;
 
     int index;
 
     // Start is called before the first frame update
     void Start()
     {
-        Skiptxt.text = "다음";
+        NextBtntxt.text = "다음";
         bottomSide.gameObject.SetActive(false);
         rightSide.gameObject.SetActive(false);
         topSide.gameObject.SetActive(false);
-        Dirtxt.text = "화면 아래 부분은 식물 성장 관련 버튼들입니다.";
+        Dirtxt.text = "다음 버튼을 눌러 튜토리얼을 시작하세요!";
         NextBtn.onClick.AddListener(BottomTutoBtn);
-        /*rightOnbtn.onClick.AddListener(RightTutoBtn);
-        topOnbtn.onClick.AddListener(TopTutoBtn);*/
 
-
-        /*StartCoroutine(TutorialStart());*/
     }
 
     void BottomTutoBtn()
     {
-        Dirtxt.text = "버튼을 눌러보세요!";
+        Dirtxt.text = "화면 아래는 식물 성장 관련 버튼들입니다. 버튼을 눌러보세요!";
         Step1();
+    }
+    void RightTutoBtn()
+    {
+        Dirtxt.text = "화면 오른쪽은 유저 인터페이스 관련 버튼들입니다. 버튼을 눌러보세요!";
+        NextBtn.gameObject.SetActive(false);
+        Step2();
     }
 
     void Step1()
-    {
-
-        
-        /*NextBtn.gameObject.SetActive(true);*/
+    {   
         bottomSide.gameObject.SetActive(true);
         
         for (int i = 0; i < BottomBtnList.Length; i++)
@@ -61,11 +61,14 @@ public class UITutorial : MonoBehaviour
             BottomBtnList[index].onClick.AddListener(() => { SelectedArrow(index); });
             BottomBtnList[index].onClick.AddListener(() => { SetBtn(index); });
                 Debug.Log("버튼 셋팅 완료");
-                
+            NextBtn.gameObject.SetActive(false);
             }
-
+    }
+    void Step2()
+    { 
         
     }
+
     void SelectedArrow(int num)
     {
         Arrows[index].gameObject.SetActive(false);
@@ -81,7 +84,8 @@ public class UITutorial : MonoBehaviour
     }
     void SetBtn(int index)
     {
-        Skiptxt.text = "건너뛰기";
+        NextBtntxt.text = "건너뛰기";
+        NextBtn.gameObject.SetActive(true);
         NextBtn.onClick.RemoveAllListeners();
         NextBtn.onClick.AddListener(RightTutoBtnOn);
         string[] txtList = new string[]
