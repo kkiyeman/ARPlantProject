@@ -511,7 +511,7 @@ public class PlantManager : MonoBehaviour
         //var seed = Resources.Load<GameObject>($"plant/Seed");
         var Plant = Instantiate(seed, potTrans);
 
-        MyPlantList myPlant = Plant.GetComponent<MyPlantList>();
+        MyPlantList myPlant = selectPot.GetComponent<MyPlantList>();
 
         myPlant.plantUserName = setPlantUserName;
         myPlant.plantName = MyPlants[clickIdx].plantName;
