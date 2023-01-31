@@ -14,6 +14,8 @@ public class UIInputPlantName : MonoBehaviour
     PlantManager plantmanager;
     UIManager uimanager;
 
+    public string plantName = "";
+
     void Start()
     {
         uimanager = UIManager.GetInstance();
@@ -44,6 +46,8 @@ public class UIInputPlantName : MonoBehaviour
         curPlantName = inputPlantName.text;
         Invoke("CloseUI", 1.5f);
         //gameObject.SetActive(false);
+
+        SpawnMyPlant();
     }
 
     private void CloseUI()
@@ -57,5 +61,18 @@ public class UIInputPlantName : MonoBehaviour
 
         var SpawnCro = uimanager.GetUI("UICroSpawn");
         SpawnCro.SetActive(false);
+    }
+
+    private void SpawnMyPlant()
+    {
+        MyPlantManager myPlantManager = MyPlantManager.GetInstance();
+        //var seed = Resources.Load<GameObject>($"{plantName}/Seed");
+        var seed = Resources.Load<GameObject>($"plant/Seed");
+        var Plant = Instantiate(seed);
+
+        MyPlantList myPlant = Plant.GetComponent<MyPlantList>();
+        myPlant.plantName = plantmanager.plantDates[plantmanager.clickidx].plantName;
+
+        myPlantManager.myPlantList.Add(myPlant);
     }
 }
