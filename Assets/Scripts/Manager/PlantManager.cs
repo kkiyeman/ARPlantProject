@@ -65,7 +65,10 @@ public class PlantManager : MonoBehaviour
     [SerializeField] private Camera arCamera;
     public bool objTouched;
 
-    public int clickidx;
+    public int clickIdx;
+
+    public int potIdx;
+    [HideInInspector] public Transform potTrans;
 
     //string path;
     //string filename = "save";
@@ -109,8 +112,8 @@ public class PlantManager : MonoBehaviour
     {
         curTime = GameManager.GetInstance().runningTime;
         allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
-        PlantSpawn();
-        //SpawnSeed();
+        //PlantSpawn();
+        SpawnSeed();
        // Save();
     }
 
@@ -340,6 +343,10 @@ public class PlantManager : MonoBehaviour
                     plantsName = "plant/cropot";
                     onClickCroBtn = false;
 
+                    var ob = Resources.Load<GameObject>(plantsName);
+                    var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
+                    Plantdata.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+
                     CroCount++;
                 }
                 else
@@ -355,6 +362,10 @@ public class PlantManager : MonoBehaviour
                     plantsName = "Shelf/Shelf_On_Pot";
                     onClickOrnBtn = false;
 
+                    var ob = Resources.Load<GameObject>(plantsName);
+                    var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
+                    Plantdata.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+
                     OrnCount++;
                 }
                 else
@@ -363,10 +374,8 @@ public class PlantManager : MonoBehaviour
                     onClickOrnBtn = false;
                 }
             }
-            var ob = Resources.Load<GameObject>(plantsName);
-            var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
-            Plantdata.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
             onClickPlantBtn = false;
+
         }
     }
 
@@ -407,39 +416,71 @@ public class PlantManager : MonoBehaviour
         }
     }
 
-    public void SpawnSeed()
-    {
-        Touch touch = Input.GetTouch(0);
-
-        Ray ray;
-        RaycastHit hitobj;
-
-        ray = arCamera.ScreenPointToRay(touch.position);
-
-        if (Input.touchCount == 0)
-            return;
-
-        else
+    /*    public void SpawnSeed()
         {
-            if(Physics.Raycast(ray,out hitobj))
+            Touch touch = Input.GetTouch(0);
+
+            Ray ray;
+            RaycastHit hitobj;
+
+            ray = arCamera.ScreenPointToRay(touch.position);
+
+            if (Input.touchCount == 0)
+                return;
+
+            else
             {
-                if(hitobj.collider.tag == "Orn")
+                if(Physics.Raycast(ray,out hitobj))
                 {
-                    var SpawnOrn = uimanager.GetUI("UIOrnSpawn");
-                    SpawnOrn.SetActive(true);
-                }
-                else if (hitobj.collider.tag == "Cro")
-                {
-                    var SpawnCro = uimanager.GetUI("UICroSpawn");
-                    SpawnCro.SetActive(true);
+                    if(hitobj.collider.tag == "Orn")
+                    {
+                        potTrans = hitobj.collider.gameObject.transform;
+                        var SpawnOrn = uimanager.GetUI("UIOrnSpawn");
+                        SpawnOrn.SetActive(true);
+                    }
+                    else if (hitobj.collider.tag == "Cro")
+                    {
+                        potTrans = hitobj.collider.gameObject.transform;
+                        var SpawnCro = uimanager.GetUI("UICroSpawn");
+                        SpawnCro.SetActive(true);
+                    }
                 }
             }
-        }
+        }*/
+
+        public void SpawnSeed()
+        {
+            if(Input.GetMouseButton(0))
+            {
+                RaycastHit hitobj;
+
+                if (Physics.Raycast(arCamera.ScreenPointToRay(Input.mousePosition),out hitobj))
+                {
+                    if(hitobj.collider.tag == "Orn")
+                    {
+                        potTrans = hitobj.collider.gameObject.transform;
+                        var SpawnOrn = uimanager.GetUI("UIOrnSpawn");
+                        SpawnOrn.SetActive(true);
+                    }
+                    else if (hitobj.collider.tag == "Cro")
+                    {
+                        potTrans = hitobj.collider.gameObject.transform;
+                        var SpawnCro = uimanager.GetUI("UICroSpawn");
+                        SpawnCro.SetActive(true);
+                    }
+                }
+            }
     }
 
     public void SetIdx(int idx)
     {
-        this.clickidx = idx;
+        clickIdx = idx;
+    }
+    
+
+    public void SetPotIdx(int idx)
+    {
+        potIdx = idx;
     }
 
     public void Save()

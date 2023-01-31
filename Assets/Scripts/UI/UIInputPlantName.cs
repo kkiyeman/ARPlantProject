@@ -11,6 +11,8 @@ public class UIInputPlantName : MonoBehaviour
     [SerializeField] Button btnCancel;
     [SerializeField] Button btnApply;
 
+    [HideInInspector] public Transform potTrans;
+
     PlantManager plantmanager;
     UIManager uimanager;
 
@@ -66,11 +68,11 @@ public class UIInputPlantName : MonoBehaviour
     private void SpawnMyPlant()
     {
         MyPlantManager myPlantManager = MyPlantManager.GetInstance();
-
-        plantName = plantmanager.plantDates[plantmanager.clickidx].plantName;
-        //var seed = Resources.Load<GameObject>($"{plantName}/Seed");
-        var seed = Resources.Load<GameObject>($"plant/Seed");
-        var Plant = Instantiate(seed);
+        potTrans = plantmanager.potTrans;
+        plantName = plantmanager.plantDates[plantmanager.clickIdx].plantName;
+        var seed = Resources.Load<GameObject>($"plant/{plantName}/Seed");
+        //var seed = Resources.Load<GameObject>($"plant/Seed");
+        var Plant = Instantiate(seed, potTrans);
 
         MyPlantList myPlant = Plant.GetComponent<MyPlantList>();
 
