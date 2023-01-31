@@ -31,10 +31,12 @@ public class UITutorial : MonoBehaviour
 
     int index;
     string currentTuto;
+    AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
+
         NextBtntxt.text = "다음";
         bottomSide.gameObject.SetActive(false);
         rightSide.gameObject.SetActive(false);
@@ -68,13 +70,14 @@ public class UITutorial : MonoBehaviour
     }
 
     void BottomStep()
-    {   
+    {       
         bottomSide.gameObject.SetActive(true);
         
         for (int i = 0; i < BottomBtnList.Length; i++)
             {
                 int index = i;
                 BottomBtnList[index].gameObject.AddComponent<AudioSource>();
+            
 
             BottomBtnList[index].onClick.AddListener(() => { BottomSelectedArrow(index); });
             BottomBtnList[index].onClick.AddListener(() => { BottomSetBtn(index); });
@@ -83,11 +86,12 @@ public class UITutorial : MonoBehaviour
             }
     }
     void RightStep()
-    {
+    {       
         for (int i = 0; i < RightBtnList.Length; i++)
         {
             int index = i;
             RightBtnList[index].gameObject.AddComponent<AudioSource>();
+            
 
             RightBtnList[index].onClick.AddListener(() => { RightSelectedArrow(index); });
             RightBtnList[index].onClick.AddListener(() => { RightSetBtn(index); });
@@ -105,7 +109,8 @@ public class UITutorial : MonoBehaviour
         {
             int index = i;
             TopBtnList[index].gameObject.AddComponent<AudioSource>();
-            
+           
+
             TopBtnList[index].onClick.AddListener(() => { TopSetBtn(index); });
             TopBtnList[index].onClick.AddListener(() => { TopSelectedArrow(index); });
             Debug.Log("버튼 셋팅 완료");
@@ -138,11 +143,12 @@ public class UITutorial : MonoBehaviour
 
     void BottomSetBtn(int index)
     {
+        audioManager = GetComponent<AudioManager>();
         currentTuto = "Bottom";
         NextBtntxt.text = "오른쪽";
         NextBtn.gameObject.SetActive(true);
         NextBtn.onClick.RemoveAllListeners();
-        
+        audioManager.PlaySfx("띠딩");
         NextBtnChange();
         string[] txtList = new string[]
         { "물뿌리개를 이용해 식물에 물을 줄 수 있어요. 수분도가 너무 높거나 낮으면 식물이 죽으니 주의하세요!" ,
@@ -153,14 +159,6 @@ public class UITutorial : MonoBehaviour
         string v = txtList[index].ToString();
         Dirtxt.text = v;
 
-        string w = txtList[index].ToString();
-        Dirtxt.text = w;
-
-        string y = txtList[index].ToString();
-        Dirtxt.text = y;
-
-        string z = txtList[index].ToString();
-        Dirtxt.text = z;
     }
     void RightSetBtn(int index)
     {
@@ -179,14 +177,6 @@ public class UITutorial : MonoBehaviour
         string v = txtList[index].ToString();
         Dirtxt.text = v;
 
-        string w = txtList[index].ToString();
-        Dirtxt.text = w;
-
-        string y = txtList[index].ToString();
-        Dirtxt.text = y;
-
-        string z = txtList[index].ToString();
-        Dirtxt.text = z;
     }
     void TopSetBtn(int index)
     {
@@ -202,15 +192,6 @@ public class UITutorial : MonoBehaviour
 
         string v = txtList[index].ToString();
         Dirtxt.text = v;
-
-        string w = txtList[index].ToString();
-        Dirtxt.text = w;
-
-        string y = txtList[index].ToString();
-        Dirtxt.text = y;
-
-        string z = txtList[index].ToString();
-        Dirtxt.text = z;
     }
     void ToMainBtn()
     {
