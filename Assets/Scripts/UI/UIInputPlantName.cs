@@ -46,10 +46,13 @@ public class UIInputPlantName : MonoBehaviour
     private void OnClickApply()
     {
         curPlantName = inputPlantName.text;
+        plantmanager.setPlantUserName = curPlantName;
+
+        //plantmanager.SetPlantInfo(plantmanager.clickIdx);
         Invoke("CloseUI", 1.5f);
         //gameObject.SetActive(false);
 
-        SpawnMyPlant();
+        plantmanager.SpawnMyPlant(plantName, potTrans);
     }
 
     private void CloseUI()
@@ -65,17 +68,4 @@ public class UIInputPlantName : MonoBehaviour
         SpawnCro.SetActive(false);
     }
 
-    private void SpawnMyPlant()
-    {
-        MyPlantManager myPlantManager = MyPlantManager.GetInstance();
-        potTrans = plantmanager.potTrans;
-        plantName = plantmanager.plantDates[plantmanager.clickIdx].plantName;
-        var seed = Resources.Load<GameObject>($"plant/{plantName}/Seed");
-        //var seed = Resources.Load<GameObject>($"plant/Seed");
-        var Plant = Instantiate(seed, potTrans);
-
-        MyPlantList myPlant = Plant.GetComponent<MyPlantList>();
-
-        myPlantManager.myPlantList.Add(myPlant);
-    }
 }

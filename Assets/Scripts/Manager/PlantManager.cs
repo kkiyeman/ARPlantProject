@@ -70,6 +70,16 @@ public class PlantManager : MonoBehaviour
     public int potIdx;
     [HideInInspector] public Transform potTrans;
 
+    public GameObject selectPot;
+
+    public string setPlantUserName;
+    public string setPlantName;
+    public int setGrowthRate;
+    public int setHydration;
+    public int setNutrition;
+    public bool setIsSick;
+
+
     //string path;
     //string filename = "save";
 
@@ -100,6 +110,8 @@ public class PlantManager : MonoBehaviour
         var myPlantList = myPlantManager.myPlantList;
         spawnedObject = null;
         //DataManager.GetInstance().LoadData();
+
+        //Debug.Log(MyPlants);
 
         //StartCoroutine(MinusPlantStatus(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
         //StartCoroutine(DieThePlant(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
@@ -468,6 +480,7 @@ public class PlantManager : MonoBehaviour
                         var SpawnCro = uimanager.GetUI("UICroSpawn");
                         SpawnCro.SetActive(true);
                     }
+                selectPot = hitobj.collider.gameObject;
                 }
             }
     }
@@ -487,6 +500,35 @@ public class PlantManager : MonoBehaviour
     {
         if (curTime % 5 == 0)
             DataManager.GetInstance().SaveData();        
+    }
+
+    public void SpawnMyPlant(string plantName, Transform potTrans)
+    {
+        MyPlantManager myPlantManager = MyPlantManager.GetInstance();
+        potTrans = this.potTrans;
+        plantName = plantDates[clickIdx].plantName;
+        var seed = Resources.Load<GameObject>($"plant/{plantName}/Seed");
+        //var seed = Resources.Load<GameObject>($"plant/Seed");
+        var Plant = Instantiate(seed, potTrans);
+
+        MyPlantList myPlant = Plant.GetComponent<MyPlantList>();
+
+        myPlant.plantUserName = setPlantUserName;
+        myPlant.plantName = MyPlants[clickIdx].plantName;
+        myPlant.growthRate = MyPlants[clickIdx].growthRate;
+        myPlant.hydration = MyPlants[clickIdx].hydration;
+        myPlant.nutrition = MyPlants[clickIdx].nutrition;
+        myPlant.isSick = MyPlants[clickIdx].isSick;
+        myPlantManager.myPlantList.Add(myPlant);
+    }
+
+    public void SetPlantInfo(int idx)
+    {
+        setPlantName = plantDates[idx].plantName;
+        setGrowthRate = plantDates[idx].growthRate;
+        setHydration = plantDates[idx].hydration;
+        setNutrition = plantDates[idx].nutrition;
+        setIsSick = plantDates[idx].isSick;
     }
 
     /*    public void SaveData()
