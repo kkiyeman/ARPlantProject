@@ -11,7 +11,7 @@ public class UIPlant : MonoBehaviour
     [Header("Right Side")]
     [SerializeField] GameObject rightSideObjects;
     [SerializeField] Button btnRightLayOutPop;
-    [SerializeField] Button btnTemp;
+    [SerializeField] Button btnSeed;
     [SerializeField] Button btnStore;
     [SerializeField] Button btnDictionary; 
     [SerializeField] Button btnInventory;
@@ -23,7 +23,9 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Button btnWater;
     [SerializeField] Button btnPill;
     [SerializeField] Button btnComment;
-    [SerializeField] Button btnSeed;
+    [SerializeField] Button btnStatus;
+    [SerializeField] Button btnCloseBottom;
+    [SerializeField] Text txtBottomPlantName;
 
     [Header("Upper Side")]
     [SerializeField] Image weather;
@@ -119,7 +121,7 @@ public class UIPlant : MonoBehaviour
     }
     private void SetButton()
     {
-        btnSamplePlant.onClick.AddListener(OnClickStatusOn);
+        btnSamplePlant.onClick.AddListener(OnClickBottomOn);
         btnCloseStatus.onClick.AddListener(OnClickStatusOff);
         btnMemo.onClick.AddListener(OnClickMemoOn);
         btnCloseMemo.onClick.AddListener(OnClickMemoOff);
@@ -136,6 +138,8 @@ public class UIPlant : MonoBehaviour
         btnCloseChooseSeed.onClick.AddListener(OnClickCloseChooseSeed);
         btnCropSeed.onClick.AddListener(OnClickCropSpawn);
         btnOrnamentalSeed.onClick.AddListener(OnClickOrnSpawn);
+        btnStatus.onClick.AddListener(OnClickStatusOn);
+        btnCloseBottom.onClick.AddListener(OnClickBottomOff);
     }
 
     private void OnClickStatusOn()
@@ -235,6 +239,15 @@ public class UIPlant : MonoBehaviour
         bgChooseSeed.gameObject.SetActive(false);
     }
 
+    private void OnClickBottomOn()
+    {
+        bottomButtons.SetActive(true);
+    }
+
+    private void OnClickBottomOff()
+    {
+        bottomButtons.SetActive(false);
+    }
 
     private void OnClickRightLayOutPop()
     {
