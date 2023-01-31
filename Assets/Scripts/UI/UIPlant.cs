@@ -217,17 +217,13 @@ public class UIPlant : MonoBehaviour
 
     public void OnClickCropSpawn()
     {
-        var uicrops = UIManager.GetInstance().GetUI("UICroSpawn");
         plantmanager.onClickCroBtn = true;
-        uicrops.gameObject.SetActive(true);
         bgChooseSeed.gameObject.SetActive(false);
     }
 
     public void OnClickOrnSpawn()
     {
-        var uiorn = UIManager.GetInstance().GetUI("UIOrnSpawn");
         plantmanager.onClickOrnBtn = true;
-        uiorn.gameObject.SetActive(true); ;
         bgChooseSeed.gameObject.SetActive(false);
     }
 

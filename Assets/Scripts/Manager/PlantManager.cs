@@ -110,7 +110,7 @@ public class PlantManager : MonoBehaviour
         curTime = GameManager.GetInstance().runningTime;
         allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
         PlantSpawn();
-        SpawnSeed();
+        //SpawnSeed();
        // Save();
     }
 
@@ -391,6 +391,7 @@ public class PlantManager : MonoBehaviour
                     if (Input.GetTouch(0).phase == TouchPhase.Began)
                     {
                         SpawnPrefab(m_Hits[0].pose.position);
+                        SpawnSeed();
                     }
                     else if (Input.GetTouch(0).phase == TouchPhase.Moved && spawnedObject != null)
                     {
