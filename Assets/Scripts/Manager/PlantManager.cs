@@ -512,7 +512,7 @@ public class PlantManager : MonoBehaviour
         var Plant = Instantiate(seed, potTrans);
 
         MyPlantList myPlant = new MyPlantList(
-            plantDates[clickIdx].plantUserName,
+            setPlantUserName,
             plantDates[clickIdx].plantName,
             plantDates[clickIdx].growthRate,
             plantDates[clickIdx].hydration,
