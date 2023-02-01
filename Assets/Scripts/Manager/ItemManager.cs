@@ -42,4 +42,7 @@ public class ItemManager : MonoBehaviour
     public List<BtnInvenItem> seedItemList = new List<BtnInvenItem>();
     public List<BtnInvenItem> toolItemList = new List<BtnInvenItem>();
 
+    private void Awake()
+    {
+    }
 }

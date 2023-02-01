@@ -64,17 +64,14 @@ public class UIInventory : MonoBehaviour
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground/UIBackground LightGrey3");
         btnItemKinds[curItemKind].image.color = Color.white;
 
-        if (curItemKind <= 1)
-        {
-            //imgItemReady.gameObject.SetActive(false);
+
             switch (curItemKind)
             {
                 case 0:
-                    var itemlist = itemmanager.seedItemList;
-                    for (int j = 0; j < itemlist.Count; j++)
+                    for (int j = 0; j < itemmanager.seedItemList.Count; j++)
                     {
-                        var item = itemlist[j];
-                        item.transform.SetParent(ItemGrid.transform);
+                        var item = itemmanager.seedItemList[j];
+                        item.gameObject.transform.SetParent(ItemGrid.transform);
                         btnInvenItems.Add(item);
                     }
                     break;
@@ -83,24 +80,20 @@ public class UIInventory : MonoBehaviour
                     for (int j = 0; j < itemlist2.Count; j++)
                     {
                         var item = Instantiate(itemlist2[j]);
-                        item.transform.SetParent(ItemGrid.transform);
+                        item.gameObject.transform.SetParent(ItemGrid.transform);
                         btnInvenItems.Add(item);
                     }
                     break;
             }
-        }
-        else
-        {
-            //imgItemReady.gameObject.SetActive(true);
-        }
-        if (btnInvenItems.Count > 0)
-        {
-            for (int d = 0; d < btnInvenItems.Count; d++)
-            {
-                Destroy(btnInvenItems[d].gameObject);
-            }
-            btnInvenItems.Clear();
-        }
+
+        //if (btnInvenItems.Count > 0)
+        //{
+        //    for (int d = 0; d < btnInvenItems.Count; d++)
+        //    {
+        //        Destroy(btnInvenItems[d].gameObject);
+        //    }
+        //    btnInvenItems.Clear();
+        //}
 
     }
 
