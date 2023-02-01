@@ -156,71 +156,83 @@ public class UIPlant : MonoBehaviour
 
     private void OnClickStatusOn()
     {
+        AudioManager.GetInstance().PlaySfx("ª–");
         imgStatus.gameObject.SetActive(true);
     }
 
     private void OnClickStatusOff()
     {
+        AudioManager.GetInstance().PlaySfx("ª–");
         imgStatus.gameObject.SetActive(false);
     }
 
     private void OnClickMemoOn()
     {
+        AudioManager.GetInstance().PlaySfx("ªÁ∞¢ªÁ∞¢");
         imgMemo.gameObject.SetActive(true);
     }
 
     private void OnClickMemoOff()
     {
+        AudioManager.GetInstance().PlaySfx("ªÁ∞¢ªÁ∞¢");
         imgMemo.gameObject.SetActive(false);
     }
 
     private void OnClickInputPlantNameOn()
     {
+        AudioManager.GetInstance().PlaySfx("ª–");
         inputPlantName.gameObject.SetActive(true);
     }
 
     private void OnClickInputPlantNameOff()
-    { 
+    {
+        AudioManager.GetInstance().PlaySfx("ª–");
         txtPlantName.text = inputPlantName.textComponent.text;
         inputPlantName.gameObject.SetActive(false);
     }
 
     private void OnClickMemoChange()
     {
+
         txtMemo.text = inputMemo.textComponent.text;
         inputMemo.gameObject.SetActive(false);
     }
 
     private void OnClickInputMemoOn()
     {
+        AudioManager.GetInstance().PlaySfx("ª–");
         inputMemo.gameObject.SetActive(true);
     }
 
     private void OnClickUIStoreOn()
     {
+        AudioManager.GetInstance().PlaySfx("Buy2");
         var uistore = uimanager.GetUI("UIStore");
         uistore.gameObject.SetActive(true);
     }
     private void OnClickUIDictionaryOn()
     {
+        AudioManager.GetInstance().PlaySfx("√•");
         var UIDictionary = uimanager.GetUI("UIDictionary");
         UIDictionary.gameObject.SetActive(true);
     }
     private void OnClickUIOptionOn()
     {
+        AudioManager.GetInstance().PlaySfx("ª–");
         var UIOption = uimanager.GetUI("UIOption");
         UIOption.gameObject.SetActive(true);
     }
     private void OnClickUIInventoryOn()
     {
+        AudioManager.GetInstance().PlaySfx("ª–");
         var UIInventory = uimanager.GetUI("UIInventory");
         UIInventory.gameObject.SetActive(true);
     }
 
     public void OnClickOpenChooseSeed()
     {
-
-        if(plantmanager.croCount == 1 && plantmanager.ornCount == 1)
+        AudioManager.GetInstance().PlaySfx("ª–");
+        if (plantmanager.croCount == 1 && plantmanager.ornCount == 1)
         {
             Debug.Log("¥ı ¿ÃªÛ º“»Ø ∫“∞°");
         }
@@ -253,11 +265,13 @@ public class UIPlant : MonoBehaviour
 
     private void OnClickBottomOn()
     {
+        AudioManager.GetInstance().PlaySfx("ª–");
         bottomButtons.SetActive(true);
     }
 
     private void OnClickBottomOff()
     {
+        AudioManager.GetInstance().PlaySfx("ª–");
         bottomButtons.SetActive(false);
     }
 

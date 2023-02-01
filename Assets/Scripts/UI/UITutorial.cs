@@ -41,7 +41,7 @@ public class UITutorial : MonoBehaviour
         bottomSide.gameObject.SetActive(false);
         rightSide.gameObject.SetActive(false);
         topSide.gameObject.SetActive(false);
-        Dirtxt.text = "PLANTAREA에 온 걸 환영해! 내 이름은 다육이. " +
+        Dirtxt.text = "PLANTAREA에 온 걸 환영해! 내 이름은 맑음이. " +
             "너 이곳이 처음이구나? 내가 도와줄게.";
         NextBtn.onClick.AddListener(Introduce);
         SkipBtn.onClick.AddListener(ToMainBtn);
