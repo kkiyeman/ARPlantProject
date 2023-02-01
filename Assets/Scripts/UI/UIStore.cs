@@ -188,14 +188,14 @@ public class UIStore : MonoBehaviour
         item.itemInfo = buyingitemInfo;
         item.itemType = buyingitemKind;
         item.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{item.itemName}");
-        item.transform.SetParent(itemPool.transform);
+        item.transform.SetParent(uiinventory.ItemGrid.transform);
         if (item.itemType == "¾¾¾Ñ")
         {
-            itemmanager.seedItemList.Add(item);
+            uiinventory.seedItems.Add(item);
         }
         else if (item.itemType == "µµ±¸")
         {
-            itemmanager.toolItemList.Add(item);
+            uiinventory.toolItems.Add(item);
         }
 
 

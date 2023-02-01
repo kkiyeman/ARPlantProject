@@ -39,8 +39,6 @@ public class ItemManager : MonoBehaviour
         new ToolItem("고급 화분", "도구", 1000, "식물을 심을 수 있는 최고의 화분 ")
     };
 
-    public List<BtnInvenItem> seedItemList = new List<BtnInvenItem>();
-    public List<BtnInvenItem> toolItemList = new List<BtnInvenItem>();
 
     private void Awake()
     {

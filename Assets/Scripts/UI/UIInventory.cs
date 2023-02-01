@@ -17,9 +17,10 @@ public class UIInventory : MonoBehaviour
 
     [Header("itemList")]
     public GameObject ItemGrid;
-    [SerializeField] Text txtItemName;
-    [SerializeField] Text txtItemTooltip;
-    [SerializeField] List<BtnInvenItem> btnInvenItems = new List<BtnInvenItem>();
+    public Text txtItemName;
+    public Text txtItemTooltip;
+    public List<BtnInvenItem> seedItems = new List<BtnInvenItem>();
+    public List<BtnInvenItem> toolItems = new List<BtnInvenItem>();
 
 
 
@@ -65,26 +66,57 @@ public class UIInventory : MonoBehaviour
         btnItemKinds[curItemKind].image.color = Color.white;
 
 
-            switch (curItemKind)
-            {
-                case 0:
-                    for (int j = 0; j < itemmanager.seedItemList.Count; j++)
-                    {
-                        var item = itemmanager.seedItemList[j];
-                        item.gameObject.transform.SetParent(ItemGrid.transform);
-                        btnInvenItems.Add(item);
-                    }
-                    break;
-                case 2:
-                    var itemlist2 = itemmanager.toolItemList;
-                    for (int j = 0; j < itemlist2.Count; j++)
-                    {
-                        var item = Instantiate(itemlist2[j]);
-                        item.gameObject.transform.SetParent(ItemGrid.transform);
-                        btnInvenItems.Add(item);
-                    }
-                    break;
-            }
+        switch (curItemKind)
+        {
+             case 0:
+                for (int j = 0; j < seedItems.Count; j++)
+                {
+                     var item = seedItems[j];
+                    item.gameObject.SetActive(true);
+                }
+                for(int k = 0; k< toolItems.Count; k++)
+                {
+                    var item2 = toolItems[k];
+                    item2.gameObject.SetActive(false);
+                }
+                break;
+            case 1:
+                for (int j = 0; j < seedItems.Count; j++)
+                {
+                    var item = seedItems[j];
+                    item.gameObject.SetActive(false);
+                }
+                for (int k = 0; k < toolItems.Count; k++)
+                {
+                    var item2 = toolItems[k];
+                    item2.gameObject.SetActive(false);
+                }
+                break;
+            case 2:
+                for (int j = 0; j < seedItems.Count; j++)
+                {
+                    var item = seedItems[j];
+                    item.gameObject.SetActive(false);
+                }
+                for (int k = 0; k < toolItems.Count; k++)
+                {
+                    var item2 = toolItems[k];
+                    item2.gameObject.SetActive(true);
+                }
+                break;
+            case 3:
+                for (int j = 0; j < seedItems.Count; j++)
+                {
+                    var item = seedItems[j];
+                    item.gameObject.SetActive(false);
+                }
+                for (int k = 0; k < toolItems.Count; k++)
+                {
+                    var item2 = toolItems[k];
+                    item2.gameObject.SetActive(false);
+                }
+                break;
+        }
 
         //if (btnInvenItems.Count > 0)
         //{

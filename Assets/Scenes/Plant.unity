@@ -135,6 +135,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shelf_On_Pot
       objectReference: {fileID: 0}
+    - target: {fileID: 8474357879218497328, guid: e7e8b6d6bbb4b8b4d81a06546e147dc6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9138128253417536906, guid: e7e8b6d6bbb4b8b4d81a06546e147dc6,
         type: 3}
       propertyPath: m_RootOrder
