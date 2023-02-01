@@ -46,19 +46,13 @@ public class MyPlantManager : MonoBehaviour
     private void Update()
     {
 
-        if (myPlantList.Count > 0)
-        {
-   
-            CheckMyPlantsIdx();
-            
-        }
     }
 
     public void CheckMyPlantsIdx()
     {
         for(int i = 0; i < myPlantList.Count; i++)
         {
-            i = myPlantIdx;
+                i = myPlantIdx;
         }
     }
 

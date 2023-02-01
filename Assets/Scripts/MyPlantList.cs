@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MyPlantList : MonoBehaviour
+public class MyPlantList
 {
     public string plantUserName;
     public string plantName;
