@@ -264,7 +264,7 @@ public class UIPlant : MonoBehaviour
         bgChooseSeed.gameObject.SetActive(false);
     }
 
-    private void OnClickBottomOn()
+    public void OnClickBottomOn()
     {
         AudioManager.GetInstance().PlaySfx("»Ð");
         bottomButtons.SetActive(true);

@@ -82,6 +82,8 @@ public class PlantManager : MonoBehaviour
     public int setNutrition;
     public bool setIsSick;
 
+    public bool[] isPlantSeed;
+
 
     //string path;
     //string filename = "save";
@@ -475,6 +477,7 @@ public class PlantManager : MonoBehaviour
 
             if (Physics.Raycast(arCamera.ScreenPointToRay(Input.mousePosition), out hitobj))
             {
+                
                 var shelf = hitobj.collider.GetComponentInParent<Shelf>();
                 potTrans = hitobj.collider.gameObject.transform.parent;
 
@@ -485,8 +488,16 @@ public class PlantManager : MonoBehaviour
 
                 // potTrans.GetSiblingIndex() + (shelf.potIdx) + 8
 
-                GameObject targetUI = isOrn ? uimanager.GetUI("UIOrnSpawn") : uimanager.GetUI("UICroSpawn");
-                targetUI.SetActive(true);                               
+                if (!isPlantSeed[potIdx])
+                {
+                    GameObject targetUI = isOrn ? uimanager.GetUI("UIOrnSpawn") : uimanager.GetUI("UICroSpawn");
+                    targetUI.SetActive(true);
+                }
+                else
+                {
+                    var uiplant = uimanager.GetUI("UIPlant").GetComponent<UIPlant>();
+                    uiplant.OnClickBottomOn();
+                }
                 
                 selectPot = hitobj.collider.gameObject;
             }                                                                                                                                                                                                                      
@@ -517,6 +528,7 @@ public class PlantManager : MonoBehaviour
         var seed = Resources.Load<GameObject>($"plant/{plantName}/Seed");
         //var seed = Resources.Load<GameObject>($"plant/Seed");
         var Plant = Instantiate(seed, potTrans);
+        isPlantSeed[potIdx] = true;
 
         MyPlantList myPlant = new MyPlantList(
             setPlantUserName,
@@ -529,7 +541,7 @@ public class PlantManager : MonoBehaviour
             );
         myPlantManager.myPlantList.Add(myPlant);                  
 
-        StartCoroutine(myPlantManager.GrowthRatePlant(potIdx));
+        StartCoroutine(myPlantManager.GrowthRatePlant(0));
         Debug.Log(myPlantManager.myPlantList[0].plantUserName);
         Debug.Log(myPlantManager.myPlantList[0].plantName);
         Debug.Log($"{myPlantManager.myPlantList[0].growthRate}");
