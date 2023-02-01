@@ -36,27 +36,34 @@ public class UITutorial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        AudioManager.GetInstance().PlayBgm("Plant3");
         NextBtntxt.text = "다음";
         bottomSide.gameObject.SetActive(false);
         rightSide.gameObject.SetActive(false);
         topSide.gameObject.SetActive(false);
-        Dirtxt.text = "다음 버튼을 눌러 튜토리얼을 시작하세요!";
-        NextBtn.onClick.AddListener(BottomTutoBtn);
+        Dirtxt.text = "PlantArea에 온 걸 환영해! 내 이름은 다육이. " +
+            "너 이곳이 처음이구나? 내가 도와줄게.";
+        NextBtn.onClick.AddListener(Introduce);
         SkipBtn.onClick.AddListener(ToMainBtn);
 
+    }
+    void Introduce()
+    {
+        currentTuto = "Introduce";
+        Dirtxt.text = "PlantArea는 증강현실을 이용해 공간의 제약 없이 나만의 식물을 기를 수 있는 곳이야. 이제 기능에 대해 알아볼까?";
+        NextBtnChange();
     }
 
     void BottomTutoBtn()
     {
-        Dirtxt.text = "화면 아래는 식물 성장 관련 버튼들입니다. 버튼을 눌러보세요!";
+        Dirtxt.text = "화면 아래는 식물 성장 관련 버튼들이야. 각각의 버튼을 눌러봐!";
         BottomStep();
     }
     void RightTutoBtn()
     {
         bottomSide.gameObject.SetActive(false);
         rightSide.gameObject.SetActive(true);
-        Dirtxt.text = "화면 오른쪽은 유저 인터페이스 관련 버튼들입니다. 버튼을 눌러보세요!";
+        Dirtxt.text = "화면 오른쪽은 아이템 관련 버튼들이야. 각각 버튼을 눌러봐!";
         NextBtn.gameObject.SetActive(false);
         RightStep();
     }
@@ -64,7 +71,7 @@ public class UITutorial : MonoBehaviour
     {
         rightSide.gameObject.SetActive(false);
         topSide.gameObject.SetActive(true);
-        Dirtxt.text = "화면 위쪽은 플레이어 관련 UI들입니다. 눌러서 정보를 확인하세요.";
+        Dirtxt.text = "화면 위쪽은 플레이어 관련 창들이야. 눌러서 정보를 확인해!";
         NextBtn.gameObject.SetActive(false);
         TopStep();
     }
@@ -77,6 +84,7 @@ public class UITutorial : MonoBehaviour
             {
                 int index = i;
                 BottomBtnList[index].gameObject.AddComponent<AudioSource>();
+                AudioManager.GetInstance().PlaySfx("띠딩");
             
 
             BottomBtnList[index].onClick.AddListener(() => { BottomSelectedArrow(index); });
@@ -91,7 +99,7 @@ public class UITutorial : MonoBehaviour
         {
             int index = i;
             RightBtnList[index].gameObject.AddComponent<AudioSource>();
-            
+            AudioManager.GetInstance().PlaySfx("띠딩");
 
             RightBtnList[index].onClick.AddListener(() => { RightSelectedArrow(index); });
             RightBtnList[index].onClick.AddListener(() => { RightSetBtn(index); });
@@ -109,7 +117,7 @@ public class UITutorial : MonoBehaviour
         {
             int index = i;
             TopBtnList[index].gameObject.AddComponent<AudioSource>();
-           
+            AudioManager.GetInstance().PlaySfx("띠딩");
 
             TopBtnList[index].onClick.AddListener(() => { TopSetBtn(index); });
             TopBtnList[index].onClick.AddListener(() => { TopSelectedArrow(index); });
@@ -148,16 +156,18 @@ public class UITutorial : MonoBehaviour
         NextBtntxt.text = "오른쪽";
         NextBtn.gameObject.SetActive(true);
         NextBtn.onClick.RemoveAllListeners();
-        audioManager.PlaySfx("띠딩");
+        
         NextBtnChange();
-        string[] txtList = new string[]
-        { "물뿌리개를 이용해 식물에 물을 줄 수 있어요. 수분도가 너무 높거나 낮으면 식물이 죽으니 주의하세요!" ,
-        "영양제를 이용해 식물에 영양을 줄 수 있어요. 영양도가 너무 높거나 낮으면 식물이 질병에 걸립니다.",
-        "칭찬은 하루에 1회 가능합니다. 칭찬받은 식물은 영양도와 수분도를 조금 올려줍니다.",
-        "화분에 씨앗을 심을 수 있습니다. 씨앗은 농작물과 관상용으로 나뉩니다. 원하는 씨앗을 심어보세요!" };
+        string[,] txtList = new string[,]
+        { { "물뿌리개를 이용해 식물에 물을 줄 수 있어요. 수분도가 너무 높거나 낮으면 식물이 죽으니 주의하세요!", "물", "CryStr"},
+        {"영양제를 이용해 식물에 영양을 줄 수 있어요. 영양도가 너무 높거나 낮으면 식물이 질병에 걸립니다.","영양제", "SadStr"},
+        { "칭찬은 하루에 1회 가능합니다. 칭찬받은 식물은 영양도와 수분도를 조금 올려줍니다.","Growth2","SmileTalkStr"},
+        {"화분에 씨앗을 심을 수 있습니다. 씨앗은 농작물과 관상용으로 나뉩니다. 원하는 씨앗을 심어보세요!" ,"책","SmileStr"}};
 
-        string v = txtList[index].ToString();
+        string v = txtList[index, 0].ToString();
         Dirtxt.text = v;
+        AudioManager.GetInstance().PlaySfx($"{txtList[index,1]}");
+        Character.sprite = Resources.Load<Sprite>($"Character/{txtList[index, 2]}");
 
     }
     void RightSetBtn(int index)
@@ -168,15 +178,16 @@ public class UITutorial : MonoBehaviour
         NextBtn.onClick.RemoveAllListeners();
         
         NextBtnChange();
-        string[] txtList = new string[]
-        { "화분에 씨앗을 심을 수 있습니다. 씨앗은 농작물과 관상용으로 나뉩니다. 원하는 씨앗을 심어보세요!",
-        "상점에서 씨앗, 도구 등 아이템을 구매해보세요! 식물을 키우는 데 도움이 됩니다.",
-        "키우는 식물의 정보를 도감에서 확인해보세요! 모든 식물을 획득해 도감을 모두 모아보세요!",
-        "인벤토리 창에서 가지고 있는 아이템을 확인할 수 있습니다."};
+        string[,] txtList = new string[,]
+        { { "화분에 씨앗을 심을 수 있습니다. 씨앗은 농작물과 관상용으로 나뉩니다. 원하는 씨앗을 심어보세요!","흙","SmileTalk" },
+        { "상점에서 씨앗, 도구 등 아이템을 구매해보세요! 식물을 키우는 데 도움이 됩니다.","Buy2","TalkStr" },
+        { "키우는 식물의 정보를 도감에서 확인해보세요! 모든 식물을 획득해 도감을 모두 모아보세요!","책","SmileTalkStr"},
+        {"인벤토리 창에서 가지고 있는 아이템을 확인할 수 있습니다.","뿅","Smile2"}};
 
-        string v = txtList[index].ToString();
+        string v = txtList[index,0].ToString();
         Dirtxt.text = v;
-
+        AudioManager.GetInstance().PlaySfx($"{txtList[index, 1]}");
+        Character.sprite = Resources.Load<Sprite>($"Character/{txtList[index,2]}");
     }
     void TopSetBtn(int index)
     {
@@ -185,20 +196,31 @@ public class UITutorial : MonoBehaviour
         NextBtn.gameObject.SetActive(true);
         NextBtn.onClick.RemoveAllListeners();
         NextBtnChange();
-        string[] txtList = new string[]
-        { "현재 날씨와 시간을 알 수 있습니다." ,
-        "현재 플레이어의 기력입니다. 행동마다 기력을 소모하고 기력이 부족하면 행동을 할 수 없습니다.",
-        "상점에서 사용 가능한 골드입니다. 시스템 보상을 받거나 아이템을 팔아 획득 가능합니다.", ""};
+        string[,] txtList = new string[,]
+        { { "현재 날씨와 시간을 알 수 있습니다." ,"뿅", "Cry" },
+        {"현재 플레이어의 기력입니다. 행동마다 기력을 소모하고 기력이 부족하면 행동을 할 수 없습니다.","Growth1" ,"SmileStr"},
+        { "상점에서 사용 가능한 골드입니다. 시스템 보상을 받거나 아이템을 팔아 획득 가능합니다.", "Buy2","TalkStr"} };
 
-        string v = txtList[index].ToString();
+        string v = txtList[index,0].ToString();
         Dirtxt.text = v;
+        AudioManager.GetInstance().PlaySfx($"{txtList[index, 1]}");
+        Character.sprite = Resources.Load<Sprite>($"Character/{txtList[index, 2]}");
     }
     void ToMainBtn()
     {
+        Dirtxt.text = "자! 이제 기본적인건 알려줬으니 내 친구들도 잘 기를 수 있지? " +
+            "도움이 필요하면 언제든지 옵션의 도움말을 참고해!";
+        Invoke("ToMain", 5);
+    }
+    void ToMain()
+    {
         SceneManager.LoadScene("Plant");
     }
+
     void NextBtnChange()
     {
+        if (currentTuto == "Introduce")
+            NextBtn.onClick.AddListener(BottomTutoBtn);
         if (currentTuto == "Bottom")
             NextBtn.onClick.AddListener(RightTutoBtn);
             

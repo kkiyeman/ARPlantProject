@@ -41,8 +41,8 @@ public class AudioManager : MonoBehaviour
     }
     #endregion
 
-    AudioSource soundPlayer;
-
+    public AudioSource BgmPlayer;
+    public AudioSource SfxPlayer;
     public Dictionary<string, Sound> bgms = new Dictionary<string, Sound>();
     public Dictionary<string, Sound> sfxs = new Dictionary<string, Sound>();
 
@@ -51,8 +51,16 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        gameObject.AddComponent<AudioSource>();
-        soundPlayer = GetComponent<AudioSource>();
+        var ob1 = new GameObject();
+        ob1.name = "@BgmPlayer";
+        var ob2 = new GameObject();
+        ob2.name = "@SfxPlayer";
+        ob1.transform.SetParent(gameObject.transform);
+        ob2.transform.SetParent(gameObject.transform);
+        ob1.AddComponent<AudioSource>();
+        ob2.AddComponent<AudioSource>();
+        BgmPlayer = ob1.GetComponent<AudioSource>();
+        SfxPlayer = ob2.GetComponent<AudioSource>();
         InitSounds();
 
     }
@@ -79,19 +87,19 @@ public class AudioManager : MonoBehaviour
     {
         var bgm = bgms[name];
         bgm.loop = true;
-        soundPlayer.clip = bgm.clip;
-        soundPlayer.volume = bgm.volume;
-        soundPlayer.loop = bgm.loop;
-        soundPlayer.Play();
+        BgmPlayer.clip = bgm.clip;
+        BgmPlayer.volume = bgm.volume;
+        BgmPlayer.loop = bgm.loop;
+        BgmPlayer.Play();
     }
     
     public void PlaySfx(string name)
     {
         var sfx = sfxs[name];
-        soundPlayer.clip = sfx.clip;
-        soundPlayer.volume = sfx.volume;
-        soundPlayer.loop = sfx.loop;
-        soundPlayer.Play();
+        SfxPlayer.clip = sfx.clip;
+        SfxPlayer.volume = sfx.volume;
+        SfxPlayer.loop = sfx.loop;
+        SfxPlayer.Play();
     }
 
 
