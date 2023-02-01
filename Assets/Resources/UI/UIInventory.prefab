@@ -996,7 +996,6 @@ MonoBehaviour:
   ItemGrid: {fileID: 537680850510876761}
   txtItemName: {fileID: 725973003154221581}
   txtItemTooltip: {fileID: 725973003108999464}
-  itemList: []
 --- !u!1 &537680852444515753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,8 +1648,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 2150}
+  m_AnchoredPosition: {x: 4, y: 0}
+  m_SizeDelta: {x: 252, y: 2150}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &725973003420158612
 CanvasRenderer:
@@ -2552,7 +2551,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 250}
+  m_SizeDelta: {x: 252, y: 250}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &102550390659636500
 CanvasRenderer:

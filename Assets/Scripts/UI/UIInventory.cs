@@ -16,21 +16,23 @@ public class UIInventory : MonoBehaviour
     [SerializeField] Text[] txtItemKinds;
 
     [Header("itemList")]
-    [SerializeField] GameObject ItemGrid;
+    public GameObject ItemGrid;
     [SerializeField] Text txtItemName;
     [SerializeField] Text txtItemTooltip;
-    public List<BtnInvenItem> itemList = new List<BtnInvenItem>();
+
 
 
     GameManager gamemanager;
     PlantManager plantmanager;
     UIManager uimanager;
+    ItemManager itemmanager;
     // Start is called before the first frame update
     void Start()
     {
         gamemanager = GameManager.GetInstance();
         plantmanager = PlantManager.GetInstance();
         uimanager = UIManager.GetInstance();
+        itemmanager = ItemManager.GetInstance();
         SetButton();
     }
 
@@ -54,19 +56,28 @@ public class UIInventory : MonoBehaviour
 
     private void ShowItemList(int i)
     {
+        List<BtnInvenItem> itemlist = new List<BtnInvenItem>();
         int idx = i;
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground/UIBackground Grey3");
         btnItemKinds[curItemKind].image.color = new Color32(180, 180, 180, 160);
         curItemKind = idx;
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground/UIBackground LightGrey3");
         btnItemKinds[curItemKind].image.color = Color.white;
-        if (itemList.Count > 0)
+        if (curItemKind == 0)
+            itemlist = itemmanager.seedItemList;
+        else if (curItemKind == 2)
+            itemlist = itemmanager.toolItemList;
+        if (itemlist.Count > 0)
         {
-            for (int d = 0; d < itemList.Count; d++)
+            for (int d = 0; d < itemlist.Count; d++)
             {
-                Destroy(itemList[d].gameObject);
+                Destroy(itemlist[d].gameObject);
             }
-            itemList.Clear();
+            itemlist.Clear();
+        }
+        else
+        {
+
         }
     }
 

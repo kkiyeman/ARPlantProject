@@ -8,6 +8,11 @@ public class BtnInvenItem : MonoBehaviour
 
     public Image imgItem;
     public Text txtItemCount;
+    public string itemName;
+    public string itemType;
+    public int itemPrice;
+    public string itemInfo;
+
     // Start is called before the first frame update
     void Start()
     {

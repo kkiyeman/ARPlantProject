@@ -65,6 +65,7 @@ public class UIStore : MonoBehaviour
         btnCloseBuy.onClick.AddListener(OnClickCloseBuy);
         btnItemCountPlus.onClick.AddListener(OnClickPlusItemCount);
         btnItemCountMinus.onClick.AddListener(OnClickMinusItemCount);
+        btnItemBuy.onClick.AddListener(OnClickBuy);
         BtnItemKindSet();
     }
 
@@ -168,6 +169,18 @@ public class UIStore : MonoBehaviour
         }
         
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground LightGrey1");
+    }
+
+    private void OnClickBuy()
+    {
+        var uiinventory = uimanager.GetUI("UIInventory").GetComponent<UIInventory>();
+        var ob = Resources.Load<BtnInvenItem>("UI/btnInvenItem");
+        var boughtItem = Instantiate(ob);
+        boughtItem.itemName = txtItemName.text;
+        boughtItem.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{boughtItem.itemName}");
+        boughtItem.transform.SetParent(uiinventory.ItemGrid.transform);
+
+
     }
 
     private void GetItemList(int index)
