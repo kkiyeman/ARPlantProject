@@ -61,7 +61,8 @@ public class UIOption : MonoBehaviour
             for (int i = 0; i < buttons.Length; i++)
             {
                 int index = i;
-                /*buttons[index].gameObject.AddComponent<AudioSource>();*/
+                buttons[index].gameObject.AddComponent<AudioSource>();
+                
 
                 buttons[index].onClick.AddListener(() => this.ShowHelp(index));
 
@@ -71,29 +72,34 @@ public class UIOption : MonoBehaviour
     }
 
     void CloseOption()
-    { 
-            Option.gameObject.SetActive(false);
+    {
+        AudioManager.GetInstance().PlaySfx("»Ð");
+        Option.gameObject.SetActive(false);
     }
 
     void OpenHelp()
-    { 
+    {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         Help.gameObject.SetActive(true);
         Main.gameObject.SetActive(false);
     }
     void HelptoMain()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         Help.gameObject.SetActive(false);
         Main.gameObject.SetActive(true);
     }
 
     void OpenSound()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         Sound.gameObject.SetActive(true);
         Main.gameObject.SetActive(false);
     }
 
     void SoundtoMain()
-    { 
+    {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         Main.gameObject.SetActive(true);
         Sound.gameObject.SetActive(false);
     }
@@ -140,7 +146,7 @@ public class UIOption : MonoBehaviour
         
         ExampleImg.sprite = Resources.Load<Sprite>($"Image/Help/Help{index + 1}");
         Debug.Log($"{index}¹øÂ° ÀÌ¹ÌÁö¸¦ ºÒ·¯¿É´Ï´Ù.");
-        
+        AudioManager.GetInstance().PlaySfx("»Ð");
 
     }
 

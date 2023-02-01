@@ -36,13 +36,12 @@ public class UITutorial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.GetInstance().PlayBgm("Plant3");
+        AudioManager.GetInstance().PlayBgm("Tutorial");
         NextBtntxt.text = "다음";
         bottomSide.gameObject.SetActive(false);
         rightSide.gameObject.SetActive(false);
         topSide.gameObject.SetActive(false);
-        Dirtxt.text = "PLANTAREA에 온 걸 환영해! 내 이름은 맑음이. " +
-            "너 이곳이 처음이구나? 내가 도와줄게.";
+        Dirtxt.text = "PLANTAREA에 온 걸 환영해! 내 이름은 맑음이. 너 이곳이 처음이구나? 내가 도와줄게.";
         NextBtn.onClick.AddListener(Introduce);
         SkipBtn.onClick.AddListener(ToMainBtn);
         NextBtn.gameObject.AddComponent<AudioSource>();
@@ -168,7 +167,7 @@ public class UITutorial : MonoBehaviour
         { { "물뿌리개를 이용해 식물에 물을 줄 수 있어요. 수분도가 너무 높거나 낮으면 식물이 죽으니 주의하세요!", "물", "CryStr"},
         {"영양제를 이용해 식물에 영양을 줄 수 있어요. 영양도가 너무 높거나 낮으면 식물이 질병에 걸립니다.","영양제", "SadStr"},
         { "칭찬은 하루에 1회 가능합니다. 칭찬받은 식물은 영양도와 수분도를 조금 올려줍니다.","Growth2","SmileTalkStr"},
-        {"화분에 씨앗을 심을 수 있습니다. 씨앗은 농작물과 관상용으로 나뉩니다. 원하는 씨앗을 심어보세요!" ,"책","SmileStr"}};
+        {"상태창입니다. 식물의 상태를 확인할 수 있고 식물의 이름,메모도 남길 수 있는 창이니 자주 확인해보세요!" ,"책","SmileStr"}};
 
         string v = txtList[index, 0].ToString();
         Dirtxt.text = v;
@@ -187,7 +186,7 @@ public class UITutorial : MonoBehaviour
         string[,] txtList = new string[,]
         { { "화분에 씨앗을 심을 수 있습니다. 씨앗은 농작물과 관상용으로 나뉩니다. 원하는 씨앗을 심어보세요!","흙","SmileTalk" },
         { "상점에서 씨앗, 도구 등 아이템을 구매해보세요! 식물을 키우는 데 도움이 됩니다.","Buy2","TalkStr" },
-        { "키우는 식물의 정보를 도감에서 확인해보세요! 모든 식물을 획득해 도감을 모두 모아보세요!","책","SmileTalkStr"},
+        { "키우는 식물의 정보를 도감에서 확인해보세요! 모든 식물을 획득해 도감을 모두 모아보세요!","책덮기","SmileTalkStr"},
         {"인벤토리 창에서 가지고 있는 아이템을 확인할 수 있습니다.","뿅","Smile2"}};
 
         string v = txtList[index,0].ToString();
@@ -203,7 +202,7 @@ public class UITutorial : MonoBehaviour
         NextBtn.onClick.RemoveAllListeners();
         NextBtnChange();
         string[,] txtList = new string[,]
-        { { "현재 날씨와 시간을 알 수 있습니다." ,"뿅", "Cry" },
+        { { "현재 날씨와 시간을 알 수 있습니다." ,"뿅", "SmileTalk" },
         {"현재 플레이어의 기력입니다. 행동마다 기력을 소모하고 기력이 부족하면 행동을 할 수 없습니다.","Growth1" ,"SmileStr"},
         { "상점에서 사용 가능한 골드입니다. 시스템 보상을 받거나 아이템을 팔아 획득 가능합니다.", "Buy2","TalkStr"} };
 
