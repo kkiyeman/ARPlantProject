@@ -127,7 +127,7 @@ public class PlantManager : MonoBehaviour
     {
         curTime = GameManager.GetInstance().runningTime;
         allBtnUnclickAble = GameManager.GetInstance().isEnegyZero;
-        //PlantSpawn();
+        PlantSpawn();
         SpawnSeed();
        // Save();
     }
@@ -419,7 +419,7 @@ public class PlantManager : MonoBehaviour
                     if (Input.GetTouch(0).phase == TouchPhase.Began)
                     {
                         SpawnPrefab(m_Hits[0].pose.position);
-                        SpawnSeed();
+                        
                     }
                     else if (Input.GetTouch(0).phase == TouchPhase.Moved && spawnedObject != null)
                     {
@@ -489,7 +489,7 @@ public class PlantManager : MonoBehaviour
                 targetUI.SetActive(true);                               
                 
                 selectPot = hitobj.collider.gameObject;
-            }
+            }                                                                                                                                                                                                                      
         }
     }
 
@@ -527,9 +527,9 @@ public class PlantManager : MonoBehaviour
             false,
             plantDates[clickIdx].reward
             );
-        myPlantManager.myPlantList.Add(myPlant);
+        myPlantManager.myPlantList.Add(myPlant);                  
 
-        StartCoroutine(myPlantManager.GrowthRatePlant(0));
+        StartCoroutine(myPlantManager.GrowthRatePlant(potIdx));
         Debug.Log(myPlantManager.myPlantList[0].plantUserName);
         Debug.Log(myPlantManager.myPlantList[0].plantName);
         Debug.Log($"{myPlantManager.myPlantList[0].growthRate}");
