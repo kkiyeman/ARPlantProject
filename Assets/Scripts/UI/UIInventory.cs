@@ -19,6 +19,7 @@ public class UIInventory : MonoBehaviour
     public GameObject ItemGrid;
     [SerializeField] Text txtItemName;
     [SerializeField] Text txtItemTooltip;
+    [SerializeField] List<BtnInvenItem> btnInvenItems = new List<BtnInvenItem>();
 
 
 
@@ -39,7 +40,7 @@ public class UIInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void SetButton()
@@ -56,29 +57,51 @@ public class UIInventory : MonoBehaviour
 
     private void ShowItemList(int i)
     {
-        List<BtnInvenItem> itemlist = new List<BtnInvenItem>();
         int idx = i;
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground/UIBackground Grey3");
         btnItemKinds[curItemKind].image.color = new Color32(180, 180, 180, 160);
         curItemKind = idx;
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground/UIBackground LightGrey3");
         btnItemKinds[curItemKind].image.color = Color.white;
-        if (curItemKind == 0)
-            itemlist = itemmanager.seedItemList;
-        else if (curItemKind == 2)
-            itemlist = itemmanager.toolItemList;
-        if (itemlist.Count > 0)
+
+        if (curItemKind <= 1)
         {
-            for (int d = 0; d < itemlist.Count; d++)
+            //imgItemReady.gameObject.SetActive(false);
+            switch (curItemKind)
             {
-                Destroy(itemlist[d].gameObject);
+                case 0:
+                    var itemlist = itemmanager.seedItemList;
+                    for (int j = 0; j < itemlist.Count; j++)
+                    {
+                        var item = Instantiate(itemlist[j]);
+                        item.transform.SetParent(ItemGrid.transform);
+                        btnInvenItems.Add(item);
+                    }
+                    break;
+                case 2:
+                    var itemlist2 = itemmanager.toolItemList;
+                    for (int j = 0; j < itemlist2.Count; j++)
+                    {
+                        var item = Instantiate(itemlist2[j]);
+                        item.transform.SetParent(ItemGrid.transform);
+                        btnInvenItems.Add(item);
+                    }
+                    break;
             }
-            itemlist.Clear();
         }
         else
         {
-
+            //imgItemReady.gameObject.SetActive(true);
         }
+        if (btnInvenItems.Count > 0)
+        {
+            for (int d = 0; d < btnInvenItems.Count; d++)
+            {
+                Destroy(btnInvenItems[d].gameObject);
+            }
+            btnInvenItems.Clear();
+        }
+
     }
 
     private void BtnItemKindSet()

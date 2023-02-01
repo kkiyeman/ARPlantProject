@@ -9,19 +9,20 @@ public class BtnInvenItem : MonoBehaviour
     public Image imgItem;
     public Text txtItemCount;
     public string itemName;
-    public string itemType;
+    public int itemCount;
     public int itemPrice;
     public string itemInfo;
+    public string itemType;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

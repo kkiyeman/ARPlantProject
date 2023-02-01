@@ -8,5 +8,7 @@ public class BtnItem : MonoBehaviour
     public Image imgItem;
     public Text itemName;
     public Text itemPrice;
+    public string itemInfo;
+    public string itemKind;
     
 }

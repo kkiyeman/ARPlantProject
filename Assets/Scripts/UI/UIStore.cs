@@ -32,6 +32,8 @@ public class UIStore : MonoBehaviour
     [SerializeField] Text txtItemName;
     [SerializeField] Text txtItemPrice;
     [SerializeField] Text txtItemCount;
+    string buyingitemKind;
+    string buyingitemInfo;
     private int curCount = 1;
     [SerializeField] Text txtTotalPrice;
     [SerializeField] InputField inputItemCount;
@@ -56,7 +58,7 @@ public class UIStore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+
     }
 
     private void ButtonSetting()
@@ -95,7 +97,7 @@ public class UIStore : MonoBehaviour
 
     private void BtnItemKindSet()
     {
-        for(int i = 0; i<btnItemKinds.Length; i++)
+        for (int i = 0; i < btnItemKinds.Length; i++)
         {
             int idx = i;
             btnItemKinds[idx].onClick.AddListener(() => { ShowItemList(idx); });
@@ -109,6 +111,8 @@ public class UIStore : MonoBehaviour
         txtItemName.text = btnItems[index].itemName.text;
         txtItemPrice.text = btnItems[index].itemPrice.text;
         txtItemCount.text = curCount.ToString();
+        buyingitemKind = btnItems[index].itemKind;
+        buyingitemInfo = btnItems[index].itemInfo;
         int totalprice = curCount * price;
         txtTotalPrice.text = totalprice.ToString();
         imgItemName.sprite = btnItems[index].imgItem.sprite;
@@ -116,7 +120,7 @@ public class UIStore : MonoBehaviour
 
     private void OnClickPlusItemCount()
     {
-        if(curCount>0)
+        if (curCount > 0)
         {
             curCount++;
             SetItemBuy();
@@ -126,7 +130,7 @@ public class UIStore : MonoBehaviour
     private void OnClickMinusItemCount()
     {
         if (curCount > 1)
-        { 
+        {
             curCount--;
             SetItemBuy();
         }
@@ -162,12 +166,12 @@ public class UIStore : MonoBehaviour
 
     public void SpriteChange()
     {
-        for(int i = 0; i<btnItemKinds.Length; i++)
+        for (int i = 0; i < btnItemKinds.Length; i++)
         {
             int idx = i;
             btnItemKinds[idx].image.sprite = Resources.Load<Sprite>("UIBackground Grey1");
         }
-        
+
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground LightGrey1");
     }
 
@@ -175,17 +179,28 @@ public class UIStore : MonoBehaviour
     {
         var uiinventory = uimanager.GetUI("UIInventory").GetComponent<UIInventory>();
         var ob = Resources.Load<BtnInvenItem>("UI/btnInvenItem");
-        var boughtItem = Instantiate(ob);
-        boughtItem.itemName = txtItemName.text;
-        boughtItem.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{boughtItem.itemName}");
-        boughtItem.transform.SetParent(uiinventory.ItemGrid.transform);
+        ob.itemName = txtItemName.text;
+        ob.itemPrice = int.Parse(txtItemPrice.text);
+        ob.itemCount = int.Parse(txtItemCount.text);
+        ob.txtItemCount.text = txtItemCount.text;
+        ob.itemInfo = buyingitemInfo;
+        ob.itemType = buyingitemKind;
+        ob.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{ob.itemName}");
+        if (ob.itemType == "¾¾¾Ñ")
+        {
+            itemmanager.seedItemList.Add(ob);
+        }
+        else if (ob.itemType == "µµ±¸")
+        {
+            itemmanager.toolItemList.Add(ob);
+        }
 
 
     }
 
     private void GetItemList(int index)
     {
-        if(index<=1)
+        if (index <= 1)
         {
             imgItemReady.gameObject.SetActive(false);
             switch (index)
@@ -198,6 +213,8 @@ public class UIStore : MonoBehaviour
                         var itemData = Instantiate(ob);
                         itemData.itemName.text = seeds[i].Itemname;
                         itemData.itemPrice.text = seeds[i].ItemPrice.ToString();
+                        itemData.itemKind = seeds[i].ItemType;
+                        itemData.itemInfo = seeds[i].ItemInfo;
                         itemData.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{itemData.itemName.text}");
                         itemData.transform.SetParent(content.transform);
                         btnItems.Add(itemData);
@@ -211,6 +228,8 @@ public class UIStore : MonoBehaviour
                         var itemData = Instantiate(ob);
                         itemData.itemName.text = tools[i].Itemname;
                         itemData.itemPrice.text = tools[i].ItemPrice.ToString();
+                        itemData.itemKind = tools[i].ItemType;
+                        itemData.itemInfo = tools[i].ItemInfo;
                         itemData.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{itemData.itemName.text}");
                         itemData.transform.SetParent(content.transform);
                         btnItems.Add(itemData);
