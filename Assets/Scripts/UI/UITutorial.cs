@@ -41,26 +41,31 @@ public class UITutorial : MonoBehaviour
         bottomSide.gameObject.SetActive(false);
         rightSide.gameObject.SetActive(false);
         topSide.gameObject.SetActive(false);
-        Dirtxt.text = "PlantArea에 온 걸 환영해! 내 이름은 다육이. " +
+        Dirtxt.text = "PLANTAREA에 온 걸 환영해! 내 이름은 다육이. " +
             "너 이곳이 처음이구나? 내가 도와줄게.";
         NextBtn.onClick.AddListener(Introduce);
         SkipBtn.onClick.AddListener(ToMainBtn);
-
+        NextBtn.gameObject.AddComponent<AudioSource>();
+        SkipBtn.gameObject.AddComponent<AudioSource>();
+        
     }
     void Introduce()
     {
+        AudioManager.GetInstance().PlaySfx("뿅");
         currentTuto = "Introduce";
-        Dirtxt.text = "PlantArea는 증강현실을 이용해 공간의 제약 없이 나만의 식물을 기를 수 있는 곳이야. 이제 기능에 대해 알아볼까?";
+        Dirtxt.text = "PLANTAREA는 증강현실을 이용해 공간의 제약 없이 나만의 식물을 기를 수 있는 곳이야. 이제 기능에 대해 알아볼까?";
         NextBtnChange();
     }
 
     void BottomTutoBtn()
     {
+        AudioManager.GetInstance().PlaySfx("뿅");
         Dirtxt.text = "화면 아래는 식물 성장 관련 버튼들이야. 각각의 버튼을 눌러봐!";
         BottomStep();
     }
     void RightTutoBtn()
     {
+        AudioManager.GetInstance().PlaySfx("뿅");
         bottomSide.gameObject.SetActive(false);
         rightSide.gameObject.SetActive(true);
         Dirtxt.text = "화면 오른쪽은 아이템 관련 버튼들이야. 각각 버튼을 눌러봐!";
@@ -69,6 +74,7 @@ public class UITutorial : MonoBehaviour
     }
     void TopTutoBtn()
     {
+        AudioManager.GetInstance().PlaySfx("뿅");
         rightSide.gameObject.SetActive(false);
         topSide.gameObject.SetActive(true);
         Dirtxt.text = "화면 위쪽은 플레이어 관련 창들이야. 눌러서 정보를 확인해!";
@@ -208,12 +214,15 @@ public class UITutorial : MonoBehaviour
     }
     void ToMainBtn()
     {
+        AudioManager.GetInstance().PlaySfx("뿅");
         Dirtxt.text = "자! 이제 기본적인건 알려줬으니 내 친구들도 잘 기를 수 있지? " +
             "도움이 필요하면 언제든지 옵션의 도움말을 참고해!";
         Invoke("ToMain", 5);
+
     }
     void ToMain()
     {
+
         SceneManager.LoadScene("Plant");
     }
 
