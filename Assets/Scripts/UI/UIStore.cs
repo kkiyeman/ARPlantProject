@@ -24,6 +24,7 @@ public class UIStore : MonoBehaviour
     [SerializeField] Text[] txtItemPrices;
     [SerializeField] GameObject content;
     [SerializeField] Image imgItemReady;
+    public GameObject itemPool;
 
     [Header("Item Buy PopUp")]
     [SerializeField] Image imgItemBuy;
@@ -179,20 +180,22 @@ public class UIStore : MonoBehaviour
     {
         var uiinventory = uimanager.GetUI("UIInventory").GetComponent<UIInventory>();
         var ob = Resources.Load<BtnInvenItem>("UI/btnInvenItem");
-        ob.itemName = txtItemName.text;
-        ob.itemPrice = int.Parse(txtItemPrice.text);
-        ob.itemCount = int.Parse(txtItemCount.text);
-        ob.txtItemCount.text = txtItemCount.text;
-        ob.itemInfo = buyingitemInfo;
-        ob.itemType = buyingitemKind;
-        ob.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{ob.itemName}");
-        if (ob.itemType == "¾¾¾Ñ")
+        var item = Instantiate(ob);
+        item.itemName = txtItemName.text;
+        item.itemPrice = int.Parse(txtItemPrice.text);
+        item.itemCount = int.Parse(txtItemCount.text);
+        item.txtItemCount.text = txtItemCount.text;
+        item.itemInfo = buyingitemInfo;
+        item.itemType = buyingitemKind;
+        item.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{item.itemName}");
+        item.transform.SetParent(itemPool.transform);
+        if (item.itemType == "¾¾¾Ñ")
         {
-            itemmanager.seedItemList.Add(ob);
+            itemmanager.seedItemList.Add(item);
         }
-        else if (ob.itemType == "µµ±¸")
+        else if (item.itemType == "µµ±¸")
         {
-            itemmanager.toolItemList.Add(ob);
+            itemmanager.toolItemList.Add(item);
         }
 
 

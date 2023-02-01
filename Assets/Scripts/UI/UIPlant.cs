@@ -225,8 +225,9 @@ public class UIPlant : MonoBehaviour
     private void OnClickUIInventoryOn()
     {
         AudioManager.GetInstance().PlaySfx("»Ð");
-        var UIInventory = uimanager.GetUI("UIInventory");
+        var UIInventory = uimanager.GetUI("UIInventory").GetComponent<UIInventory>();
         UIInventory.gameObject.SetActive(true);
+        UIInventory.ShowItemList(0);
     }
 
     public void OnClickOpenChooseSeed()

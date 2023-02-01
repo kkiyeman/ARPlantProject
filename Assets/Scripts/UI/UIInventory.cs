@@ -55,7 +55,7 @@ public class UIInventory : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void ShowItemList(int i)
+    public void ShowItemList(int i)
     {
         int idx = i;
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground/UIBackground Grey3");
@@ -73,7 +73,7 @@ public class UIInventory : MonoBehaviour
                     var itemlist = itemmanager.seedItemList;
                     for (int j = 0; j < itemlist.Count; j++)
                     {
-                        var item = Instantiate(itemlist[j]);
+                        var item = itemlist[j];
                         item.transform.SetParent(ItemGrid.transform);
                         btnInvenItems.Add(item);
                     }
