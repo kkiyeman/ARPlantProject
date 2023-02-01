@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1511420184151664155}
   - component: {fileID: 843224278228169080}
   m_Layer: 0
-  m_Name: Pot
+  m_Name: Pot4
   m_TagString: Orn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 2630681665274686273}
   - component: {fileID: 5531080344452449073}
   m_Layer: 0
-  m_Name: Pot
+  m_Name: Pot1
   m_TagString: Orn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 8972421866459510513}
   - component: {fileID: 2452442474129421156}
   m_Layer: 0
-  m_Name: Pot
+  m_Name: Pot2
   m_TagString: Orn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -651,6 +651,7 @@ GameObject:
   - component: {fileID: 9138128253417536906}
   - component: {fileID: 5295948037412532783}
   - component: {fileID: 7969695580118468325}
+  - component: {fileID: -411791882675601972}
   m_Layer: 0
   m_Name: Shelf_On_Pot
   m_TagString: Untagged
@@ -725,6 +726,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-411791882675601972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8474357879218497328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadaa95f84a7a14418939d65e9d568ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shelfIdx: 0
+  potIdx: 0
+  type: 0
+  pots: []
 --- !u!1 &9165782367292756143
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,7 +755,7 @@ GameObject:
   - component: {fileID: 7220284983685525882}
   - component: {fileID: 2784038693594082603}
   m_Layer: 0
-  m_Name: Pot
+  m_Name: Pot3
   m_TagString: Orn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

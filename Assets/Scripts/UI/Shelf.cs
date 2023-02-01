@@ -1,30 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
+
+public enum ShelfType
+{
+    orn,
+    cro
+}
 public class Shelf : MonoBehaviour
 {
-    [SerializeField]private GameObject[] pots;
-    public int idx;
+    public int shelfIdx = PlantManager.GetInstance().ornCount;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int potIdx = PlantManager.GetInstance().croCount;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public ShelfType type = ShelfType.cro;
 
-    public void SetIdx(int idx)
-    {
-        this.idx = idx;
-        PlantManager.GetInstance().SetPotIdx(idx);
-    }
+    //public string[] pots;
 
 
 }

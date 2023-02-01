@@ -57,8 +57,11 @@ public class PlantManager : MonoBehaviour
 
     public string plantsName;
 
-    public int OrnCount = 0;
-    public int CroCount = 0;
+    public int ornCount = 0;
+    public int croCount = 0;
+
+    public int curShelfCount;
+    public int curCroCount;
 
     MyPlantManager myPlantManager;
 
@@ -350,7 +353,7 @@ public class PlantManager : MonoBehaviour
             if (onClickCroBtn)
             {
 
-                if (CroCount < 2)
+                if (croCount < 2)
                 {
                     plantsName = "plant/cropot";
                     onClickCroBtn = false;
@@ -359,7 +362,9 @@ public class PlantManager : MonoBehaviour
                     var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
                     Plantdata.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
 
-                    CroCount++;
+                    croCount += 1;
+
+                    curCroCount = croCount;
                 }
                 else
                 {
@@ -369,7 +374,7 @@ public class PlantManager : MonoBehaviour
             }
             else if (onClickOrnBtn)
             {
-                if (OrnCount < 2)
+                if (ornCount < 2)
                 {
                     plantsName = "Shelf/Shelf_On_Pot";
                     onClickOrnBtn = false;
@@ -378,7 +383,9 @@ public class PlantManager : MonoBehaviour
                     var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
                     Plantdata.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
 
-                    OrnCount++;
+                    ornCount += 1;
+
+                    curShelfCount = ornCount;
                 }
                 else
                 {
@@ -460,29 +467,30 @@ public class PlantManager : MonoBehaviour
             }
         }*/
 
-        public void SpawnSeed()
+    public void SpawnSeed()
+    {
+        if (Input.GetMouseButton(0))
         {
-            if(Input.GetMouseButton(0))
-            {
-                RaycastHit hitobj;
+            RaycastHit hitobj;
 
-                if (Physics.Raycast(arCamera.ScreenPointToRay(Input.mousePosition),out hitobj))
-                {
-                    if(hitobj.collider.tag == "Orn")
-                    {
-                        potTrans = hitobj.collider.gameObject.transform;
-                        var SpawnOrn = uimanager.GetUI("UIOrnSpawn");
-                        SpawnOrn.SetActive(true);
-                    }
-                    else if (hitobj.collider.tag == "Cro")
-                    {
-                        potTrans = hitobj.collider.gameObject.transform;
-                        var SpawnCro = uimanager.GetUI("UICroSpawn");
-                        SpawnCro.SetActive(true);
-                    }
+            if (Physics.Raycast(arCamera.ScreenPointToRay(Input.mousePosition), out hitobj))
+            {
+                var shelf = hitobj.collider.GetComponentInParent<Shelf>();
+                potTrans = hitobj.collider.gameObject.transform.parent;
+
+                bool isOrn = shelf.type == ShelfType.orn;
+                potIdx = isOrn ? potTrans.GetSiblingIndex() + (shelf.shelfIdx * 4) : potTrans.GetSiblingIndex() + (shelf.potIdx) + 8;
+
+                Debug.Log("potIdx : " + potIdx);
+
+                // potTrans.GetSiblingIndex() + (shelf.potIdx) + 8
+
+                GameObject targetUI = isOrn ? uimanager.GetUI("UIOrnSpawn") : uimanager.GetUI("UICroSpawn");
+                targetUI.SetActive(true);                               
+                
                 selectPot = hitobj.collider.gameObject;
-                }
             }
+        }
     }
 
     public void SetIdx(int idx)
