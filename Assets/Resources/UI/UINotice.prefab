@@ -638,6 +638,7 @@ GameObject:
   - component: {fileID: 5497345126374840172}
   - component: {fileID: 5497345126374840173}
   - component: {fileID: 5497345126374840178}
+  - component: {fileID: 7021870677334988374}
   m_Layer: 5
   m_Name: UINotice
   m_TagString: Untagged
@@ -726,6 +727,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7021870677334988374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497345126374840179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30d04cb1294fde45963574b04c159d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardImg: {fileID: 1929250422373256780}
+  rewardtxt: {fileID: 5385768918877539837}
+  Noticetxt: {fileID: 4237699306105091161}
+  OkBtn: {fileID: 4237699307172126120}
 --- !u!1 &7034490762399919217
 GameObject:
   m_ObjectHideFlags: 0
