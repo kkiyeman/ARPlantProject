@@ -89,7 +89,7 @@ public class AudioManager : MonoBehaviour
         var bgm = bgms[name];
         bgm.loop = true;
         BgmPlayer.clip = bgm.clip;
-        BgmPlayer.volume = bgm.volume;
+        BgmPlayer.volume = bgm.volume * 0.8f;
         BgmPlayer.loop = bgm.loop;
         BgmPlayer.Play();
     }

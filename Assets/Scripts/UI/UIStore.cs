@@ -77,6 +77,7 @@ public class UIStore : MonoBehaviour
 
     private void OnClickCloseStore()
     {
+        AudioManager.GetInstance().PlayBgm("Plant2");
         AudioManager.GetInstance().PlaySfx("»Ð");
         gameObject.SetActive(false);
     }
