@@ -197,7 +197,7 @@ public class UITutorial : MonoBehaviour
     void TopSetBtn(int index)
     {
         currentTuto = "Top";
-        NextBtntxt.text = "메인으로";
+        NextBtntxt.text = "다음";
         NextBtn.gameObject.SetActive(true);
         NextBtn.onClick.RemoveAllListeners();
         NextBtnChange();
@@ -213,6 +213,7 @@ public class UITutorial : MonoBehaviour
     }
     void ToMainBtn()
     {
+        NextBtntxt.text = "메인으로";
         AudioManager.GetInstance().PlaySfx("뿅");
         Dirtxt.text = "자! 이제 기본적인건 알려줬으니 내 친구들도 잘 기를 수 있지? " +
             "도움이 필요하면 언제든지 옵션의 도움말을 참고해!";

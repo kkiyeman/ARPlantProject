@@ -16,6 +16,6 @@ public class UIStart : MonoBehaviour
     }
     void OnClickStart()
     {
-        SceneManager.LoadScene("Plant");
+        SceneManager.LoadScene("Tutorial");
     }
 }
