@@ -218,6 +218,7 @@ public class UITutorial : MonoBehaviour
         Dirtxt.text = "자! 이제 기본적인건 알려줬으니 내 친구들도 잘 기를 수 있지? " +
             "도움이 필요하면 언제든지 옵션의 도움말을 참고해!";
         Invoke("ToMain", 5);
+        NextBtn.gameObject.SetActive(false);
 
     }
     void ToMain()

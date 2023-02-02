@@ -98,7 +98,7 @@ public class AudioManager : MonoBehaviour
     {
         var sfx = sfxs[name];
         SfxPlayer.clip = sfx.clip;
-        SfxPlayer.volume = sfx.volume;
+        SfxPlayer.volume = sfx.volume +0.2f;
         SfxPlayer.loop = sfx.loop;
         SfxPlayer.Play();
     }

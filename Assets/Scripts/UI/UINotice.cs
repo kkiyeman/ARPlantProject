@@ -28,6 +28,7 @@ public class UINotice : MonoBehaviour
 
     public void DieNotice(string name)
     {
+        AudioManager.GetInstance().PlaySfx("¶ìµù");
         rewardImg.gameObject.SetActive(false);
         rewardtxt.gameObject.SetActive(false);
         Character.sprite = Resources.Load<Sprite>("Character/CryStr");
@@ -36,6 +37,7 @@ public class UINotice : MonoBehaviour
     }
     public void GrowthNotice(string name)
     {
+        AudioManager.GetInstance().PlaySfx("¶ìµù");
         rewardImg.gameObject.SetActive(true);
         rewardtxt.gameObject.SetActive(true);
         Character.sprite = Resources.Load<Sprite>("Character/SmileTalk");
@@ -46,6 +48,7 @@ public class UINotice : MonoBehaviour
     }
     public void DiseaseNotice(string name)
     {
+        AudioManager.GetInstance().PlaySfx("¶ìµù");
         Character.sprite = Resources.Load<Sprite>("Character/SadStr");
         rewardImg.gameObject.SetActive(false);
         rewardtxt.gameObject.SetActive(false);
@@ -54,6 +57,7 @@ public class UINotice : MonoBehaviour
     }
     public void WelcomeNotice()
     {
+        AudioManager.GetInstance().PlaySfx("¶ìµù");
         rewardImg.gameObject.SetActive(true);
         rewardtxt.gameObject.SetActive(true);
         rewardtxt.text = $"+{LoginPresentMoney}";
@@ -64,6 +68,7 @@ public class UINotice : MonoBehaviour
     }
     public void OkNoticeBtn()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         NoticePanal.gameObject.SetActive(false);
     }
 }
