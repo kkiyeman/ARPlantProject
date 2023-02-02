@@ -45,7 +45,7 @@ public class PlantScene : MonoBehaviour
         uiinventory.gameObject.SetActive(false);
 
         UINotice uiNotice = uimanager.GetUI("UINotice").GetComponent<UINotice>();
-        uiNotice.gameObject.SetActive(false);
+        uiNotice.gameObject.SetActive(true);
 
         AudioManager audiomanager = AudioManager.GetInstance();
         //audiomanager.PlayBgm("PlantBgm");

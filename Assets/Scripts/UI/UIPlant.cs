@@ -79,6 +79,7 @@ public class UIPlant : MonoBehaviour
     UIManager uimanager;
     MyPlantManager myplantmanager;
 
+    UINotice uiNotice;
     void Start()
     {
         AudioManager.GetInstance().PlayBgm("Plant1");
@@ -86,7 +87,11 @@ public class UIPlant : MonoBehaviour
         plantmanager = PlantManager.GetInstance();
         uimanager = UIManager.GetInstance();
         myplantmanager = MyPlantManager.GetInstance();
+
+        
+
         SetButton();
+
     }
 
     void Update()
