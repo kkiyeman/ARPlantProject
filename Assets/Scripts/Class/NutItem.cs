@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NutItem : ItemBase
+{
+
+
+        public NutItem(string itemName, string itemType, int itemPrice, string itemInfo)
+        {
+            this.Itemname = itemName;
+            this.ItemType = itemType;
+            this.ItemPrice = itemPrice;
+            this.ItemInfo = itemInfo;
+        }
+
+        public override void UseItem()
+        {
+
+        }
+    
+}

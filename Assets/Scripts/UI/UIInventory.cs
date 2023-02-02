@@ -21,6 +21,7 @@ public class UIInventory : MonoBehaviour
     public Text txtItemTooltip;
     public List<BtnInvenItem> seedItems = new List<BtnInvenItem>();
     public List<BtnInvenItem> toolItems = new List<BtnInvenItem>();
+    public List<BtnInvenItem> nutItems = new List<BtnInvenItem>();
 
 
 
@@ -82,6 +83,11 @@ public class UIInventory : MonoBehaviour
                     var item2 = toolItems[k];
                     item2.gameObject.SetActive(false);
                 }
+                for(int m = 0; m<nutItems.Count; m++)
+                {
+                    var item3 = nutItems[m];
+                    item3.gameObject.SetActive(false);
+                }
                 break;
             case 1:
                 for (int j = 0; j < seedItems.Count; j++)
@@ -93,6 +99,11 @@ public class UIInventory : MonoBehaviour
                 {
                     var item2 = toolItems[k];
                     item2.gameObject.SetActive(false);
+                }
+                for (int m = 0; m < nutItems.Count; m++)
+                {
+                    var item3 = nutItems[m];
+                    item3.gameObject.SetActive(true);
                 }
                 break;
             case 2:
@@ -106,6 +117,11 @@ public class UIInventory : MonoBehaviour
                     var item2 = toolItems[k];
                     item2.gameObject.SetActive(true);
                 }
+                for (int m = 0; m < nutItems.Count; m++)
+                {
+                    var item3 = nutItems[m];
+                    item3.gameObject.SetActive(false);
+                }
                 break;
             case 3:
                 for (int j = 0; j < seedItems.Count; j++)
@@ -117,6 +133,11 @@ public class UIInventory : MonoBehaviour
                 {
                     var item2 = toolItems[k];
                     item2.gameObject.SetActive(false);
+                }
+                for (int m = 0; m < nutItems.Count; m++)
+                {
+                    var item3 = nutItems[m];
+                    item3.gameObject.SetActive(false);
                 }
                 break;
         }

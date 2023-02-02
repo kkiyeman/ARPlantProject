@@ -39,6 +39,13 @@ public class ItemManager : MonoBehaviour
         new ToolItem("고급 화분", "도구", 1000, "식물을 심을 수 있는 최고의 화분 ")
     };
 
+    public ItemBase[] nutItemData = new ItemBase[]
+    {
+        new NutItem("초급 영양비료", "영양제", 500, "식물들이 빨리 자랄 수 있게 해주는 비료"),
+        new NutItem("중급 영양비료", "영양제", 700, "식물들이 좀 더 빨리 자랄 수 있게 해주는 영양비료"),
+        new NutItem("고급 영양비료", "영양제", 1000, "식물들이 최고로 빨리 자랄 수 있게 해주는 영양가득 비료."),
+    };
+
 
     private void Awake()
     {

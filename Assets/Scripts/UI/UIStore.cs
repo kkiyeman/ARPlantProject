@@ -205,6 +205,10 @@ public class UIStore : MonoBehaviour
         {
             uiinventory.toolItems.Add(item);
         }
+        else if (item.itemType == "¿µ¾çÁ¦")
+        {
+            uiinventory.nutItems.Add(item);
+        }
         AudioManager.GetInstance().PlaySfx("Buy2");
 
 
@@ -212,7 +216,7 @@ public class UIStore : MonoBehaviour
 
     private void GetItemList(int index)
     {
-        if (index <= 1)
+        if (index <= 3)
         {
             imgItemReady.gameObject.SetActive(false);
             switch (index)
@@ -242,6 +246,21 @@ public class UIStore : MonoBehaviour
                         itemData.itemPrice.text = tools[i].ItemPrice.ToString();
                         itemData.itemKind = tools[i].ItemType;
                         itemData.itemInfo = tools[i].ItemInfo;
+                        itemData.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{itemData.itemName.text}");
+                        itemData.transform.SetParent(content.transform);
+                        btnItems.Add(itemData);
+                    }
+                    break;
+                case 3:
+                    var nuts = itemmanager.nutItemData;
+                    for (int i = 0; i < nuts.Length; i++)
+                    {
+                        var ob = Resources.Load<BtnItem>("UI/btnItem");
+                        var itemData = Instantiate(ob);
+                        itemData.itemName.text = nuts[i].Itemname;
+                        itemData.itemPrice.text = nuts[i].ItemPrice.ToString();
+                        itemData.itemKind = nuts[i].ItemType;
+                        itemData.itemInfo = nuts[i].ItemInfo;
                         itemData.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{itemData.itemName.text}");
                         itemData.transform.SetParent(content.transform);
                         btnItems.Add(itemData);
