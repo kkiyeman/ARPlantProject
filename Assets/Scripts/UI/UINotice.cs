@@ -75,4 +75,9 @@ public class UINotice : MonoBehaviour
         AudioManager.GetInstance().PlaySfx("»Ð");
         NoticePanal.gameObject.SetActive(false);
     }
+    public void WaterNotice()
+    { 
+    
+    }
+
 }

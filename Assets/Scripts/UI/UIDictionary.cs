@@ -89,7 +89,8 @@ public class UIDictionary : MonoBehaviour
 
     private void OnClickCloseDict()
     {
-        AudioManager.GetInstance().PlayBgm("Plant5");
+        int i = Random.Range(1, 4);
+        AudioManager.GetInstance().PlayBgm($"Plant{i}");
         AudioManager.GetInstance().PlaySfx("»Ð");
         gameObject.SetActive(false);
     }

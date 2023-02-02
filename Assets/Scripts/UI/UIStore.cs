@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class UIStore : MonoBehaviour
 {
@@ -83,7 +82,8 @@ public class UIStore : MonoBehaviour
 
     private void OnClickCloseStore()
     {
-        AudioManager.GetInstance().PlayBgm("Plant2");
+        int i = Random.Range(1, 4);
+        AudioManager.GetInstance().PlayBgm($"Plant{i}");
         AudioManager.GetInstance().PlaySfx("»Ð");
         gameObject.SetActive(false);
     }
@@ -223,7 +223,7 @@ public class UIStore : MonoBehaviour
             uiinventory.nutItems.Add(item);
         }
         
-        AudioManager.GetInstance().PlaySfx("Buy2");
+        AudioManager.GetInstance().PlaySfx("Money");
 
 
     }

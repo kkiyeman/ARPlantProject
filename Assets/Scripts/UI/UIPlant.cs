@@ -175,13 +175,13 @@ public class UIPlant : MonoBehaviour
 
     private void OnClickMemoOn()
     {
-        AudioManager.GetInstance().PlaySfx("사각사각");
+        AudioManager.GetInstance().PlaySfx("메모");
         imgMemo.gameObject.SetActive(true);
     }
 
     private void OnClickMemoOff()
     {
-        AudioManager.GetInstance().PlaySfx("사각사각");
+        AudioManager.GetInstance().PlaySfx("메모");
         imgMemo.gameObject.SetActive(false);
     }
 
@@ -213,13 +213,13 @@ public class UIPlant : MonoBehaviour
 
     private void OnClickUIStoreOn()
     {
-        AudioManager.GetInstance().PlaySfx("Buy2");
+        AudioManager.GetInstance().PlaySfx("Money");
         var uistore = uimanager.GetUI("UIStore");
         uistore.gameObject.SetActive(true);
     }
     private void OnClickUIDictionaryOn()
     {
-        AudioManager.GetInstance().PlaySfx("책");
+        AudioManager.GetInstance().PlaySfx("Dictionary");
         var UIDictionary = uimanager.GetUI("UIDictionary");
         UIDictionary.gameObject.SetActive(true);
     }

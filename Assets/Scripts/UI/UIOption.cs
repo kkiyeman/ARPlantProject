@@ -174,7 +174,7 @@ public class UIOption : MonoBehaviour
 
         NextBtn.gameObject.SetActive(true); 
         
-        ShowHelp(index);        
+        ShowHelp(index);
     }
 
 }
