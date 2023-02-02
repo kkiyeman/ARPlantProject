@@ -69,7 +69,6 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Button btnCropSeed;
 
     [Header("Test")]
-    [SerializeField] Button btnSamplePlant;
 
     [SerializeField] GameObject bg;
     [SerializeField] string[] arrPlants;
@@ -139,7 +138,7 @@ public class UIPlant : MonoBehaviour
 
     private void SetButton()
     {
-        btnSamplePlant.onClick.AddListener(OnClickBottomOn);
+        //btnSamplePlant.onClick.AddListener(OnClickBottomOn);
         btnCloseStatus.onClick.AddListener(OnClickStatusOff);
         btnMemo.onClick.AddListener(OnClickMemoOn);
         btnCloseMemo.onClick.AddListener(OnClickMemoOff);
@@ -340,4 +339,6 @@ public class UIPlant : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
         isPoped = false;
     }
+
+    
 }

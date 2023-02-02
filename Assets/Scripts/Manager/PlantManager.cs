@@ -89,6 +89,9 @@ public class PlantManager : MonoBehaviour
 
     public List<GameObject> seeds = new List<GameObject>();
     public List<GameObject> sprouts = new List<GameObject>();
+    public List<GameObject> middles = new List<GameObject>();
+    public List<GameObject> grownups = new List<GameObject>();
+    public List<GameObject> deads = new List<GameObject>();
 
 
     //string path;
@@ -535,11 +538,28 @@ public class PlantManager : MonoBehaviour
     {
 
         plantName = plantDates[clickIdx].plantName;
-        var seed = Resources.Load<GameObject>($"plant/{plantName}/Seed");
+        var seedob = Resources.Load<GameObject>($"plant/{plantName}/Seed");
+        var sproutob = Resources.Load<GameObject>($"plant/{plantName}/Sprout");
+        var middleob = Resources.Load<GameObject>($"plant/{plantName}/{plantName}_M");
+        var grownupob = Resources.Load<GameObject>($"plant/{plantName}/{plantName}_L");
+        var deadob = Resources.Load<GameObject>($"plant/{plantName}/Dead_Plant");
         //var seed = Resources.Load<GameObject>($"plant/Seed");
         Debug.Log("123123");
         Debug.Log("potTrans : " + potTrans.name);
-        var Plant = Instantiate(seed, potTrans);
+        var seed = Instantiate(seedob, potTrans);
+        var sprout = Instantiate(sproutob, potTrans);
+        var middle = Instantiate(middleob, potTrans);
+        var grownup = Instantiate(grownupob, potTrans);
+        var dead = Instantiate(deadob, potTrans);
+        seeds.Add(seed);
+        sprouts.Add(sprout);
+        middles.Add(middle);
+        grownups.Add(grownup);
+        deads.Add(dead);
+        sprout.gameObject.SetActive(false);
+        middle.gameObject.SetActive(false);
+        grownup.gameObject.SetActive(false);
+        dead.gameObject.SetActive(false);
         isPlantSeed[potIdx] = true;
 
         MyPlantList myPlant = new MyPlantList(
@@ -570,6 +590,47 @@ public class PlantManager : MonoBehaviour
         MyPlantManager.GetInstance().PlamtManagement();
     }
 
+    public void SproutOn(int idx)
+    {
+        seeds[idx].gameObject.SetActive(false);
+        sprouts[idx].gameObject.SetActive(true);
+        middles[idx].gameObject.SetActive(false);
+        grownups[idx].gameObject.SetActive(false);
+        deads[idx].gameObject.SetActive(false);
+    }
+
+    public void MiddleOn(int idx)
+    {
+        seeds[idx].gameObject.SetActive(false);
+        sprouts[idx].gameObject.SetActive(false);
+        middles[idx].gameObject.SetActive(true);
+        grownups[idx].gameObject.SetActive(false);
+        deads[idx].gameObject.SetActive(false);
+    }
+    public void GrownUpOn(int idx)
+    {
+        seeds[idx].gameObject.SetActive(false);
+        sprouts[idx].gameObject.SetActive(false);
+        middles[idx].gameObject.SetActive(false);
+        grownups[idx].gameObject.SetActive(true);
+        deads[idx].gameObject.SetActive(false);
+    }
+    public void DeadOn(int idx)
+    {
+        seeds[idx].gameObject.SetActive(false);
+        sprouts[idx].gameObject.SetActive(false);
+        middles[idx].gameObject.SetActive(false);
+        grownups[idx].gameObject.SetActive(false);
+        deads[idx].gameObject.SetActive(true);
+    }
+    public void removeplant(int idx)
+    {
+        Destroy(seeds[idx].gameObject);
+        Destroy(sprouts[idx].gameObject);
+        Destroy(middles[idx].gameObject);
+        Destroy(grownups[idx].gameObject);
+        Destroy(deads[idx].gameObject);
+    }
     /*    public void SaveData()
         {
             PlantList plantList = new PlantList();

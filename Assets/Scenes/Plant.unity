@@ -174,17 +174,17 @@ PrefabInstance:
     - target: {fileID: 9138128253417536906, guid: e7e8b6d6bbb4b8b4d81a06546e147dc6,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.92685664
       objectReference: {fileID: 0}
     - target: {fileID: 9138128253417536906, guid: e7e8b6d6bbb4b8b4d81a06546e147dc6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.37541556
       objectReference: {fileID: 0}
     - target: {fileID: 9138128253417536906, guid: e7e8b6d6bbb4b8b4d81a06546e147dc6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 44.1
       objectReference: {fileID: 0}
     - target: {fileID: 9138128253417536906, guid: e7e8b6d6bbb4b8b4d81a06546e147dc6,
         type: 3}
@@ -774,6 +774,13 @@ MonoBehaviour:
   setNutrition: 0
   setIsSick: 0
   isPlantSeed: 0000000000
+  isSick: 
+  isDie: 
+  seeds: []
+  sprouts: []
+  middles: []
+  grownups: []
+  deads: []
 --- !u!4 &1689366843
 Transform:
   m_ObjectHideFlags: 0
