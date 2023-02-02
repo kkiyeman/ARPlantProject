@@ -103,7 +103,7 @@ public class UIPlant : MonoBehaviour
 
     public void SetStatus()
     {
-        int potIdx = PlantManager.GetInstance().potIdx;
+        int potIdx = plantmanager.potIdx;
         MyPlantList myplant = myplantmanager.myPlantList[potIdx];
         string _plantuserName = myplant.plantUserName;
         string _plantName = myplant.plantName;
