@@ -599,6 +599,8 @@ public class PlantManager : MonoBehaviour
         middles[idx].gameObject.SetActive(false);
         grownups[idx].gameObject.SetActive(false);
         deads[idx].gameObject.SetActive(false);
+        var uiplant = UIManager.GetInstance().GetUI("UIPlant").GetComponent<UIPlant>();
+        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/Sprout");
     }
 
     public void MiddleOn(int idx)
@@ -608,6 +610,9 @@ public class PlantManager : MonoBehaviour
         middles[idx].gameObject.SetActive(true);
         grownups[idx].gameObject.SetActive(false);
         deads[idx].gameObject.SetActive(false);
+        var uiplant = UIManager.GetInstance().GetUI("UIPlant").GetComponent<UIPlant>();
+        string name = MyPlantManager.GetInstance().myPlantList[idx].plantName;
+        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/{name}_M");
     }
     public void GrownUpOn(int idx)
     {
@@ -616,6 +621,9 @@ public class PlantManager : MonoBehaviour
         middles[idx].gameObject.SetActive(false);
         grownups[idx].gameObject.SetActive(true);
         deads[idx].gameObject.SetActive(false);
+        var uiplant = UIManager.GetInstance().GetUI("UIPlant").GetComponent<UIPlant>();
+        string name = MyPlantManager.GetInstance().myPlantList[idx].plantName;
+        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/{name}_L");
     }
     public void DeadOn(int idx)
     {
@@ -624,6 +632,8 @@ public class PlantManager : MonoBehaviour
         middles[idx].gameObject.SetActive(false);
         grownups[idx].gameObject.SetActive(false);
         deads[idx].gameObject.SetActive(true);
+        var uiplant = UIManager.GetInstance().GetUI("UIPlant").GetComponent<UIPlant>();
+        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/dead");
     }
     public void removeplant(int idx)
     {

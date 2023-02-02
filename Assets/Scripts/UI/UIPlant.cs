@@ -71,6 +71,11 @@ public class UIPlant : MonoBehaviour
     [Header("Test")]
 
     [SerializeField] GameObject bg;
+    [SerializeField] Button Test1;
+    [SerializeField] Button Test2;
+    [SerializeField] Button Test3;
+    [SerializeField] Button Test4;
+    [SerializeField] Button Test5;
     [SerializeField] string[] arrPlants;
 
     GameManager gamemanager;
@@ -159,6 +164,11 @@ public class UIPlant : MonoBehaviour
         btnWater.onClick.AddListener(OnClickWaterThePlant);
         btnPill.onClick.AddListener(OnClickNutritionSupplyPlant);
         btnComment.onClick.AddListener(OnClickPraisePlant);
+        Test1.onClick.AddListener(() => { plantmanager.SproutOn(plantmanager.potIdx); });
+        Test2.onClick.AddListener(() => { plantmanager.MiddleOn(plantmanager.potIdx); });
+        Test3.onClick.AddListener(() => { plantmanager.GrownUpOn(plantmanager.potIdx); });
+        Test4.onClick.AddListener(() => { plantmanager.DeadOn(plantmanager.potIdx); });
+        Test5.onClick.AddListener(() => { plantmanager.removeplant(plantmanager.potIdx); });
     }
 
     private void OnClickStatusOn()
