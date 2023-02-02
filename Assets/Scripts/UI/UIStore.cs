@@ -48,6 +48,7 @@ public class UIStore : MonoBehaviour
 
     void Start()
     {
+        AudioManager.GetInstance().PlayBgm("Store");
         gamemanager = GameManager.GetInstance();
         plantmanager = PlantManager.GetInstance();
         uimanager = UIManager.GetInstance();

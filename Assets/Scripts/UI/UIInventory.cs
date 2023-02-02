@@ -31,6 +31,7 @@ public class UIInventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         gamemanager = GameManager.GetInstance();
         plantmanager = PlantManager.GetInstance();
         uimanager = UIManager.GetInstance();

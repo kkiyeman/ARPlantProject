@@ -120,7 +120,7 @@ public class UIPlant : MonoBehaviour
 
     private void SetPlayerData()
     {
-        
+        AudioManager.GetInstance().PlayBgm("Plant1");
         txtCurtime.text = DateTime.Now.ToString("M"+"월 "+"dd"+"일" + "\n" + "HH" + "시 " + "mm" + "분");
         curEnergy = GameManager.GetInstance().curEnergy;
         totalEnergy = 100;

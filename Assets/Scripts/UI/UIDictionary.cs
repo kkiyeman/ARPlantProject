@@ -37,6 +37,7 @@ public class UIDictionary : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.GetInstance().PlayBgm("Dictionary");
         gamemanager = GameManager.GetInstance();
         plantmanager = PlantManager.GetInstance();
         uimanager = UIManager.GetInstance();
