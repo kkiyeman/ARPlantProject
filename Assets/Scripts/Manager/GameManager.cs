@@ -20,12 +20,12 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [HideInInspector] public int totalEnergy = 100;     //전체 에너지
-     public int curEnergy = 50;             //현재 에너지
+     public int curEnergy = 100;             //현재 에너지
 
     public int runningTime;         //어플 진행 시간
 
     public int curPoint = 0;                               //게임 내 포인트
-    public int curGameMoney = 0;                           //게임 머니
+    public int curGameMoney = 1000;                           //게임 머니
 
     public bool isEnegyZero;                            //에너지 제로 판별 여부
 

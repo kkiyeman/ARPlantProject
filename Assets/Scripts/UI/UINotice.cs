@@ -14,16 +14,20 @@ public class UINotice : MonoBehaviour
     PlantManager plantManager;
     MyPlantManager myPlantManager;
     GameManager gameManager;
-    int LoginPresentMoney =100;
+    int LoginPresentMoney = 1000;
 
     public GameObject NoticePanal;
 
     public List<MyPlantList> myPlantList = new List<MyPlantList>();
+
+    GameManager gamemanager;
     // Start is called before the first frame update
     void Start()
     {
+        gamemanager = GameManager.GetInstance();
         WelcomeNotice();
       OkBtn.onClick.AddListener(OkNoticeBtn);
+        gamemanager.curGameMoney += LoginPresentMoney;
     }
 
     public void DieNotice(string name)

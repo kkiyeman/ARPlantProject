@@ -127,9 +127,9 @@ public class UIPlant : MonoBehaviour
     {
         
         txtCurtime.text = DateTime.Now.ToString("M"+"월 "+"dd"+"일" + "\n" + "HH" + "시 " + "mm" + "분");
-        curEnergy = GameManager.GetInstance().curEnergy;
-        totalEnergy = 100;
-        Gold = 1000;
+        curEnergy = gamemanager.curEnergy;
+        totalEnergy = gamemanager.totalEnergy;
+        Gold = gamemanager.curGameMoney;
         txtEnergy.text = $"{curEnergy}/{totalEnergy}";
         txtGold.text = $"{Gold}";
         sldEnergy.maxValue = totalEnergy;
