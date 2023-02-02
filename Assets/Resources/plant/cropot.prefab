@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6366994551442388612}
   - component: {fileID: 4753854193675269471}
   m_Layer: 0
-  m_Name: Cropot
+  m_Name: cropot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   corPot: {fileID: 8394434670806987763}
   shelfIdx: 0
   potIdx: 0
-  type: 0
+  type: 1
 --- !u!1001 &8700510322070474402
 PrefabInstance:
   m_ObjectHideFlags: 0
