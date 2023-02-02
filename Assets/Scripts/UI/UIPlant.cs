@@ -276,6 +276,8 @@ public class UIPlant : MonoBehaviour
     public void OnClickOrnSpawn()
     {
         AudioManager.GetInstance().PlaySfx("»Ð");
+        ARRenderManager armanager = ARRenderManager.GetInstance();
+        armanager.PlaneOn();
         plantmanager.onClickOrnBtn = true;
         bgChooseSeed.gameObject.SetActive(false);
     }

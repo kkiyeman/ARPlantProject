@@ -8,6 +8,7 @@ public class PlantScene : MonoBehaviour
     {
         PlantManager plantmanager = PlantManager.GetInstance();
         UIManager uimanager = UIManager.GetInstance();
+        ARRenderManager armanager = ARRenderManager.GetInstance();
 
         MyPlantManager myplantmanager = MyPlantManager.GetInstance();
         
