@@ -54,6 +54,10 @@ public class UIOption : MonoBehaviour
     {
         audioManager = GetComponent<AudioManager>();
         audioManager = AudioManager.GetInstance();
+        Bgm.maxValue = 1f;
+        Bgm.value = 0.1f;
+        SFX.maxValue = 1f;
+        SFX.value = 0.3f;
 
         CloseBtn.onClick.AddListener(CloseOption);
         HelpBtn.onClick.AddListener(OpenHelp);
@@ -70,6 +74,16 @@ public class UIOption : MonoBehaviour
         PrevBtn.gameObject.SetActive(false);
     }
 
+    private void Update()
+    {
+        SetVolume();
+    }
+
+    void SetVolume()
+    {
+        audioManager.BgmPlayer.volume = Bgm.value;
+        audioManager.SfxPlayer.volume = SFX.value;
+    }
     void CloseOption()
     {
         AudioManager.GetInstance().PlaySfx("»Ð");
