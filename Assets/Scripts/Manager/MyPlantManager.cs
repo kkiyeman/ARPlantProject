@@ -115,7 +115,7 @@ public class MyPlantManager : MonoBehaviour
 
             for(int i = 0; i < myPlantList.Count; i++)
             {
-                if (120 < myPlantList[i].hydration && myPlantList[i].hydration <= 70 || myPlantList[i].nutrition > 100 || myPlantList[i].nutrition <= 70)
+                if (120 < myPlantList[i].hydration && myPlantList[i].hydration <= 50 || myPlantList[i].nutrition > 100 || myPlantList[i].nutrition <= 50)
                 {
                     if (!myPlantList[i].isSick)
                     {
@@ -258,7 +258,7 @@ public class MyPlantManager : MonoBehaviour
 
             for(int i = 0; i < myPlantList.Count; i++)
             {
-                if (myPlantList[i].hydration >= 150 || myPlantList[i].hydration <= 50 || myPlantList[i].nutrition <= 50)
+                if (myPlantList[i].hydration >= 150 || myPlantList[i].nutrition >= 150 || myPlantList[i].hydration <= 30 || myPlantList[i].nutrition <= 30)
                 {
                     if (!myPlantList[i].isDie)
                     {
