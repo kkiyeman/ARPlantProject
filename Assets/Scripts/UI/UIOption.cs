@@ -56,7 +56,7 @@ public class UIOption : MonoBehaviour
         Bgm.value = 0.5f;
         SFX.value = 0.5f;
 
-        if (buttons != null)
+/*        if (buttons != null)
         {
             for (int i = 0; i < buttons.Length; i++)
             {
@@ -67,7 +67,7 @@ public class UIOption : MonoBehaviour
                 buttons[index].onClick.AddListener(() => this.ShowHelp(index));
 
             }
-        }
+        }*/
 
     }
 
