@@ -48,43 +48,46 @@ public class MyPlantManager : MonoBehaviour
 
     }
 
-    public void CheckMyPlantsIdx()
-    {
-        for(int i = 0; i < myPlantList.Count; i++)
-        {
-                i = myPlantIdx;
-        }
-    }
-
-    public IEnumerator GrowthRatePlant(int idx)            //식물 성장 함수
+    public IEnumerator GrowthRatePlant()            //식물 성장 함수
     {
         while(true)
         {
             yield return waitFor10Seconds;                 //식물 성장 시간(일단은 10초로) 개발 완료후 10,800초로 변경
-            myPlantList[idx].growthRate++;
+
+            for(int i = 0; i < myPlantList.Count; i++)
+            {
+                myPlantList[i].growthRate++;
+            }
         }
     }
 
-    public IEnumerator MinusPlantStatus(int idx) //매 시간 수분량, 영양도 감소 함수(시간당 10 감소)
+    public IEnumerator MinusPlantStatus() //매 시간 수분량, 영양도 감소 함수(시간당 10 감소)
     {
         while (true)
         {
             yield return waitFor10Seconds;       //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
 
-            myPlantList[idx].hydration -= 10;
-            myPlantList[idx].nutrition -= 10;
+
+            for (int i = 0; i < myPlantList.Count; i++)
+            {
+                myPlantList[i].hydration -= 10; ;
+                myPlantList[i].nutrition -= 10;
+            }
         }
     }
 
-    public IEnumerator PlantDisease(int idx) //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100이상, 20미만)
+    public IEnumerator PlantDisease() //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100이상, 20미만)
     {
         while (true)
         {
             yield return waitForHalfSeconds;
 
-            if (120 < myPlantList[idx].hydration && myPlantList[idx].hydration < 150 || myPlantList[idx].nutrition >= 100 || myPlantList[idx].nutrition < 20)
+            for(int i = 0; i < myPlantList.Count; i++)
             {
-                myPlantList[idx].isSick = true;
+                if (120 < myPlantList[i].hydration && myPlantList[i].hydration < 150 || myPlantList[i].nutrition >= 100 || myPlantList[i].nutrition < 20)
+                {
+                    myPlantList[i].isSick = true;
+                }
             }
         }
     }
@@ -206,16 +209,19 @@ public class MyPlantManager : MonoBehaviour
             return;
     }
 
-    public IEnumerator DieThePlant(int idx) //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)
+    public IEnumerator DieThePlant() //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)
     {
         while (true)
         {
             yield return waitForHalfSeconds;
 
-            if (myPlantList[idx].hydration >= 150 || myPlantList[idx].hydration < 30 || myPlantList[idx].nutrition <= 0)
+            for(int i = 0; i < myPlantList.Count; i++)
             {
-                myPlantList.RemoveAt(idx);
-                Destroy(gameObject);
+                if (myPlantList[i].hydration >= 150 || myPlantList[i].hydration < 30 || myPlantList[i].nutrition <= 0)
+                {
+                    myPlantList.RemoveAt(i);
+                    Destroy(gameObject);
+                }
             }
         }
     }

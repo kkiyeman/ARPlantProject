@@ -96,9 +96,10 @@ public class UIPlant : MonoBehaviour
             SetStatus();
     }
 
-    private void SetStatus()
+    public void SetStatus()
     {
-        MyPlantList myplant = myplantmanager.myPlantList[0];
+        int potIdx = PlantManager.GetInstance().potIdx;
+        MyPlantList myplant = myplantmanager.myPlantList[potIdx];
         string _plantuserName = myplant.plantUserName;
         string _plantName = myplant.plantName;
         int _plantgrowth = myplant.growthRate;

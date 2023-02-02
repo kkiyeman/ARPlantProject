@@ -473,34 +473,38 @@ public class PlantManager : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            RaycastHit hitobj;
-
-            if (Physics.Raycast(arCamera.ScreenPointToRay(Input.mousePosition), out hitobj))
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+            else
             {
-                
-                var shelf = hitobj.collider.GetComponentInParent<Shelf>();
-                potTrans = hitobj.collider.gameObject.transform.parent;
-
-                bool isOrn = shelf.type == ShelfType.orn;
-                potIdx = isOrn ? potTrans.GetSiblingIndex() + (shelf.shelfIdx * 4) : potTrans.GetSiblingIndex() + (shelf.potIdx) + 8;
-
-                Debug.Log("potIdx : " + potIdx);
-
-                // potTrans.GetSiblingIndex() + (shelf.potIdx) + 8
-
-                if (!isPlantSeed[potIdx])
+                RaycastHit hitobj;
+                if (Physics.Raycast(arCamera.ScreenPointToRay(Input.mousePosition), out hitobj))
                 {
-                    GameObject targetUI = isOrn ? uimanager.GetUI("UIOrnSpawn") : uimanager.GetUI("UICroSpawn");
-                    targetUI.SetActive(true);
+                    var shelf = hitobj.collider.GetComponentInParent<Shelf>();
+                    potTrans = hitobj.collider.gameObject.transform.parent;
+                    Debug.Log("potTrans : " + potTrans.name);
+
+                    bool isOrn = shelf.type == ShelfType.orn;
+                    potIdx = isOrn ? potTrans.GetSiblingIndex() + (shelf.shelfIdx * 4) : potTrans.GetSiblingIndex() + (shelf.potIdx) + 4;
+
+                    Debug.Log("potIdx : " + potIdx);
+
+                    // potTrans.GetSiblingIndex() + (shelf.potIdx) + 8
+
+                    if (!isPlantSeed[potIdx])
+                    {
+                        GameObject targetUI = isOrn ? uimanager.GetUI("UIOrnSpawn") : uimanager.GetUI("UICroSpawn");
+                        targetUI.SetActive(true);
+                    }
+                    else
+                    {
+                        var uiplant = uimanager.GetUI("UIPlant").GetComponent<UIPlant>();
+                        uiplant.OnClickBottomOn();
+                    }
+
+                    selectPot = hitobj.collider.gameObject;
                 }
-                else
-                {
-                    var uiplant = uimanager.GetUI("UIPlant").GetComponent<UIPlant>();
-                    uiplant.OnClickBottomOn();
-                }
-                
-                selectPot = hitobj.collider.gameObject;
-            }                                                                                                                                                                                                                      
+            }
         }
     }
 
@@ -521,12 +525,14 @@ public class PlantManager : MonoBehaviour
             DataManager.GetInstance().SaveData();        
     }
 
-    public void SpawnMyPlant(string plantName, Transform potTrans)
+    public void SpawnMyPlant(string plantName)
     {
-        potTrans = this.potTrans;
+
         plantName = plantDates[clickIdx].plantName;
         var seed = Resources.Load<GameObject>($"plant/{plantName}/Seed");
         //var seed = Resources.Load<GameObject>($"plant/Seed");
+        Debug.Log("123123");
+        Debug.Log("potTrans : " + potTrans.name);
         var Plant = Instantiate(seed, potTrans);
         isPlantSeed[potIdx] = true;
 
@@ -539,14 +545,9 @@ public class PlantManager : MonoBehaviour
             false,
             plantDates[clickIdx].reward
             );
-        myPlantManager.myPlantList.Add(myPlant);                  
+        myPlantManager.myPlantList.Add(myPlant);
 
-        StartCoroutine(myPlantManager.GrowthRatePlant(0));
-        Debug.Log(myPlantManager.myPlantList[0].plantUserName);
-        Debug.Log(myPlantManager.myPlantList[0].plantName);
-        Debug.Log($"{myPlantManager.myPlantList[0].growthRate}");
-        Debug.Log($"{myPlantManager.myPlantList[0].hydration}");
-        Debug.Log($"{myPlantManager.myPlantList[0].nutrition}");
+        PlamtManagement();
     }
 
     public void SetPlantInfo(int idx)
@@ -556,6 +557,14 @@ public class PlantManager : MonoBehaviour
         setHydration = plantDates[idx].hydration;
         setNutrition = plantDates[idx].nutrition;
         setIsSick = plantDates[idx].isSick;
+    }
+
+    public void PlamtManagement()
+    {
+        StartCoroutine(myPlantManager.GrowthRatePlant());
+        StartCoroutine(myPlantManager.MinusPlantStatus());
+        StartCoroutine(myPlantManager.PlantDisease());
+        StartCoroutine(myPlantManager.DieThePlant());
     }
 
     /*    public void SaveData()

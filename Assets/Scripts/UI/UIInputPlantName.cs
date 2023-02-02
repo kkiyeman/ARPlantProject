@@ -48,11 +48,13 @@ public class UIInputPlantName : MonoBehaviour
         curPlantName = inputPlantName.text;
         plantmanager.setPlantUserName = curPlantName;
 
+        potTrans = plantmanager.potTrans;
+
         //plantmanager.SetPlantInfo(plantmanager.clickIdx);
         Invoke("CloseUI", 1.5f);
         //gameObject.SetActive(false);
 
-        plantmanager.SpawnMyPlant(plantName, potTrans);
+        plantmanager.SpawnMyPlant(plantName);
     }
 
     private void CloseUI()
