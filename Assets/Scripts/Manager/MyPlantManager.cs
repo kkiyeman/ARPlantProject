@@ -22,8 +22,10 @@ public class MyPlantManager : MonoBehaviour
     public int myPlantIdx;
 
     public WaitForSecondsRealtime waitFor30Seconds = new WaitForSecondsRealtime(30);
-    public WaitForSecondsRealtime waitFor10Seconds = new WaitForSecondsRealtime(10);
-    public WaitForSecondsRealtime waitForHalfSeconds = new WaitForSecondsRealtime(0.5f);
+    public WaitForSecondsRealtime waitFor10Seconds_GrowthRatePlant = new WaitForSecondsRealtime(10);
+    public WaitForSecondsRealtime waitFor10Seconds_PlantStatus = new WaitForSecondsRealtime(10);
+    public WaitForSecondsRealtime waitForHalfSeconds_PlantDisease = new WaitForSecondsRealtime(0.5f);
+    public WaitForSecondsRealtime waitForHalfSeconds_DieThePlant = new WaitForSecondsRealtime(0.5f);
 
     public bool isWaterThePlantOnClick;       //물주기 버튼 클릭 여부
     public bool isEnergySupplyPlantOnClick;   //영양제 버튼 클릭 여부
@@ -48,15 +50,23 @@ public class MyPlantManager : MonoBehaviour
 
     }
 
+    public void PlamtManagement()
+    {
+        StartCoroutine(GrowthRatePlant());
+        StartCoroutine(MinusPlantStatus());
+        StartCoroutine(PlantDisease());
+        StartCoroutine(DieThePlant());
+    }
+
     public IEnumerator GrowthRatePlant()            //식물 성장 함수
     {
         while(true)
         {
-            yield return waitFor10Seconds;                 //식물 성장 시간(일단은 10초로) 개발 완료후 10,800초로 변경
+            yield return waitFor10Seconds_GrowthRatePlant;              //식물 성장 시간(일단은 10초로) 개발 완료후 10,800초로 변경
 
-            for(int i = 0; i < myPlantList.Count; i++)
+            for (int i = 0; i < myPlantList.Count; i++)
             {
-                myPlantList[i].growthRate++;
+                myPlantList[i].growthRate += 15;
             }
         }
     }
@@ -65,28 +75,28 @@ public class MyPlantManager : MonoBehaviour
     {
         while (true)
         {
-            yield return waitFor10Seconds;       //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
-
+            yield return waitFor10Seconds_PlantStatus;       //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
 
             for (int i = 0; i < myPlantList.Count; i++)
             {
-                myPlantList[i].hydration -= 10; ;
+                myPlantList[i].hydration -= 10;
                 myPlantList[i].nutrition -= 10;
             }
         }
     }
 
-    public IEnumerator PlantDisease() //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100이상, 20미만)
+    public IEnumerator PlantDisease() //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100초과, 20미만)
     {
         while (true)
         {
-            yield return waitForHalfSeconds;
+            yield return waitForHalfSeconds_PlantDisease;
 
             for(int i = 0; i < myPlantList.Count; i++)
             {
-                if (120 < myPlantList[i].hydration && myPlantList[i].hydration < 150 || myPlantList[i].nutrition >= 100 || myPlantList[i].nutrition < 20)
+                if (120 < myPlantList[i].hydration && myPlantList[i].hydration < 150 || myPlantList[i].nutrition > 100 || myPlantList[i].nutrition < 20)
                 {
                     myPlantList[i].isSick = true;
+                    Debug.Log(myPlantList[i].plantUserName + "아프다~");
                 }
             }
         }
@@ -213,7 +223,7 @@ public class MyPlantManager : MonoBehaviour
     {
         while (true)
         {
-            yield return waitForHalfSeconds;
+            yield return waitForHalfSeconds_DieThePlant;
 
             for(int i = 0; i < myPlantList.Count; i++)
             {
@@ -221,6 +231,7 @@ public class MyPlantManager : MonoBehaviour
                 {
                     myPlantList.RemoveAt(i);
                     Destroy(gameObject);
+                    Debug.Log(myPlantList[i].plantUserName + "죽었다");
                 }
             }
         }
