@@ -743,6 +743,7 @@ MonoBehaviour:
   rewardtxt: {fileID: 5385768918877539837}
   Noticetxt: {fileID: 4237699306105091161}
   OkBtn: {fileID: 4237699307172126120}
+  NoticePanal: {fileID: 5497345126374840179}
 --- !u!1 &7034490762399919217
 GameObject:
   m_ObjectHideFlags: 0

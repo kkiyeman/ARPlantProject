@@ -13,7 +13,7 @@ public class UINotice : MonoBehaviour
     PlantManager plantManager;
     MyPlantManager myPlantManager;
     GameManager gameManager;
-    GameObject NoticePanal;
+    public GameObject NoticePanal;
 
     public List<MyPlantList> myPlantList = new List<MyPlantList>();
     // Start is called before the first frame update
@@ -24,8 +24,8 @@ public class UINotice : MonoBehaviour
 
     public void DieNotice(string name)
     {
-        NoticePanal.SetActive(true);
         Noticetxt.text = $"네가 없던 사이에 우리 {name}가 죽고 말았어..! 새로운 식물을 키우고 싶다면 씨앗을 다시 심어보자.";
+        NoticePanal.SetActive(true);
     }
     public void GrowthNotice(string name)
     {
