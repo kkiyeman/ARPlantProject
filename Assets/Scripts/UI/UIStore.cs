@@ -243,12 +243,12 @@ public class UIStore : MonoBehaviour
                     {
                         var ob = Resources.Load<BtnItem>("UI/btnItem");
                         var itemData = Instantiate(ob);
+                        itemData.transform.SetParent(content.transform);
                         itemData.itemName.text = seeds[i].Itemname;
                         itemData.itemPrice.text = seeds[i].ItemPrice.ToString();
                         itemData.itemKind = seeds[i].ItemType;
                         itemData.itemInfo = seeds[i].ItemInfo;
                         itemData.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{itemData.itemName.text}");
-                        itemData.transform.SetParent(content.transform);
                         btnItems.Add(itemData);
                     }
                     break;
@@ -258,12 +258,12 @@ public class UIStore : MonoBehaviour
                     {
                         var ob = Resources.Load<BtnItem>("UI/btnItem");
                         var itemData = Instantiate(ob);
+                        itemData.transform.SetParent(content.transform);
                         itemData.itemName.text = tools[i].Itemname;
                         itemData.itemPrice.text = tools[i].ItemPrice.ToString();
                         itemData.itemKind = tools[i].ItemType;
                         itemData.itemInfo = tools[i].ItemInfo;
                         itemData.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{itemData.itemName.text}");
-                        itemData.transform.SetParent(content.transform);
                         btnItems.Add(itemData);
                     }
                     break;
@@ -273,12 +273,12 @@ public class UIStore : MonoBehaviour
                     {
                         var ob = Resources.Load<BtnItem>("UI/btnItem");
                         var itemData = Instantiate(ob);
+                        itemData.transform.SetParent(content.transform);
                         itemData.itemName.text = nuts[i].Itemname;
                         itemData.itemPrice.text = nuts[i].ItemPrice.ToString();
                         itemData.itemKind = nuts[i].ItemType;
                         itemData.itemInfo = nuts[i].ItemInfo;
                         itemData.imgItem.sprite = Resources.Load<Sprite>($"Image/Item/{itemData.itemName.text}");
-                        itemData.transform.SetParent(content.transform);
                         btnItems.Add(itemData);
                     }
                     break;
