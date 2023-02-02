@@ -306,7 +306,7 @@ public class UIPlant : MonoBehaviour
 
     private void OnClickWaterThePlant()
     {
-        AudioManager.GetInstance().PlaySfx("¹°");
+        AudioManager.GetInstance().PlaySfx("¹°»Ñ¸®°³");
         myplantmanager.isWaterThePlantOnClick = true;
         myplantmanager.WaterThePlant(plantmanager.potIdx);
     }
