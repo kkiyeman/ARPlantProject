@@ -19,6 +19,7 @@ public class PlantScene : MonoBehaviour
         uimanager.OpenUI("UIOrnSpawn");
         uimanager.OpenUI("UICroSpawn");
         uimanager.OpenUI("UIInputPlantName");
+        uimanager.OpenUI("UINotice");
 
         var uiOS = uimanager.GetUI("UIOrnSpawn");
         uiOS.gameObject.SetActive(false);
@@ -42,6 +43,9 @@ public class PlantScene : MonoBehaviour
 
         UIInventory uiinventory = uimanager.GetUI("UIInventory").GetComponent<UIInventory>();
         uiinventory.gameObject.SetActive(false);
+
+        UINotice uiNotice = uimanager.GetUI("UINotice").GetComponent<UINotice>();
+        uiNotice.gameObject.SetActive(false);
 
         AudioManager audiomanager = AudioManager.GetInstance();
         //audiomanager.PlayBgm("PlantBgm");

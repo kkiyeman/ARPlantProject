@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [HideInInspector] public int totalEnergy = 100;     //전체 에너지
-     public int curEnergy = 10;             //현재 에너지
+     public int curEnergy = 50;             //현재 에너지
 
     public int runningTime;         //어플 진행 시간
 

@@ -154,6 +154,8 @@ public class UIPlant : MonoBehaviour
         btnStatus.onClick.AddListener(OnClickStatusOn);
         btnCloseBottom.onClick.AddListener(OnClickBottomOff);
         btnWater.onClick.AddListener(OnClickWaterThePlant);
+        btnPill.onClick.AddListener(OnClickNutritionSupplyPlant);
+        btnComment.onClick.AddListener(OnClickPraisePlant);
     }
 
     private void OnClickStatusOn()
@@ -296,6 +298,12 @@ public class UIPlant : MonoBehaviour
     {
         myplantmanager.isEnergySupplyPlantOnClick = true;
         myplantmanager.NutritionSupplyPlant(plantmanager.potIdx);
+    }
+
+    private void OnClickPraisePlant()
+    {
+        myplantmanager.isPraisePlantOnClick = true;
+        myplantmanager.PraisePlant(plantmanager.potIdx);
     }
 
     private IEnumerator PopUp()
