@@ -33,5 +33,9 @@ public class BtnInvenItem : MonoBehaviour
         var uiinventory = UIManager.GetInstance().GetUI("UIInventory").GetComponent<UIInventory>();
         uiinventory.txtItemName.text = itemName;
         uiinventory.txtItemTooltip.text = itemInfo;   
+        if(!isClicked)
+        {
+
+        }
     }
 }
