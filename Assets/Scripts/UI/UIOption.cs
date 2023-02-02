@@ -37,15 +37,15 @@ public class UIOption : MonoBehaviour
     public Text HelpCount;
 
     // ÆÐ³Îµé
-    public GameObject Option;
-    public GameObject Help;
-    public GameObject Sound;
-    public GameObject Main;
+    public GameObject OptionPanel;
+    public GameObject HelpPanel;
+    public GameObject SoundPanel;
+    public GameObject MainPanel;
 
     // ±âÅ¸
     AudioManager audioManager;
     public AudioMixer audioMixer;
-
+    
     int index = 0;
 
 
@@ -53,7 +53,7 @@ public class UIOption : MonoBehaviour
     void Start()
     {
         audioManager = GetComponent<AudioManager>();
-
+        audioManager = AudioManager.GetInstance();
 
         CloseBtn.onClick.AddListener(CloseOption);
         HelpBtn.onClick.AddListener(OpenHelp);
@@ -62,9 +62,6 @@ public class UIOption : MonoBehaviour
 
         HelpBackBtn.onClick.AddListener(HelptoMain);
         SoundBackBtn.onClick.AddListener(SoundtoMain);
-
-        Bgm.value = 0.5f;
-        SFX.value = 0.5f;
 
         NextBtn.onClick.AddListener(IndexPlus);
         PrevBtn.onClick.AddListener(IndexMinus);
@@ -76,34 +73,48 @@ public class UIOption : MonoBehaviour
     void CloseOption()
     {
         AudioManager.GetInstance().PlaySfx("»Ð");
-        Option.gameObject.SetActive(false);
+        OptionPanel.gameObject.SetActive(false);
     }
 
     void OpenHelp()
     {
         AudioManager.GetInstance().PlaySfx("»Ð");
-        Help.gameObject.SetActive(true);
-        Main.gameObject.SetActive(false);
+        HelpPanel.gameObject.SetActive(true);
+        MainPanel.gameObject.SetActive(false);
     }
     void HelptoMain()
     {
         AudioManager.GetInstance().PlaySfx("»Ð");
-        Help.gameObject.SetActive(false);
-        Main.gameObject.SetActive(true);
+        HelpPanel.gameObject.SetActive(false);
+        MainPanel.gameObject.SetActive(true);
+    }
+    public void SetSFXVolme(float sound)
+    {
+        audioManager = AudioManager.GetInstance();
+        audioManager.SfxPlayer.volume = sound;
+        sound = SFX.value;
+        audioMixer.SetFloat("SFX", sound);
+    }
+    public void SetBgmVolme(float sound)
+    {
+        audioManager = AudioManager.GetInstance();
+        audioManager.BgmPlayer.volume = sound;
+        sound = Bgm.value;
+        audioMixer.SetFloat("BGM", sound);
     }
 
     void OpenSound()
     {
         AudioManager.GetInstance().PlaySfx("»Ð");
-        Sound.gameObject.SetActive(true);
-        Main.gameObject.SetActive(false);
+        SoundPanel.gameObject.SetActive(true);
+        MainPanel.gameObject.SetActive(false);
     }
 
     void SoundtoMain()
     {
         AudioManager.GetInstance().PlaySfx("»Ð");
-        Main.gameObject.SetActive(true);
-        Sound.gameObject.SetActive(false);
+        MainPanel.gameObject.SetActive(true);
+        SoundPanel.gameObject.SetActive(false);
     }
 
     void Exit()
@@ -115,16 +126,16 @@ public class UIOption : MonoBehaviour
 #endif
     }
 
-    public void SetSFXVolme()
-    {
-        // ·Î±× ¿¬»ê °ª Àü´Þ
-        audioMixer.SetFloat("SFX", Mathf.Log10(SFX.value) * 20);
+/*    public void SetSFXVolme(float sound)
+    { 
+        sound = SFX.value;
+        audioMixer.SetFloat("SFX", sound);
     }
-    public void SetBgmVolme()
+    public void SetBgmVolme(float sound)
     {
-        // ·Î±× ¿¬»ê °ª Àü´Þ
-        audioMixer.SetFloat("BGM", Mathf.Log10(Bgm.value) * 20);
-    }
+        sound = Bgm.value;
+        audioMixer.SetFloat("BGM", sound);
+    }*/
 
     public void ShowHelp(int index)
     {
