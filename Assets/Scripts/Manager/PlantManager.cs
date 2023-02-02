@@ -433,13 +433,27 @@ public class PlantManager : MonoBehaviour
         var uiplant = UIManager.GetInstance().GetUI("UIPlant").GetComponent<UIPlant>();
         uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/dead");
     }
-    public void removeplant(int idx)
+    public void HarvestOn(int idx, int reward)
+    {
+        seeds[idx].gameObject.SetActive(false);
+        sprouts[idx].gameObject.SetActive(false);
+        middles[idx].gameObject.SetActive(false);
+        grownups[idx].gameObject.SetActive(false);
+        deads[idx].gameObject.SetActive(false);
+
+        GameManager.GetInstance().curGameMoney += reward;
+    }
+
+        public void removeplant(int idx)
     {
         Destroy(seeds[idx].gameObject);
         Destroy(sprouts[idx].gameObject);
         Destroy(middles[idx].gameObject);
         Destroy(grownups[idx].gameObject);
         Destroy(deads[idx].gameObject);
+
+        myPlantManager.myPlantList.RemoveAt(idx);
+        isPlantSeed[idx] = false;
     }
     /*    public void SaveData()
         {

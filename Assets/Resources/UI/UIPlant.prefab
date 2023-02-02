@@ -7743,6 +7743,7 @@ MonoBehaviour:
   btnWater: {fileID: 3002733689234896911}
   btnPill: {fileID: 3152219466072809165}
   btnComment: {fileID: 1165602502469432485}
+  btnHarvest: {fileID: 3670316637047529194}
   btnStatus: {fileID: 6937256368670149289}
   btnCloseBottom: {fileID: 1439590572394385642}
   txtBottomPlantName: {fileID: 633208343374680022}

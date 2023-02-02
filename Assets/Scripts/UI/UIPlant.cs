@@ -22,6 +22,7 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Button btnWater;
     [SerializeField] Button btnPill;
     [SerializeField] Button btnComment;
+    [SerializeField] Button btnHarvest;
     [SerializeField] Button btnStatus;
     [SerializeField] Button btnCloseBottom;
     [SerializeField] Text txtBottomPlantName;
@@ -164,6 +165,8 @@ public class UIPlant : MonoBehaviour
         btnWater.onClick.AddListener(OnClickWaterThePlant);
         btnPill.onClick.AddListener(OnClickNutritionSupplyPlant);
         btnComment.onClick.AddListener(OnClickPraisePlant);
+        btnHarvest.onClick.AddListener(OnClickHarvestPlant);
+
         Test1.onClick.AddListener(() => { plantmanager.SproutOn(plantmanager.potIdx); });
         Test2.onClick.AddListener(() => { plantmanager.MiddleOn(plantmanager.potIdx); });
         Test3.onClick.AddListener(() => { plantmanager.GrownUpOn(plantmanager.potIdx); });
@@ -323,6 +326,12 @@ public class UIPlant : MonoBehaviour
         AudioManager.GetInstance().PlaySfx("Growth1");
         myplantmanager.isPraisePlantOnClick = true;
         myplantmanager.PraisePlant(plantmanager.potIdx);
+    }
+
+    private void OnClickHarvestPlant()
+    {
+        myplantmanager.isHarvestPlantOnClick = true;
+        myplantmanager.HarvestPlant(plantmanager.potIdx);
     }
 
     private IEnumerator PopUp()

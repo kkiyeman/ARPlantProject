@@ -220,14 +220,12 @@ public class MyPlantManager : MonoBehaviour
                 if (GameManager.GetInstance().curEnergy >= 5)
                 {
 
-                    if (curGrowthRate != 100)
+                    if (curGrowthRate != 100 && curGrowthRate != 0)
                     {
                         if (GameManager.GetInstance().curEnergy >= 15)
                         {
                             GameManager.GetInstance().curEnergy -= 15;
-                            GrowPlantReward = reward * (curGrowthRate / 100);
-                            myPlantList.RemoveAt(idx);
-                            Destroy(gameObject);
+                            GrowPlantReward = (int)reward /curGrowthRate;
                         }
                         else
                             return;
@@ -236,9 +234,10 @@ public class MyPlantManager : MonoBehaviour
                     {
                         GrowPlantReward = reward;
                         GameManager.GetInstance().curEnergy -= 5;
-                        myPlantList.RemoveAt(idx);
-                        Destroy(gameObject);
                     }
+
+                    PlantManager.GetInstance().HarvestOn(idx, reward);
+                    PlantManager.GetInstance().removeplant(idx);
                 }
                 else
                     return;
