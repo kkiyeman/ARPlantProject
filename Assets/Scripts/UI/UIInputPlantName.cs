@@ -38,12 +38,14 @@ public class UIInputPlantName : MonoBehaviour
 
     private void OnClickCancel()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         curPlantName = "";
         CloseUI();
     }
 
     private void OnClickApply()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         curPlantName = inputPlantName.text;
         plantmanager.setPlantUserName = curPlantName;
 

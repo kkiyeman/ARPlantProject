@@ -37,11 +37,13 @@ public class UIOrnSpawn : MonoBehaviour
 
     private void OnClickCloseUI()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         gameObject.SetActive(false);
     }
 
     private void OnClickOpenUI()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         var uiInputName = uimanager.GetUI("UIInputPlantName");
         uiInputName.gameObject.SetActive(true);
     }

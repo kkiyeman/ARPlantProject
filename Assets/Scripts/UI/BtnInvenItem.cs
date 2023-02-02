@@ -30,6 +30,7 @@ public class BtnInvenItem : MonoBehaviour
 
     void ShowItemInfo()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         var uiinventory = UIManager.GetInstance().GetUI("UIInventory").GetComponent<UIInventory>();
         uiinventory.txtItemName.text = itemName;
         uiinventory.txtItemTooltip.text = itemInfo;   

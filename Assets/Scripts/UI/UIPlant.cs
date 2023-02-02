@@ -120,7 +120,7 @@ public class UIPlant : MonoBehaviour
 
     private void SetPlayerData()
     {
-        
+        AudioManager.GetInstance().PlayBgm("Plant1");
         txtCurtime.text = DateTime.Now.ToString("M"+"¿ù "+"dd"+"ÀÏ" + "\n" + "HH" + "½Ã " + "mm" + "ºÐ");
         curEnergy = GameManager.GetInstance().curEnergy;
         totalEnergy = 100;
@@ -197,7 +197,7 @@ public class UIPlant : MonoBehaviour
 
     private void OnClickMemoChange()
     {
-
+        AudioManager.GetInstance().PlaySfx("»Ð");
         txtMemo.text = inputMemo.textComponent.text;
         inputMemo.gameObject.SetActive(false);
     }
@@ -250,18 +250,21 @@ public class UIPlant : MonoBehaviour
 
     public void OnClickCropSpawn()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         plantmanager.onClickCroBtn = true;
         bgChooseSeed.gameObject.SetActive(false);
     }
 
     public void OnClickOrnSpawn()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         plantmanager.onClickOrnBtn = true;
         bgChooseSeed.gameObject.SetActive(false);
     }
 
     public void OnClickCloseChooseSeed()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         plantmanager.onClickPlantBtn = false;
         plantmanager.onClickCroBtn = false;
         plantmanager.onClickOrnBtn = false;
@@ -290,18 +293,21 @@ public class UIPlant : MonoBehaviour
 
     private void OnClickWaterThePlant()
     {
+        AudioManager.GetInstance().PlaySfx("¹°");
         myplantmanager.isWaterThePlantOnClick = true;
         myplantmanager.WaterThePlant(plantmanager.potIdx);
     }
 
     private void OnClickNutritionSupplyPlant()
     {
+        AudioManager.GetInstance().PlaySfx("¿µ¾çÁ¦");
         myplantmanager.isEnergySupplyPlantOnClick = true;
         myplantmanager.NutritionSupplyPlant(plantmanager.potIdx);
     }
 
     private void OnClickPraisePlant()
     {
+        AudioManager.GetInstance().PlaySfx("Growth1");
         myplantmanager.isPraisePlantOnClick = true;
         myplantmanager.PraisePlant(plantmanager.potIdx);
     }

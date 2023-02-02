@@ -31,6 +31,7 @@ public class UIInventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         gamemanager = GameManager.GetInstance();
         plantmanager = PlantManager.GetInstance();
         uimanager = UIManager.GetInstance();
@@ -53,11 +54,13 @@ public class UIInventory : MonoBehaviour
 
     private void OnClickCloseInven()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         gameObject.SetActive(false);
     }
 
     public void ShowItemList(int i)
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         int idx = i;
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground/UIBackground Grey3");
         btnItemKinds[curItemKind].image.color = new Color32(180, 180, 180, 160);
