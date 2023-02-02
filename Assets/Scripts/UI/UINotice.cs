@@ -39,7 +39,7 @@ public class UINotice : MonoBehaviour
         Noticetxt.text = $"네가 없던 사이에 우리 {name}가 죽고 말았어..! 새로운 식물을 키우고 싶다면 씨앗을 다시 심어보자.";
         NoticePanal.SetActive(true);
     }
-    public void GrowthNotice(string name)
+    public void CanHarvestNotice(string name)
     {
         AudioManager.GetInstance().PlaySfx("띠딩");
         rewardImg.gameObject.SetActive(true);
@@ -48,7 +48,7 @@ public class UINotice : MonoBehaviour
         rewardtxt.text = $"+{myPlantManager.GrowPlantReward}";
         rewardImg.sprite = Resources.Load<Sprite>("Icon/Store/Gem");
         NoticePanal.SetActive(true);
-        Noticetxt.text = $"와!{name}이 멋지게 성장했어! 앞으로 더욱 애정을 담아서 길러줘!";
+        Noticetxt.text = $"와!{name}이 멋지게 성장했어! 이제 식물을 수확하면 성장도에 비례한 보상을 받을 수 있어!";
     }
     public void DiseaseNotice(string name)
     {
@@ -66,6 +66,7 @@ public class UINotice : MonoBehaviour
         rewardtxt.gameObject.SetActive(true);
         rewardtxt.text = $"+{LoginPresentMoney}";
         rewardImg.sprite = Resources.Load<Sprite>("Icon/Store/Icon_Money");
+        Character.sprite = Resources.Load<Sprite>("Character/SmileStr");
         NoticePanal.SetActive(true);
         Noticetxt.text = $"어서와~ 오늘 하루는 어때? 우린 여기서 널 기다리고 있었어! 이제 가볼까?";
 
@@ -75,9 +76,16 @@ public class UINotice : MonoBehaviour
         AudioManager.GetInstance().PlaySfx("뿅");
         NoticePanal.gameObject.SetActive(false);
     }
-    public void WaterNotice()
+    public void GrowthNotice()
     { 
-    
+         AudioManager.GetInstance().PlaySfx("띠딩");
+        rewardImg.gameObject.SetActive(true);
+        rewardtxt.gameObject.SetActive(true);
+        Character.sprite = Resources.Load<Sprite>("Character/SmileTalkStr");
+        rewardtxt.text = $"+{myPlantManager.GrowPlantReward}";
+        rewardImg.sprite = Resources.Load<Sprite>("Icon/Store/Icon_Money");
+        NoticePanal.SetActive(true);
+        Noticetxt.text = $"와!{name}이 한 단계 성장했어! 앞으로 더욱 애정을 담아서 길러줘!";
     }
 
 }
