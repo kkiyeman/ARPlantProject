@@ -88,17 +88,20 @@ public class UIDictionary : MonoBehaviour
 
     private void OnClickCloseDict()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         gameObject.SetActive(false);
     }
 
     private void OnClickCloseDetail()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         plantDetail.gameObject.SetActive(false);
     }
 
     private void OnClickDetail()
     {
-        for(int i = 0; i<btnPlantList.Length; i++)
+        AudioManager.GetInstance().PlaySfx("»Ð");
+        for (int i = 0; i<btnPlantList.Length; i++)
         {
             int idx = i;
             btnPlantList[idx].onClick.AddListener(() => { OnClickDetailOpen(idx); });
@@ -107,6 +110,7 @@ public class UIDictionary : MonoBehaviour
 
     private void OnClickDetailOpen(int idx)
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         string plantname = plantName[idx];
         plantDetail.gameObject.SetActive(true);
         imgPlant.sprite = Resources.Load<Sprite>($"Icon/Plant/2DPlant/{plantname}");

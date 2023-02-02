@@ -76,6 +76,7 @@ public class UIStore : MonoBehaviour
 
     private void OnClickCloseStore()
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         gameObject.SetActive(false);
     }
 
@@ -84,6 +85,7 @@ public class UIStore : MonoBehaviour
         curCount = 1;
         SetItemBuy();
         imgItemBuy.gameObject.SetActive(false);
+        AudioManager.GetInstance().PlaySfx("»Ð");
     }
 
     private void BtnItemsSetting()
@@ -117,6 +119,7 @@ public class UIStore : MonoBehaviour
         int totalprice = curCount * price;
         txtTotalPrice.text = totalprice.ToString();
         imgItemName.sprite = btnItems[index].imgItem.sprite;
+        AudioManager.GetInstance().PlaySfx("»Ð");
     }
 
     private void OnClickPlusItemCount()
@@ -125,6 +128,7 @@ public class UIStore : MonoBehaviour
         {
             curCount++;
             SetItemBuy();
+            AudioManager.GetInstance().PlaySfx("»Ð");
         }
     }
 
@@ -134,6 +138,7 @@ public class UIStore : MonoBehaviour
         {
             curCount--;
             SetItemBuy();
+            AudioManager.GetInstance().PlaySfx("»Ð");
         }
     }
 
@@ -147,6 +152,7 @@ public class UIStore : MonoBehaviour
 
     private void ShowItemList(int i)
     {
+        AudioManager.GetInstance().PlaySfx("»Ð");
         int idx = i;
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground/UIBackground Grey3");
         btnItemKinds[curItemKind].image.color = new Color32(180, 180, 180, 160);
@@ -197,6 +203,7 @@ public class UIStore : MonoBehaviour
         {
             uiinventory.toolItems.Add(item);
         }
+        AudioManager.GetInstance().PlaySfx("Buy2");
 
 
     }
