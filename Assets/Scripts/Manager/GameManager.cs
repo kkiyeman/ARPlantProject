@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         {
             yield return waitFor20Seconds;          //에너지 채워지는 시간(일단은 20초로) 개발 완료후 300초로 변경
 
-            if (curEnergy > totalEnergy)
+            if (curEnergy >= totalEnergy)
             {
                 curEnergy = totalEnergy;
             }
