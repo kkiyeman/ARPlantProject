@@ -151,7 +151,6 @@ public class UIPlant : MonoBehaviour
         btnDictionary.onClick.AddListener(OnClickUIDictionaryOn);
         btnOption.onClick.AddListener(OnClickUIOptionOn);
         btnInventory.onClick.AddListener(OnClickUIInventoryOn);
-        btnRightLayOutPop.onClick.AddListener(OnClickRightLayOutPop);
         btnSeed.onClick.AddListener(OnClickOpenChooseSeed);
         btnCloseChooseSeed.onClick.AddListener(OnClickCloseChooseSeed);
         btnCropSeed.onClick.AddListener(OnClickCropSpawn);
