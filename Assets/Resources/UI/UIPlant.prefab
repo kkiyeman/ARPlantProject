@@ -6756,7 +6756,7 @@ MonoBehaviour:
   txtPlantName: {fileID: 5464792643936988545}
   inputPlantName: {fileID: 469649090131237459}
   btnClosePlantInputfield: {fileID: 795622851946700621}
-  imgsWhatPlant: {fileID: 3051776660888311528}
+  imgsWhatPlant: {fileID: 2434093781771337892}
   btnMemo: {fileID: 5937779248256211500}
   imgMemo: {fileID: 8641692216935028859}
   txtMemo: {fileID: 1099446685717116084}
@@ -6776,12 +6776,6 @@ MonoBehaviour:
   btnCloseChooseSeed: {fileID: 6649021151770826528}
   btnOrnamentalSeed: {fileID: 1652805594794620526}
   btnCropSeed: {fileID: 973130159044653178}
-  btnSamplePlant: {fileID: 0}
-  Test1: {fileID: 0}
-  Test2: {fileID: 0}
-  Test3: {fileID: 0}
-  Test4: {fileID: 0}
-  Test5: {fileID: 0}
   bg: {fileID: 4984351635518627526}
   arrPlants: []
 --- !u!1 &7797018887962823566

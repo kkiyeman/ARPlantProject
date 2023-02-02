@@ -45,7 +45,7 @@ public class UIPlant : MonoBehaviour
     string plantName = "FishBone";
     [SerializeField] InputField inputPlantName;
     [SerializeField] Button btnClosePlantInputfield;
-    [SerializeField] Image imgsWhatPlant;
+    public Image imgsWhatPlant;
     [SerializeField] Button btnMemo;
     [SerializeField] Image imgMemo;
     [SerializeField] Text txtMemo;

@@ -561,6 +561,8 @@ public class PlantManager : MonoBehaviour
         grownup.gameObject.SetActive(false);
         dead.gameObject.SetActive(false);
         isPlantSeed[potIdx] = true;
+        var uiplant = UIManager.GetInstance().GetUI("UIPlant").GetComponent<UIPlant>();
+        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/Seed");
 
         MyPlantList myPlant = new MyPlantList(
             setPlantUserName,
