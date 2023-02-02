@@ -79,13 +79,25 @@ public class MyPlantManager : MonoBehaviour
                 myPlantList[i].growthRate += 15;
 
                 if (myPlantList[i].growthRate < 30 && myPlantList[i].growthRate >= 15)
+                {
                     PlantManager.GetInstance().SproutOn(i);
+                    uiNotice = uimanager.GetUI("UINotice").GetComponent<UINotice>();
+                    uiNotice.GrowthNotice(myPlantList[i].plantUserName);
+                }
 
                 if(myPlantList[i].growthRate < 45 && myPlantList[i].growthRate >= 30)
+                {
                     PlantManager.GetInstance().MiddleOn(i);
+                    uiNotice = uimanager.GetUI("UINotice").GetComponent<UINotice>();
+                    uiNotice.GrowthNotice(myPlantList[i].plantUserName);
+                }
 
                 if (myPlantList[i].growthRate < 60 && myPlantList[i].growthRate >= 45)
+                {
                     PlantManager.GetInstance().GrownUpOn(i);
+                    uiNotice = uimanager.GetUI("UINotice").GetComponent<UINotice>();
+                    uiNotice.GrowthNotice(myPlantList[i].plantUserName);
+                }
             }
         }
     }
@@ -271,10 +283,14 @@ public class MyPlantManager : MonoBehaviour
 
             for (int i = 0; i < myPlantList.Count; i++)
             {
-                if (myPlantList[i].growthRate == 100)
+                if (myPlantList[i].growthRate >= 100)
                 {
                     if (!myPlantList[i].isSick)
+                    {
                         PlantManager.GetInstance().HarvestAble(i);
+                        uiNotice = uimanager.GetUI("UINotice").GetComponent<UINotice>();
+                        uiNotice.CanHarvestNotice(myPlantList[i].plantUserName);
+                    }
                 }
             }
         }

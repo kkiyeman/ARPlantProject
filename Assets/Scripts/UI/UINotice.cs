@@ -76,7 +76,7 @@ public class UINotice : MonoBehaviour
         AudioManager.GetInstance().PlaySfx("»Ð");
         NoticePanal.gameObject.SetActive(false);
     }
-    public void GrowthNotice()
+    public void GrowthNotice(string name)
     { 
          AudioManager.GetInstance().PlaySfx("¶ìµù");
         rewardImg.gameObject.SetActive(true);
