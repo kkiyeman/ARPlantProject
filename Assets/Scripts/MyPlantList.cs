@@ -12,8 +12,9 @@ public class MyPlantList
     public int nutrition;                  //영양도
     public bool isSick;                      //질병여부
     public int reward;
+    public bool isDie;
 
-    public MyPlantList(string plantusername, string plantname, int growthrate, int hydrationrate, int nutritionrate, bool issick, int reward)
+    public MyPlantList(string plantusername, string plantname, int growthrate, int hydrationrate, int nutritionrate, bool issick, int reward, bool isDie)
     {
         plantUserName = plantusername;
         plantName = plantname;
@@ -22,6 +23,7 @@ public class MyPlantList
         nutrition = nutritionrate;
         isSick = issick;
         this.reward = reward;
+        this.isDie = isDie;
     }
 
 }

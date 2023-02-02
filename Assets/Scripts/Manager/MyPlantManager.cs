@@ -75,6 +75,15 @@ public class MyPlantManager : MonoBehaviour
             for (int i = 0; i < myPlantList.Count; i++)
             {
                 myPlantList[i].growthRate += 15;
+
+                if (myPlantList[i].growthRate < 30 && myPlantList[i].growthRate >= 15)
+                    PlantManager.GetInstance().SproutOn(i);
+
+                if(myPlantList[i].growthRate < 45 && myPlantList[i].growthRate >= 30)
+                    PlantManager.GetInstance().MiddleOn(i);
+
+                if (myPlantList[i].growthRate < 60 && myPlantList[i].growthRate >= 45)
+                    PlantManager.GetInstance().GrownUpOn(i);
             }
         }
     }
@@ -108,9 +117,8 @@ public class MyPlantManager : MonoBehaviour
             {
                 if (120 < myPlantList[i].hydration && myPlantList[i].hydration <= 70 || myPlantList[i].nutrition > 100 || myPlantList[i].nutrition <= 70)
                 {
-                    if (!PlantManager.GetInstance().isSick[i])
+                    if (!myPlantList[i].isSick)
                     {
-                        PlantManager.GetInstance().isSick[i] = true;
                         myPlantList[i].isSick = true;
                         Debug.Log(myPlantList[i].plantUserName + "아프다~");
 
@@ -119,8 +127,6 @@ public class MyPlantManager : MonoBehaviour
                         //var plantSick = Instantiate(sick, potTrans);
                     }
                 }
-                else
-                    PlantManager.GetInstance().isSick[i] = false;
             }
         }
     }
@@ -254,19 +260,18 @@ public class MyPlantManager : MonoBehaviour
             {
                 if (myPlantList[i].hydration >= 150 || myPlantList[i].hydration <= 50 || myPlantList[i].nutrition <= 50)
                 {
-                    if (!PlantManager.GetInstance().isDie[i])
+                    if (!myPlantList[i].isDie)
                     {
-                        PlantManager.GetInstance().isDie[i] = true;
-                        myPlantList.RemoveAt(i);
-                        Destroy(gameObject);
+                        myPlantList[i].isDie = true;
+
                         Debug.Log(myPlantList[i].plantUserName + "죽었다");
 
                         uiNotice = uimanager.GetUI("UINotice").GetComponent<UINotice>();
                         uiNotice.DieNotice(myPlantList[i].plantUserName);
+
+                        PlantManager.GetInstance().DeadOn(i);
                     }
                 }
-                else
-                    PlantManager.GetInstance().isDie[i] = false;
             }
         }
     }

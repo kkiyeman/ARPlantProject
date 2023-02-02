@@ -15,6 +15,7 @@ public class PlantData
     public bool isSick;
     public bool isThirsty;
     public int reward;
+    public bool isDie;
 }
 
 [Serializable]

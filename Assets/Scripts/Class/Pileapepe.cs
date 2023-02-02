@@ -7,7 +7,7 @@ using System;
 
 public class Pileapepe : PlantBase
 {
-    public Pileapepe(string plantUserName, string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty, int reward)
+    public Pileapepe(string plantUserName, string plantName, string plantType, int growthRate, int hydration, int nutrition, bool isSick, bool isThirsty, int reward, bool isDie)
     {
         this.plantUserName = plantUserName;
         this.plantName = plantName;
@@ -18,6 +18,7 @@ public class Pileapepe : PlantBase
         this.isSick = isSick;
         this.isThirsty = isThirsty;
         this.reward = reward;
+        this.isDie = isDie;
     }
 
     public override void Reward()
