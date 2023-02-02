@@ -60,7 +60,13 @@ public class UIStore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetPlayerData();
+    }
 
+    private void SetPlayerData()
+    {
+        txtEnergy.text = $"{gamemanager.curEnergy}/{gamemanager.totalEnergy}";
+        txtGold.text = gamemanager.curGameMoney.ToString();
     }
 
     private void ButtonSetting()
@@ -186,6 +192,13 @@ public class UIStore : MonoBehaviour
 
     private void OnClickBuy()
     {
+        if (gamemanager.curGameMoney - int.Parse(txtTotalPrice.text) >= 0)
+            gamemanager.curGameMoney -= int.Parse(txtTotalPrice.text);
+        else
+        {
+            Debug.Log("µ∑ ∫Œ¡∑!!");
+            return;
+        }
         var uiinventory = uimanager.GetUI("UIInventory").GetComponent<UIInventory>();
         var ob = Resources.Load<BtnInvenItem>("UI/btnInvenItem");
         var item = Instantiate(ob);
@@ -209,6 +222,7 @@ public class UIStore : MonoBehaviour
         {
             uiinventory.nutItems.Add(item);
         }
+        
         AudioManager.GetInstance().PlaySfx("Buy2");
 
 

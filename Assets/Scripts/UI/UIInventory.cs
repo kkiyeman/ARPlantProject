@@ -43,9 +43,14 @@ public class UIInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        SetPlayerData();
     }
 
+    private void SetPlayerData()
+    {
+        txtCash.text = $"{gamemanager.curEnergy}/{gamemanager.totalEnergy}";
+        txtGold.text = gamemanager.curGameMoney.ToString();
+    }
     private void SetButton()
     {
         btnCloseInven.onClick.AddListener(OnClickCloseInven);
