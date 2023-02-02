@@ -267,6 +267,8 @@ public class UIPlant : MonoBehaviour
     public void OnClickCropSpawn()
     {
         AudioManager.GetInstance().PlaySfx("»Ð");
+        ARRenderManager armanager = ARRenderManager.GetInstance();
+        armanager.PlaneOn();
         plantmanager.onClickCroBtn = true;
         bgChooseSeed.gameObject.SetActive(false);
     }

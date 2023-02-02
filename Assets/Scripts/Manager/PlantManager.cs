@@ -312,6 +312,8 @@ public class PlantManager : MonoBehaviour
 
                     selectPot = hitobj.collider.gameObject;
                 }
+                ARRenderManager armanager = ARRenderManager.GetInstance();
+                armanager.PlaneOff();
             }
         }
     }

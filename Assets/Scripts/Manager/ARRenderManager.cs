@@ -33,6 +33,9 @@ public class ARRenderManager : MonoBehaviour
         ARPM = ARSO.GetComponent<ARPlaneManager>();
         ARRM = ARSO.GetComponent<ARRaycastManager>();
         ARPCM = ARSO.GetComponent<ARPointCloudManager>();
+        ARRM.enabled = false;
+        ARPM.enabled = false;
+        ARPCM.enabled = false;
     }
 
     // Update is called once per frame
@@ -55,5 +58,13 @@ public class ARRenderManager : MonoBehaviour
         {
             poincloud.gameObject.SetActive(false);
         }
+    }
+
+    public void PlaneOn()
+    {
+
+        ARRM.enabled = true;
+        ARPM.enabled = true;
+        ARPCM.enabled = true;
     }
 }
