@@ -30,6 +30,7 @@ public class MyPlantManager : MonoBehaviour
     public WaitForSecondsRealtime waitFor10Seconds_PlantStatus = new WaitForSecondsRealtime(10);
     public WaitForSecondsRealtime waitForHalfSeconds_PlantDisease = new WaitForSecondsRealtime(0.5f);
     public WaitForSecondsRealtime waitForHalfSeconds_DieThePlant = new WaitForSecondsRealtime(0.5f);
+    public WaitForSecondsRealtime waitForHalfSeconds_HarvestAblePlant = new WaitForSecondsRealtime(0.5f);
 
     public bool isWaterThePlantOnClick;       //물주기 버튼 클릭 여부
     public bool isEnergySupplyPlantOnClick;   //영양제 버튼 클릭 여부
@@ -64,6 +65,7 @@ public class MyPlantManager : MonoBehaviour
         StartCoroutine(MinusPlantStatus());
         StartCoroutine(PlantDisease());
         StartCoroutine(DieThePlant());
+        StartCoroutine(HarvestAblePlant());
     }
 
     public IEnumerator GrowthRatePlant()            //식물 성장 함수
@@ -113,9 +115,9 @@ public class MyPlantManager : MonoBehaviour
         {
             yield return waitForHalfSeconds_PlantDisease;
 
-            for(int i = 0; i < myPlantList.Count; i++)
+            for (int i = 0; i < myPlantList.Count; i++)
             {
-                if (120 < myPlantList[i].hydration && myPlantList[i].hydration <= 50 || myPlantList[i].nutrition > 100 || myPlantList[i].nutrition <= 50)
+                if (120 < myPlantList[i].hydration || myPlantList[i].hydration <= 50 || myPlantList[i].nutrition > 100 || myPlantList[i].nutrition <= 50)
                 {
                     if (!myPlantList[i].isSick)
                     {
@@ -124,8 +126,15 @@ public class MyPlantManager : MonoBehaviour
 
                         uiNotice = uimanager.GetUI("UINotice").GetComponent<UINotice>();
                         uiNotice.DiseaseNotice(myPlantList[i].plantUserName);
+
+                        PlantManager.GetInstance().DiseaseOn(i);
                         //var plantSick = Instantiate(sick, potTrans);
                     }
+                }
+                else
+                {
+                    PlantManager.GetInstance().DiseaseOff(i);
+                    myPlantList[i].isSick = false;
                 }
             }
         }
@@ -217,27 +226,32 @@ public class MyPlantManager : MonoBehaviour
         {
             if (isHarvestPlantOnClick)
             {
-                if (GameManager.GetInstance().curEnergy >= 5)
+                if (!myPlantList[idx].isSick)
                 {
-
-                    if (curGrowthRate != 100 && curGrowthRate != 0)
+                    if (GameManager.GetInstance().curEnergy >= 5)
                     {
-                        if (GameManager.GetInstance().curEnergy >= 15)
+
+                        if (curGrowthRate != 100 && curGrowthRate != 0)
                         {
-                            GameManager.GetInstance().curEnergy -= 15;
-                            GrowPlantReward = (int)reward /curGrowthRate;
+                            if (GameManager.GetInstance().curEnergy >= 15)
+                            {
+                                GameManager.GetInstance().curEnergy -= 15;
+                                GrowPlantReward = (int)reward / curGrowthRate;
+                            }
+                            else
+                                return;
                         }
-                        else
-                            return;
-                    }
-                    else if (curGrowthRate == 100)
-                    {
-                        GrowPlantReward = reward;
-                        GameManager.GetInstance().curEnergy -= 5;
-                    }
+                        else if (curGrowthRate == 100)
+                        {
+                            GrowPlantReward = reward;
+                            GameManager.GetInstance().curEnergy -= 5;
+                        }
 
-                    PlantManager.GetInstance().HarvestOn(idx, reward);
-                    PlantManager.GetInstance().removeplant(idx);
+                        PlantManager.GetInstance().HarvestOnClick(idx, reward);
+                        PlantManager.GetInstance().removeplant(idx);
+                    }
+                    else
+                        return;
                 }
                 else
                     return;
@@ -247,6 +261,23 @@ public class MyPlantManager : MonoBehaviour
         }
         else
             return;
+    }
+
+    public IEnumerator HarvestAblePlant() //성장도 100일때 나오는 수확 가능 함수
+    {
+        while (true)
+        {
+            yield return waitForHalfSeconds_HarvestAblePlant;       //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
+
+            for (int i = 0; i < myPlantList.Count; i++)
+            {
+                if (myPlantList[i].growthRate == 100)
+                {
+                    if (!myPlantList[i].isSick)
+                        PlantManager.GetInstance().HarvestAble(i);
+                }
+            }
+        }
     }
 
     public IEnumerator DieThePlant() //식물 죽는 함수(수분도 150이상, 30미만, 영양도 0이하)
@@ -270,6 +301,11 @@ public class MyPlantManager : MonoBehaviour
 
                         PlantManager.GetInstance().DeadOn(i);
                     }
+                }
+                else
+                {
+                    myPlantList[i].isDie = false;
+                    PlantManager.GetInstance().DiseaseOff(i);
                 }
             }
         }
