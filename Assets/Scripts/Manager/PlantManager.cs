@@ -84,6 +84,9 @@ public class PlantManager : MonoBehaviour
 
     public bool[] isPlantSeed;
 
+    public bool[] isSick;
+    public bool[] isDie;
+
 
     //string path;
     //string filename = "save";
@@ -547,7 +550,7 @@ public class PlantManager : MonoBehaviour
             );
         myPlantManager.myPlantList.Add(myPlant);
 
-        PlamtManagement();
+        PlantManagement();
     }
 
     public void SetPlantInfo(int idx)
@@ -559,12 +562,9 @@ public class PlantManager : MonoBehaviour
         setIsSick = plantDates[idx].isSick;
     }
 
-    public void PlamtManagement()
+    public void PlantManagement()
     {
-        StartCoroutine(myPlantManager.GrowthRatePlant());
-        StartCoroutine(myPlantManager.MinusPlantStatus());
-        StartCoroutine(myPlantManager.PlantDisease());
-        StartCoroutine(myPlantManager.DieThePlant());
+        MyPlantManager.GetInstance().PlamtManagement();
     }
 
     /*    public void SaveData()
