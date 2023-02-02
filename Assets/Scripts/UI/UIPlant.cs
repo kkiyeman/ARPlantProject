@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 using System;
 
 
@@ -82,6 +81,7 @@ public class UIPlant : MonoBehaviour
 
     void Start()
     {
+        AudioManager.GetInstance().PlayBgm("Plant1");
         gamemanager = GameManager.GetInstance();
         plantmanager = PlantManager.GetInstance();
         uimanager = UIManager.GetInstance();
@@ -120,7 +120,7 @@ public class UIPlant : MonoBehaviour
 
     private void SetPlayerData()
     {
-        AudioManager.GetInstance().PlayBgm("Plant1");
+        
         txtCurtime.text = DateTime.Now.ToString("M"+"월 "+"dd"+"일" + "\n" + "HH" + "시 " + "mm" + "분");
         curEnergy = GameManager.GetInstance().curEnergy;
         totalEnergy = 100;

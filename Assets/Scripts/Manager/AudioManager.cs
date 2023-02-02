@@ -17,7 +17,7 @@ public class Sound
     {
         name = _name;
         clip = _clip;
-        volume = 0.3f;
+        volume = 0.1f;
         loop = _loop;
     }
 
@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour
         ob1.AddComponent<AudioSource>();
         ob2.AddComponent<AudioSource>();
         BgmPlayer = ob1.GetComponent<AudioSource>();
-        SfxPlayer = ob2.GetComponent<AudioSource>();
+        SfxPlayer = ob2.GetComponent<AudioSource>();       
         InitSounds();
 
     }
@@ -85,6 +85,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBgm(string name)
     {
+        Debug.Log("isPlaying : " + SfxPlayer.isPlaying);
         var bgm = bgms[name];
         bgm.loop = true;
         BgmPlayer.clip = bgm.clip;
