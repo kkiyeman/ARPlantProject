@@ -19,6 +19,9 @@ public class MyPlantManager : MonoBehaviour
     }
     #endregion
 
+    UIManager uimanager;
+    Shelf shelf;
+
     public int myPlantIdx;
 
     public WaitForSecondsRealtime waitFor30Seconds = new WaitForSecondsRealtime(30);
@@ -40,6 +43,10 @@ public class MyPlantManager : MonoBehaviour
 
     public List<MyPlantList> myPlantList = new List<MyPlantList>();
 
+    private void Awake()
+    {
+        uimanager = UIManager.GetInstance();
+    }
     private void Start()
     {
         
@@ -87,16 +94,22 @@ public class MyPlantManager : MonoBehaviour
 
     public IEnumerator PlantDisease() //식물 상황별 상태이상 함수(수분도 120초과 150미만, 영양도 100초과, 20미만)
     {
+        shelf = GetComponent<Shelf>();
+        var sick = Resources.Load<GameObject>($"plant/Icon_FeelBad22");
+
+        bool isOrn = shelf.type == ShelfType.orn;
+        var potTrans = isOrn ? shelf.ornPots[PlantManager.GetInstance().potIdx].transform : shelf.corPot.transform;
         while (true)
         {
             yield return waitForHalfSeconds_PlantDisease;
 
             for(int i = 0; i < myPlantList.Count; i++)
             {
-                if (120 < myPlantList[i].hydration && myPlantList[i].hydration < 150 || myPlantList[i].nutrition > 100 || myPlantList[i].nutrition < 20)
+                if (120 < myPlantList[i].hydration && myPlantList[i].hydration < 30 || myPlantList[i].nutrition > 100 || myPlantList[i].nutrition < 30)
                 {
                     myPlantList[i].isSick = true;
                     Debug.Log(myPlantList[i].plantUserName + "아프다~");
+                    var plantSick = Instantiate(sick, potTrans);
                 }
             }
         }
@@ -112,6 +125,7 @@ public class MyPlantManager : MonoBehaviour
                 {
                     myPlantList[idx].hydration += 20;
                     GameManager.GetInstance().curEnergy -= 5;
+                    isWaterThePlantOnClick = false;
                 }
                 else
                     return;
@@ -133,6 +147,7 @@ public class MyPlantManager : MonoBehaviour
                 {
                     myPlantList[idx].nutrition += 30;
                     GameManager.GetInstance().curEnergy -= 10;
+                    isEnergySupplyPlantOnClick = false;
                 }
                 else
                     return;
@@ -227,7 +242,7 @@ public class MyPlantManager : MonoBehaviour
 
             for(int i = 0; i < myPlantList.Count; i++)
             {
-                if (myPlantList[i].hydration >= 150 || myPlantList[i].hydration < 30 || myPlantList[i].nutrition <= 0)
+                if (myPlantList[i].hydration >= 150 || myPlantList[i].hydration <= 0 || myPlantList[i].nutrition <= 0)
                 {
                     myPlantList.RemoveAt(i);
                     Destroy(gameObject);

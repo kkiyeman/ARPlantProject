@@ -10,6 +10,9 @@ public enum ShelfType
 }
 public class Shelf : MonoBehaviour
 {
+    public GameObject[] ornPots;
+    public GameObject corPot;
+
     public int shelfIdx = PlantManager.GetInstance().ornCount;
 
     public int potIdx = PlantManager.GetInstance().croCount;

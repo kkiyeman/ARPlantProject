@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fadaa95f84a7a14418939d65e9d568ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ornPots: []
+  corPot: {fileID: 8394434670806987763}
   shelfIdx: 0
   potIdx: 0
   type: 0
@@ -126,6 +128,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7516d56b3f5c04e4ab1efa106ed78545, type: 3}
+--- !u!1 &8394434670806987763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7516d56b3f5c04e4ab1efa106ed78545,
+    type: 3}
+  m_PrefabInstance: {fileID: 8700510322070474402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9166185849104902473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7516d56b3f5c04e4ab1efa106ed78545,

@@ -122,7 +122,7 @@ public class UIPlant : MonoBehaviour
     {
         
         txtCurtime.text = DateTime.Now.ToString("M"+"월 "+"dd"+"일" + "\n" + "HH" + "시 " + "mm" + "분");
-        curEnergy = 50;
+        curEnergy = GameManager.GetInstance().curEnergy;
         totalEnergy = 100;
         Gold = 1000;
         txtEnergy.text = $"{curEnergy}/{totalEnergy}";
@@ -153,6 +153,7 @@ public class UIPlant : MonoBehaviour
         btnOrnamentalSeed.onClick.AddListener(OnClickOrnSpawn);
         btnStatus.onClick.AddListener(OnClickStatusOn);
         btnCloseBottom.onClick.AddListener(OnClickBottomOff);
+        btnWater.onClick.AddListener(OnClickWaterThePlant);
     }
 
     private void OnClickStatusOn()
@@ -283,6 +284,18 @@ public class UIPlant : MonoBehaviour
             StartCoroutine("PopUp");
         else
             StartCoroutine("PopDown");
+    }
+
+    private void OnClickWaterThePlant()
+    {
+        myplantmanager.isWaterThePlantOnClick = true;
+        myplantmanager.WaterThePlant(plantmanager.potIdx);
+    }
+
+    private void OnClickNutritionSupplyPlant()
+    {
+        myplantmanager.isEnergySupplyPlantOnClick = true;
+        myplantmanager.NutritionSupplyPlant(plantmanager.potIdx);
     }
 
     private IEnumerator PopUp()

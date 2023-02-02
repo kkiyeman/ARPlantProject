@@ -25,7 +25,6 @@ public class UIInputPlantName : MonoBehaviour
         SetButton();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
