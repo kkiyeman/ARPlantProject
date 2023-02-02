@@ -83,22 +83,22 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void PlayBgm(string name)
+    public void PlayBgm(string name, float volume)
     {
         Debug.Log("isPlaying : " + SfxPlayer.isPlaying);
         var bgm = bgms[name];
         bgm.loop = true;
         BgmPlayer.clip = bgm.clip;
-        BgmPlayer.volume = bgm.volume * 0.8f;
+        BgmPlayer.volume = volume;
         BgmPlayer.loop = bgm.loop;
         BgmPlayer.Play();
     }
     
-    public void PlaySfx(string name)
+    public void PlaySfx(string name, float volume)
     {
         var sfx = sfxs[name];
         SfxPlayer.clip = sfx.clip;
-        SfxPlayer.volume = sfx.volume +0.2f;
+        SfxPlayer.volume = volume;
         SfxPlayer.loop = sfx.loop;
         SfxPlayer.Play();
     }

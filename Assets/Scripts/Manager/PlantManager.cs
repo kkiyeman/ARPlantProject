@@ -87,6 +87,9 @@ public class PlantManager : MonoBehaviour
     public bool[] isSick;
     public bool[] isDie;
 
+    public List<GameObject> seeds = new List<GameObject>();
+    public List<GameObject> sprouts = new List<GameObject>();
+
 
     //string path;
     //string filename = "save";
