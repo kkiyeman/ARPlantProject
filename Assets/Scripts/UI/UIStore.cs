@@ -267,6 +267,11 @@ public class UIStore : MonoBehaviour
                         btnItems.Add(itemData);
                     }
                     break;
+                case 2:
+
+                        imgItemReady.gameObject.SetActive(true);
+                    
+                    break;
                 case 3:
                     var nuts = itemmanager.nutItemData;
                     for (int i = 0; i < nuts.Length; i++)
