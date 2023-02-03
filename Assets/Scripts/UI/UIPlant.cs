@@ -62,6 +62,8 @@ public class UIPlant : MonoBehaviour
     [SerializeField] Text txtHumidity;
     [SerializeField] Image imgSick;
     [SerializeField] Image imgThirsty;
+    [SerializeField] Image imgSmile;
+    [SerializeField] Image imgHealthy;
 
     [Header("ChooseSeed")]
     [SerializeField] Image bgChooseSeed;
@@ -121,6 +123,17 @@ public class UIPlant : MonoBehaviour
         txtNutrition.text = $"{_plantNut}/100";
         txtHumidity.text = $"{_plantwater}/100";
         txtPlantName.text = _plantuserName;
+        if(myplant.isSick)
+        {
+            imgSick.gameObject.SetActive(true);
+            imgSmile.gameObject.SetActive(false);
+            imgHealthy.gameObject.SetActive(false);
+        }
+        else
+        {
+            imgSick.gameObject.SetActive(false);
+            imgSmile.gameObject.SetActive(true);
+        }
 
     }
 

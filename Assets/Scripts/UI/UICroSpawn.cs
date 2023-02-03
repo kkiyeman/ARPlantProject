@@ -23,7 +23,7 @@ public class UICroSpawn : MonoBehaviour
     }
 
     private void SetButton()
-    {
+    {               
         btnCloseUI.onClick.AddListener(OnClickCloseUI);
 
         for (int i = 0; i < croSpawn.Length; i++)
