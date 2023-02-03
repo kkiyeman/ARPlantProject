@@ -375,7 +375,7 @@ public class PlantManager : MonoBehaviour
         harvest.gameObject.SetActive(false);
         isPlantSeed[potIdx] = true;
         var uiplant = UIManager.GetInstance().GetUI("UIPlant").GetComponent<UIPlant>();
-        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/Seed");
+        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/Spawn/Seed");
 
         MyPlantList myPlant = new MyPlantList(
             setPlantUserName,
@@ -414,7 +414,7 @@ public class PlantManager : MonoBehaviour
         grownups[idx].gameObject.SetActive(false);
         deads[idx].gameObject.SetActive(false);
         var uiplant = UIManager.GetInstance().GetUI("UIPlant").GetComponent<UIPlant>();
-        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/Sprout");
+        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/Spawn/Sprout");
     }
 
     public void MiddleOn(int idx)
@@ -426,7 +426,7 @@ public class PlantManager : MonoBehaviour
         deads[idx].gameObject.SetActive(false);
         var uiplant = UIManager.GetInstance().GetUI("UIPlant").GetComponent<UIPlant>();
         string name = MyPlantManager.GetInstance().myPlantList[idx].plantName;
-        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/{name}_M");
+        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/Spawn/{name}_M");
     }
     public void GrownUpOn(int idx)
     {
@@ -437,7 +437,7 @@ public class PlantManager : MonoBehaviour
         deads[idx].gameObject.SetActive(false);
         var uiplant = UIManager.GetInstance().GetUI("UIPlant").GetComponent<UIPlant>();
         string name = MyPlantManager.GetInstance().myPlantList[idx].plantName;
-        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/{name}_L");
+        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/Spawn/{name}_L");
     }
     public void DeadOn(int idx)
     {
@@ -447,7 +447,7 @@ public class PlantManager : MonoBehaviour
         grownups[idx].gameObject.SetActive(false);
         deads[idx].gameObject.SetActive(true);
         var uiplant = UIManager.GetInstance().GetUI("UIPlant").GetComponent<UIPlant>();
-        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/dead");
+        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/Spawn/dead");
     }
     public void HarvestOnClick(int idx, int reward)
     {
@@ -457,7 +457,8 @@ public class PlantManager : MonoBehaviour
         grownups[idx].gameObject.SetActive(false);
         deads[idx].gameObject.SetActive(false);
         harvests[idx].gameObject.SetActive(false);
-
+        var uiplant = UIManager.GetInstance().GetUI("UIPlant").GetComponent<UIPlant>();
+        uiplant.imgsWhatPlant.sprite = Resources.Load<Sprite>($"Image/PlantStatus/Spawn/Empty");
         GameManager.GetInstance().curGameMoney += reward;
     }
 
