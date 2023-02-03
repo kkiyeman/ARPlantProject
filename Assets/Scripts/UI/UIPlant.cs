@@ -110,6 +110,7 @@ public class UIPlant : MonoBehaviour
         int _plantgrowth = myplant.growthRate;
         int _plantNut = myplant.nutrition;
         int _plantwater = myplant.hydration;
+        txtBottomPlantName.text = _plantuserName;
         sldGrowth.maxValue = 100;
         sldNutrition.maxValue = 100;
         sldHumidity.maxValue = 100;
