@@ -78,25 +78,30 @@ public class MyPlantManager : MonoBehaviour
             {
                 myPlantList[i].growthRate += 15;
 
+                int curGrowthRate = myPlantList[i].growthRate;
+                int reward = myPlantList[i].reward;
+
+                GrowPlantReward = (int)reward / curGrowthRate;
+
                 if (myPlantList[i].growthRate < 30 && myPlantList[i].growthRate >= 15)
                 {
                     PlantManager.GetInstance().SproutOn(i);
                     uiNotice = uimanager.GetUI("UINotice").GetComponent<UINotice>();
-                    uiNotice.GrowthNotice(myPlantList[i].plantUserName);
+                    uiNotice.GrowthNotice(myPlantList[i].plantUserName, GrowPlantReward);
                 }
 
                 if(myPlantList[i].growthRate < 45 && myPlantList[i].growthRate >= 30)
                 {
                     PlantManager.GetInstance().MiddleOn(i);
                     uiNotice = uimanager.GetUI("UINotice").GetComponent<UINotice>();
-                    uiNotice.GrowthNotice(myPlantList[i].plantUserName);
+                    uiNotice.GrowthNotice(myPlantList[i].plantUserName, GrowPlantReward);
                 }
 
                 if (myPlantList[i].growthRate < 60 && myPlantList[i].growthRate >= 45)
                 {
                     PlantManager.GetInstance().GrownUpOn(i);
                     uiNotice = uimanager.GetUI("UINotice").GetComponent<UINotice>();
-                    uiNotice.GrowthNotice(myPlantList[i].plantUserName);
+                    uiNotice.GrowthNotice(myPlantList[i].plantUserName, GrowPlantReward);
                 }
             }
         }
@@ -140,13 +145,12 @@ public class MyPlantManager : MonoBehaviour
                         uiNotice.DiseaseNotice(myPlantList[i].plantUserName);
 
                         PlantManager.GetInstance().DiseaseOn(i);
-                        //var plantSick = Instantiate(sick, potTrans);
                     }
                 }
                 else
                 {
-                    PlantManager.GetInstance().DiseaseOff(i);
                     myPlantList[i].isSick = false;
+                    PlantManager.GetInstance().DiseaseOff(i);
                 }
             }
         }

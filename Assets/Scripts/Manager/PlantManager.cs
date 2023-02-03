@@ -168,8 +168,9 @@ public class PlantManager : MonoBehaviour
                     plantsName = "plant/cropot";
                     onClickCroBtn = false;
 
+                    var rotation = Quaternion.Euler(0, 180, 0);
                     var ob = Resources.Load<GameObject>(plantsName);
-                    var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
+                    var Plantdata = Instantiate(ob, spawnPosition, rotation);
                     Plantdata.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
 
                     croCount += 1;
@@ -189,8 +190,9 @@ public class PlantManager : MonoBehaviour
                     plantsName = "Shelf/Shelf_On_Pot";
                     onClickOrnBtn = false;
 
+                    var rotation = Quaternion.Euler(0, 180, 0);
                     var ob = Resources.Load<GameObject>(plantsName);
-                    var Plantdata = Instantiate(ob, spawnPosition, Quaternion.identity);
+                    var Plantdata = Instantiate(ob, spawnPosition, rotation);
                     Plantdata.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
 
                     ornCount += 1;
@@ -279,9 +281,11 @@ public class PlantManager : MonoBehaviour
 
     public void SpawnSeed()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.touchCount == 0)
+            return;
+        else
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
                 return;
             else
             {
@@ -312,13 +316,12 @@ public class PlantManager : MonoBehaviour
 
                     selectPot = hitobj.collider.gameObject;
                 }
-
+                
             }
             ARRenderManager armanager = ARRenderManager.GetInstance();
-            armanager.PlaneOff();
+                armanager.PlaneOff();
         }
     }
-
     public void SetIdx(int idx)
     {
         clickIdx = idx;

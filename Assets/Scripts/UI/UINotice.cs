@@ -24,6 +24,7 @@ public class UINotice : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        plantManager = PlantManager.GetInstance();
         gamemanager = GameManager.GetInstance();
         WelcomeNotice();
       OkBtn.onClick.AddListener(OkNoticeBtn);
@@ -76,13 +77,13 @@ public class UINotice : MonoBehaviour
         AudioManager.GetInstance().PlaySfx("뿅");
         NoticePanal.gameObject.SetActive(false);
     }
-    public void GrowthNotice(string name)
+    public void GrowthNotice(string name, int growPlantReward)
     { 
          AudioManager.GetInstance().PlaySfx("띠딩");
         rewardImg.gameObject.SetActive(true);
         rewardtxt.gameObject.SetActive(true);
         Character.sprite = Resources.Load<Sprite>("Character/SmileTalkStr");
-        rewardtxt.text = $"+{myPlantManager.GrowPlantReward}";
+        rewardtxt.text = $"+{growPlantReward}";
         rewardImg.sprite = Resources.Load<Sprite>("Icon/Store/Icon_Money");
         NoticePanal.SetActive(true);
         Noticetxt.text = $"와!{name}이 한 단계 성장했어! 앞으로 더욱 애정을 담아서 길러줘!";
