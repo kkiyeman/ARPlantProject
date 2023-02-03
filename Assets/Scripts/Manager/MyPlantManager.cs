@@ -26,8 +26,8 @@ public class MyPlantManager : MonoBehaviour
     public int myPlantIdx;
 
     public WaitForSecondsRealtime waitFor30Seconds = new WaitForSecondsRealtime(30);
-    public WaitForSecondsRealtime waitFor10Seconds_GrowthRatePlant = new WaitForSecondsRealtime(10);
-    public WaitForSecondsRealtime waitFor10Seconds_PlantStatus = new WaitForSecondsRealtime(10);
+    public WaitForSecondsRealtime waitFor20Seconds_GrowthRatePlant = new WaitForSecondsRealtime(20);
+    public WaitForSecondsRealtime waitFor20Seconds_PlantStatus = new WaitForSecondsRealtime(20);
     public WaitForSecondsRealtime waitForHalfSeconds_PlantDisease = new WaitForSecondsRealtime(0.5f);
     public WaitForSecondsRealtime waitForHalfSeconds_DieThePlant = new WaitForSecondsRealtime(0.5f);
     public WaitForSecondsRealtime waitForHalfSeconds_HarvestAblePlant = new WaitForSecondsRealtime(0.5f);
@@ -72,7 +72,7 @@ public class MyPlantManager : MonoBehaviour
     {
         while(true)
         {
-            yield return waitFor10Seconds_GrowthRatePlant;              //식물 성장 시간(일단은 10초로) 개발 완료후 10,800초로 변경
+            yield return waitFor20Seconds_GrowthRatePlant;              //식물 성장 시간(일단은 10초로) 개발 완료후 10,800초로 변경
 
             for (int i = 0; i < myPlantList.Count; i++)
             {
@@ -111,7 +111,7 @@ public class MyPlantManager : MonoBehaviour
     {
         while (true)
         {
-            yield return waitFor10Seconds_PlantStatus;       //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
+            yield return waitFor20Seconds_PlantStatus;       //수분량, 영양도 감소 시간(일단은 10초로) 개발 완료후 3600초로 변경
 
             for (int i = 0; i < myPlantList.Count; i++)
             {
