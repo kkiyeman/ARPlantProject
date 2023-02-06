@@ -17,19 +17,19 @@ public class UIOption : MonoBehaviour
 
 
     // 메인화면버튼
-    public Button CloseBtn;
-    public Button HelpBtn;
-    public Button SoundBtn;
-    public Button ExitBtn;
+    public Button CloseBtn; // 닫는 버튼
+    public Button HelpBtn;  // 도움말 버튼
+    public Button SoundBtn; // 사운드설정 버튼
+    public Button ExitBtn;  // 게임종료 버튼
 
     // 사운드화면
-    public Button SoundBackBtn;
-    public Slider Bgm;
-    public Slider SFX;
+    public Button SoundBackBtn; // 사운드에서 메인으로 가기
+    public Slider Bgm;          // BGM 슬라이더
+    public Slider SFX;          // SFX 슬라이더
 
     // 도움말화면
-    public Button HelpBackBtn;
-    public Button NextBtn;
+    public Button HelpBackBtn; // 도움말에서 메인으로 가기
+    public Button NextBtn;     //
     public Button PrevBtn;
     public Image ExampleImg;
     public Text HelpTitle;

@@ -61,13 +61,17 @@ public class UIStore : MonoBehaviour
     {
         SetPlayerData();
     }
-
+    /// <summary>
+    /// 플레이어의 데이터를 표시해주는 함수
+    /// </summary>
     private void SetPlayerData()
     {
         txtEnergy.text = $"{gamemanager.curEnergy}/{gamemanager.totalEnergy}";
         txtGold.text = gamemanager.curGameMoney.ToString();
     }
-
+    /// <summary>
+    /// 온클릭 함수를 넣어주는 기능
+    /// </summary>
     private void ButtonSetting()
     {
         btnCloseStore.onClick.AddListener(OnClickCloseStore);
@@ -79,7 +83,9 @@ public class UIStore : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// 상점 닫으면서 BGM 랜덤변경
+    /// </summary>
     private void OnClickCloseStore()
     {
         int i = Random.Range(1, 4);
@@ -87,7 +93,9 @@ public class UIStore : MonoBehaviour
         AudioManager.GetInstance().PlaySfx("뿅");
         gameObject.SetActive(false);
     }
-
+    /// <summary>
+    /// 구매창 끄는 버튼
+    /// </summary>
     private void OnClickCloseBuy()
     {
         curCount = 1;
@@ -95,7 +103,9 @@ public class UIStore : MonoBehaviour
         imgItemBuy.gameObject.SetActive(false);
         AudioManager.GetInstance().PlaySfx("뿅");
     }
-
+    /// <summary>
+    /// 아이템에 온클릭을 달아주는 함수
+    /// </summary>
     private void BtnItemsSetting()
     {
         for (int i = 0; i < btnItems.Count; i++)
@@ -106,6 +116,9 @@ public class UIStore : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 버튼 아이템 종류를 정해주는 함수
+    /// </summary>
     private void BtnItemKindSet()
     {
         for (int i = 0; i < btnItemKinds.Length; i++)
@@ -114,7 +127,10 @@ public class UIStore : MonoBehaviour
             btnItemKinds[idx].onClick.AddListener(() => { ShowItemList(idx); });
         }
     }
-
+    /// <summary>
+    /// 구매창이 뜨게 하고 인덱스에 맞는 정보를 넣어주는 함수
+    /// </summary>
+    /// <param name="index"></param>
     private void OnClickOpenBuy(int index)
     {
         int price = int.Parse(btnItems[index].itemPrice.text);
@@ -129,7 +145,9 @@ public class UIStore : MonoBehaviour
         imgItemName.sprite = btnItems[index].imgItem.sprite;
         AudioManager.GetInstance().PlaySfx("뿅");
     }
-
+    /// <summary>
+    /// 카운트 업
+    /// </summary>
     private void OnClickPlusItemCount()
     {
         if (curCount > 0)
@@ -139,7 +157,9 @@ public class UIStore : MonoBehaviour
             AudioManager.GetInstance().PlaySfx("뿅");
         }
     }
-
+    /// <summary>
+    /// 카운트 다운
+    /// </summary>
     private void OnClickMinusItemCount()
     {
         if (curCount > 1)
@@ -149,7 +169,9 @@ public class UIStore : MonoBehaviour
             AudioManager.GetInstance().PlaySfx("뿅");
         }
     }
-
+    /// <summary>
+    /// 구매창 안에 가격 계산 문자로 출력
+    /// </summary>
     private void SetItemBuy()
     {
         int price = int.Parse(txtItemPrice.text);
@@ -157,7 +179,10 @@ public class UIStore : MonoBehaviour
         int totalprice = curCount * price;
         txtTotalPrice.text = totalprice.ToString();
     }
-
+    /// <summary>
+    /// 왼쪽탭 선택시 색깔변경, 스프라이트 변경, 포문으로 아이템 제거 / 리스트 제거
+    /// </summary>
+    /// <param name="i"></param>
     private void ShowItemList(int i)
     {
         AudioManager.GetInstance().PlaySfx("뿅");
@@ -169,7 +194,7 @@ public class UIStore : MonoBehaviour
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground/UIBackground LightGrey3");
         btnItemKinds[curItemKind].image.color = Color.white;
         txtItemKinds[curItemKind].color = new Color32(50, 50, 50, 255);
-        if (btnItems.Count > 0)
+        if (btnItems.Count > 0) // 1개라도 있으면 전부 삭제하고 리스트 초기화
         {
             for (int d = 0; d < btnItems.Count; d++)
             {
@@ -177,10 +202,12 @@ public class UIStore : MonoBehaviour
             }
             btnItems.Clear();
         }
-        GetItemList(curItemKind);
+        GetItemList(curItemKind); // 다시 채워준다.
 
     }
-
+    /// <summary>
+    /// 안쓴 함수 배경 변경
+    /// </summary>
     public void SpriteChange()
     {
         for (int i = 0; i < btnItemKinds.Length; i++)
@@ -191,7 +218,9 @@ public class UIStore : MonoBehaviour
 
         btnItemKinds[curItemKind].image.sprite = Resources.Load<Sprite>("UIBackground LightGrey1");
     }
-
+    /// <summary>
+    /// 구매조건과 종류에 따라 구매시 인벤으로 들어감
+    /// </summary>
     private void OnClickBuy()
     {
         if (gamemanager.curGameMoney - int.Parse(txtTotalPrice.text) >= 0)
@@ -229,7 +258,12 @@ public class UIStore : MonoBehaviour
 
 
     }
-
+    /// <summary>
+    /// 아이템리스트를 index에 맞게 가져오는 함수
+    /// 여기서 인덱스는 아이템 왼쪽 종류 탭
+    /// 탭에 맞춰 아이템 리스트를 가져가도록
+    /// </summary>
+    /// <param name="index"></param>
     private void GetItemList(int index)
     {
         if (index <= 3)

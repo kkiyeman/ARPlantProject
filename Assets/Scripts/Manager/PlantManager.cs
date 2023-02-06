@@ -25,8 +25,8 @@ public class PlantManager : MonoBehaviour
     #endregion
 
     [SerializeField]
-    ARRaycastManager m_RaycastManager;
-    List<ARRaycastHit> m_Hits = new List<ARRaycastHit>();
+    ARRaycastManager m_RaycastManager; // AR 레이캐스트매니저
+    List<ARRaycastHit> m_Hits = new List<ARRaycastHit>(); // 터치하는 위치를 알아내는 것
 
     UIManager uimanager;
 
@@ -114,8 +114,8 @@ public class PlantManager : MonoBehaviour
     private void Awake()
     {
         //path = Application.persistentDataPath + "/";
-        instance = this;
-        DontDestroyOnLoad(gameObject);
+        instance = this;    // 현재 하이어라키에 있는 스폰매니저 속 스크립트를 사용하기 위해 인스턴스를 현재 생성되어 있는 걸로 지정한다.
+        DontDestroyOnLoad(gameObject); // 스폰매니저를 DontDestroyOnLoad로 변경해준다.
 
         uimanager = UIManager.GetInstance();
     }
@@ -127,12 +127,6 @@ public class PlantManager : MonoBehaviour
         spawnedObject = null;
         //DataManager.GetInstance().LoadData();
 
-        //Debug.Log(MyPlants);
-
-        //StartCoroutine(MinusPlantStatus(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
-        //StartCoroutine(DieThePlant(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
-        //StartCoroutine(PlantDisease(myPlantList[myPlantManager.myPlantIdx].hydration, myPlantList[myPlantManager.myPlantIdx].nutrition));
-        //StartCoroutine(GrowthRatePlant(myPlantManager.myPlantList[0].growthRate));
     }
 
 
@@ -155,6 +149,10 @@ public class PlantManager : MonoBehaviour
         Plantdata.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
     }*/
 
+    /// <summary>
+    /// 선반 , 농작물 선택후 2개이상 생성안되도록 만든 함수.
+    /// </summary>
+    /// <param name="spawnPosition"></param>
     public void SpawnPrefab(Vector3 spawnPosition)
     {
         int ranCrops = Random.Range(0, 2);
@@ -214,33 +212,36 @@ public class PlantManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
+    /// <summary>
+    /// 뒷부분이 클릭 안되게 만들어주고 클릭 위치에 선반, 화분 위치시키는 것
+    /// </summary>
     public void PlantSpawn()
     {
 
-        if (Input.touchCount == 0)
-             return;
+        if (Input.touchCount == 0) // 터치 카운트가 0이면
+             return;        // 리턴
         else
         {
-            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) // 뒷부분이 안눌리게
                 return;
             else
             {
                 if (m_RaycastManager.Raycast(Input.GetTouch(0).position, m_Hits))
                 {
-                    if (Input.GetTouch(0).phase == TouchPhase.Began)
+                    if (Input.GetTouch(0).phase == TouchPhase.Began) // 터치를 시작했을 때
                     {
-                        SpawnPrefab(m_Hits[0].pose.position);
+                        SpawnPrefab(m_Hits[0].pose.position); // 스폰프리펩(선반, 화분)을 해당 포지션에 생성
                         
                     }
-                    else if (Input.GetTouch(0).phase == TouchPhase.Moved && spawnedObject != null)
+                    else if (Input.GetTouch(0).phase == TouchPhase.Moved && spawnedObject != null) // 손을 안 뗀 상태에서 스폰드오브젝트가 널이 아니고 터치 위치가 움직이면 
+
                     {
-                        spawnedObject.transform.position = m_Hits[0].pose.position;
+                        spawnedObject.transform.position = m_Hits[0].pose.position; // 그 터치 위치로 스폰드오브젝트를 옮겨준다.
                     }
-                    if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                    if (Input.GetTouch(0).phase == TouchPhase.Ended) // 손을 떼면
                     {
-                        spawnedObject = null;
-                    }
+                        spawnedObject = null; // 스폰오브젝트의 값을 null로 초기화 시켜준다.
+                    }                          
                 }
                 //ARRenderManager.GetInstance().PlaneOff();
             }
@@ -296,8 +297,8 @@ public class PlantManager : MonoBehaviour
                     potTrans = hitobj.collider.gameObject.transform.parent;
                     Debug.Log("potTrans : " + potTrans.name);
 
-                    bool isOrn = shelf.type == ShelfType.orn;
-                    potIdx = isOrn ? potTrans.GetSiblingIndex() + (shelf.shelfIdx * 4) : potTrans.GetSiblingIndex() + (shelf.potIdx) + 4;
+                    bool isOrn = shelf.type == ShelfType.orn; // shelf.type == ShelfType.orn이 true면 isOrn 도 true, false면 false
+                    potIdx = isOrn ? potTrans.GetSiblingIndex() + (shelf.shelfIdx * 4) : potTrans.GetSiblingIndex() + (shelf.potIdx) + 4; // 
 
                     Debug.Log("potIdx : " + potIdx);
 
@@ -360,7 +361,7 @@ public class PlantManager : MonoBehaviour
         var dead = Instantiate(deadob, potTrans);
         var sick = Instantiate(sickob, potTrans);
         var harvest = Instantiate(harvestob, potTrans);
-        seeds.Add(seed);
+        seeds.Add(seed);        //리스트를 일일이 만들어줌.
         sprouts.Add(sprout);
         middles.Add(middle);
         grownups.Add(grownup);
